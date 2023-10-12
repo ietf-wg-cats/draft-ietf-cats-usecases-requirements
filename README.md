@@ -1,6 +1,6 @@
-# TODO - Your title
+# Computing-Aware Traffic Steering (CATS) Problem Statement, Use Cases, and Requirements
 
-This is the working area for the IETF [CATS Working Group](https://datatracker.ietf.org/wg/cats/documents/) Internet-Draft, "TODO - Your title".
+This is the working area for the IETF [CATS Working Group](https://datatracker.ietf.org/wg/cats/documents/) Internet-Draft, "Computing-Aware Traffic Steering (CATS) Problem Statement, Use Cases, and Requirements".
 
 * [Editor's Copy](https://cats-wg.github.io/draft-ietf-cats-usecases-requirements/#go.draft-ietf-cats-usecases-requirements.html)
 * [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-cats-usecases-requirements)
