@@ -771,18 +771,6 @@ informative:
 
 
 ##  Computing-Aware AI large model
-
-   A number of industry associations, such as the Industrial Digital
-   Twin Association or the Digital Twin Consortium
-   (https://www.digitaltwinconsortium.org/), have been founded to
-   promote the concept of the Digital Twin (DT) for a number of use case
-   areas, such as smart cities, transportation, industrial control,
-   among others.  The core concept of the DT is the "administrative
-   shell" {{Industry4.0}}, which serves as a digital representation of the
-   information and technical functionality pertaining to the "assets"
-   (such as an industrial machinery, a transportation vehicle, an object
-   in a smart city or others) that is intended to be managed,
-   controlled, and actuated.
    
    AI large model refers to a type of artificial intelligence model that 
    is trained on massive amounts of data using deep learning techniques. 
