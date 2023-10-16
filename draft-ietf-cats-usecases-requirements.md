@@ -164,23 +164,22 @@ informative:
    to the most suitable computing resource in order to meet the users'
    service demand.
 
-   Depending on the locations of computing resource and their capacity,
-   different amounts of resource from different locations can be used to
-   deliver a service.  At peak hours, computing resources closest to a
-   client might not be sufficient to handle all the incoming service
-   requests.  Longer response times or even dropping of requests could
-   be experienced by users.  Increasing the computing resources hosted
-   at each location to the potential maximum capacity is neither
-   feasible nor economically viable in many cases.  Offloading
-   computation intensive processing to the user devices would place huge
-   pressure on local resources such as the battery, and the needed data
-   set (for the computation) that may not exist on the user device
-   because of the size of data pool or due to data governance reasons.
-
-   Service providers often have their own server sites, many of which
+   Service providers often have their own service sites, many of which
    have been enhanced to support computing services.  A service instance
    deployed at a single site might not provide sufficient capacity to
    fully guarantee the quality of service required by a customer.
+   Especially at peak hours, computing resources at a single site can
+   not handle all the incoming service requests, leading to longer
+   response times or even dropping of requests experienced by clients.
+   
+   Moreover, increasing the computing resources hosted at each location
+   to the potential maximum capacity is neither feasible nor
+   economically viable in many cases.  Offloading computation intensive
+   processing to the user devices is neither acceptable, since it would
+   place huge pressure on local resources such as the battery and incur
+   some data privacy issues if the needed data for computation is not
+   provided locally.
+
    Instead, the same service can be deployed at multiple sites for
    better availability and scalability.  Furthermore, it is desirable to
    balance the load across all service instances to improve throughput.
@@ -188,16 +187,6 @@ informative:
    according to information that may include current computing load,
    where the notion of 'best' may highly depend on the application
    demands.
-
-   A particular example is the popular and pervasive 5G Mobile Edge
-   Computing(MEC) service.  In 5G MEC, the Uplink Classifier(UL-CL)
-   functionality of User Plane Functions(UPFs) are deployed close to
-   edge sites, which are capable of effectively classifying & switching
-   uplink traffic to the suitable computing-resources that might be
-   located either in local-area Data Network(DN), operators' DN, or even
-   3rd-party's DN.  Through possibly using some 'intelligent' criteria,
-   this could warrant the selection of resources with either low, high-
-   computational power or all-involved requirements.
 
    This document describes sample usage scenarios that drive CATS
    requirements and will help to identify candidate solution
@@ -213,23 +202,73 @@ informative:
 
    This document makes use of the following terms:
 
-   Service:
-   :  An offering provided by a service provider, similar to the
-     notion of a 'service function' in {{?RFC7665}}, which may or may not
-     be of composite nature but appears in the problem space of CATS as
-     a single service to which traffic needs to be steered.
+  Client:
+     An endpoint that is connected to a service provider network.
 
-   Service instance:
-   :  A run-time environment (e.g., a server or a
-     process on a server) that makes a service available.  A particular
-     service could be made available at multiple service instances at
-     the same or different locations.
+   Computing-Aware Traffic Steering (CATS):  A traffic engineering
+     approach [I-D.ietf-teas-rfc3272bis] that takes into account the
+     dynamic nature of computing resources and network state to optimize
+     service-specific traffic forwarding towards a given service contact
+     instance.  Various relevant metrics may be used to enforce such
+     computing-aware traffic steering policies.
+
+   Service:  An offering that is made available by a provider by
+     orchestrating a set of resources (networking, compute, storage,
+     etc.).  Which and how these resources are solicited is part of the
+     service logic which is internal to the provider.  For example,
+     these resources may be:
+ 
+        * Exposed by one or multiple processes (a.k.a.  Service
+        Functions (SFs) ).  [RFC7665]
+ 
+        * Provided by virtual instances, physical, or a combination
+        thereof.
+
+        * Hosted within the same or distinct nodes.
+
+        * Hosted within the same or multiple service sites.
+
+        * Chained to provide a service using a variety of means.
+
+        How a service is structured is out of the scope of CATS.
+
+        The same service can be provided in many locations; each of them
+        constitutes a service instance.
 
    Service identifier:
-   :  Used to uniquely identify a service, at the same
-     time identifying the whole set of service instances that each
-     represent the same service behavior, no matter where those service
-     instances are running.
+     An identifier representing a service, which the clients use to
+     access it.
+
+   Computing Service:
+     An offering that is made available by a provider by orchestrating a
+     set of computing resources (without networking resources).
+
+   Service instance:
+     An instance of running resources according to a given service
+     logic.  Many such instances can be enabled by a provider.
+     Instances that adhere to the same service logic provide the same
+     service.  An instance is typically running in a service site.
+     Clients' requests are serviced by one of these instances.
+
+   Service site:
+     A location that hosts the resources that are required to offer a
+     service.  A service site may be a node or a set of nodes.  A CATS-
+     serviced site is a service site that is connected to a CATS-
+     Forwarder.
+
+   Network Edge:
+     The network edge is an architectural demarcation point used to
+     identify physical locations where the corporate network connects to
+     third-party networks.
+
+   Edge Computing:  Edge computing is a computing pattern that moves
+     computing infrastructures, i.e, servers, away from centralized data
+     centers and instead places it close to the end users for low
+     latency communication.
+
+        * Relations with network edge: edge computing infrastructures
+        connect to corporate network through a network edge entry/exit
+        point.
 
 #  Problem Statement
 
@@ -796,18 +835,26 @@ informative:
    towards compute capabilities and resources, and their corelation with
    services.  Therefore, a desirable system:
 
-   R1:
-   : MUST provide a discovery and resolving methodology for the
+   R1: MUST provide a discovery and resolving methodology for the
    mapping of a service identifier to a specific address.
 
-   R2:
-   : MUST provide an mapping methods for further quickly selecting the
+   R2: MUST provide an mapping methods for further quickly selecting the
    service instance.
 
+   R3: SHOULD provide a timeout limitation for selecting the service
+   instance.
+
+   R4: MUST provide a method to determine the availability of a service
+   instance.
+
+   R5: MUST provide a mechanism for solving the service contention
+   problem when multiple service instances with the same service
+   indentifier are all available to provide computing services.
+   
 ##  Support Agreement on Metric Representation
 
    Computing metrics can have many different semantics, particularly for
-   being service- specific.  Even the notion of a "computing load"
+   being service-specific.  Even the notion of a "computing load"
    metric could be represented in many different ways.  Such
    representation may entail information on the semantics of the metric
    or it may be purely one or more semantic- free numerals.  Agreement
@@ -815,12 +862,11 @@ informative:
    participating in the service instance selection decision is
    important.  Therefore, a desirable system
 
-   R3:
-   : MUST agree on using metrics that are oriented towards compute
+   R6: MUST agree on using metrics that are oriented towards compute
    capabilities and resources and their representation among service
    elements in the participating edges.
 
-   R4: MUST include network metrics.
+   R7: MUST include network metrics.
 
 ##  Support Moderate Metric Distributing
 
@@ -847,11 +893,11 @@ informative:
    equally be considered and even be realized.  Specifically, a
    desirable system:
 
-   R5:
-   : MUST provide mechanisms to distribute the metrics
+   R8: MUST provide mechanisms for metric collection.
 
-   R6:
-   : MUST realize means for rate control for distributing of metrics
+   R9: MUST provide mechanisms to distribute the metrics.
+
+   R10: MUST realize means for rate control for distributing of metrics.
 
 ##  Support Flexible Use of Metrics
 
@@ -861,8 +907,7 @@ informative:
    cases.  Therefore, the CATS components might use both the network and
    computing metrics for service instance selection.  For this reason:
 
-   R7:
-   : A computing semantic model SHOULD be defined for the mapping
+   R11: A computing semantic model SHOULD be defined for the mapping
    selection.
 
    We recognize that different network nodes, e.g., routers, switches,
@@ -876,20 +921,18 @@ informative:
    others {{TR22.874}}.  Of course, specific metrics might not be utilized
    at all in other scenarios.  Hence:
 
-   R8:
-   : There MUST exist flexibility in term of metrics definition and
-   utilization for the selection of service instance.
+   R12: In addition to common metrics that are agreed by all CATS
+   components like processing delay, there SHOULD be some ways for
+   metrics definition in different dimensions, which is used for the
+   selection of specific service instance.
 
    Therefore, a desirable system
-
-   R9:
-   : MUST set up metric information that can be understood by CATS
+   
+   R13: MUST set up metric information that can be understood by CATS
    components.
 
-   R10:
-   : MUST use network and computing metrics in a flexible way that
-   includes a default action for the interoperation of network nodes
-   which may or may not support the specific metrics.
+   R14: MUST include a default action for the interoperation of network
+   nodes which may or may not support the specific metrics.
 
 ##  Support Session and Service Continuity
 
@@ -913,8 +956,8 @@ informative:
    transfer (e.g., when metrics change significantly).  So in those
    situations:
 
-   R11:
-   : Session as well as service continuity MUST be maintained.
+   R15: session as well as service continuity MUST be maintained when
+   state information is needed.
 
    The nature of this continuity is highly dependent on the nature of
    the specific service, which could be seen as a 'instance affinity' to
@@ -951,22 +994,18 @@ informative:
 
    Therefore, a desirable system:
 
-   R12:
-   : MUST maintain "instance affinity" which MAY span one or more
+   R16: MUST maintain "instance affinity" which MAY span one or more
    service requests, i.e., all the packets from the same application-
    level flow MUST go to the same service instance unless the original
    service instance is unreachable
 
-   R13:
-   : MUST avoid keeping fine runtime-state granularity in network
+   R17: MUST avoid keeping fine runtime-state granularity in network
    nodes for providing session and service continuity.
 
-   R14:
-   : MUST provide mechanisms to minimize client side states in order
+   R18: MUST provide mechanisms to minimize client side states in order
    to achieve the instance affinity.
 
-   R15:
-   : SHOULD support the UE and service instance mobility.
+   R19: SHOULD support the UE and service instance mobility.
 
 ## Preserve Communication Confidentiality
 
@@ -983,8 +1022,7 @@ informative:
    consider whether the computing information exposed in the network can
    help make full use of traffic steering.  Therefore, a CATS system
 
-   R16:
-   : MUST preserve the confidentiality of the communication relation
+   R20: MUST preserve the confidentiality of the communication relation
    between user and service provider by minimizing the exposure of user-
    relevant information according to user needs.
 
@@ -998,14 +1036,12 @@ informative:
    Service data sometimes needs to be moved among different edge sites
    to maintain service consistency and availability.  Therefore:
 
-   R17:
-   : Service data MUST be protected from interception.
+   R21:Service data MUST be protected from interception.
 
    The act of making compute requests may reveal the nature of user's
    activities, so that:
 
-   R18:
-   : The nature of user's activities SHOULD be hidden as much as
+   R22: The nature of user's activities SHOULD be hidden as much as
    possible.
 
    The behavior of the network can be adversely affected by modifying or
@@ -1013,8 +1049,7 @@ informative:
    Such attacks could deprive users' of the services they desires, and
    might be used to divert traffic to interception points.  Therefore,
 
-   R19:
-   : Secure advertisements are REQUIRED to prevent rogue nodes from
+   R23: Secure advertisements are REQUIRED to prevent rogue nodes from
    participating in the network.
 
 
