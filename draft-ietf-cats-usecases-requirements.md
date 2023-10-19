@@ -775,9 +775,7 @@ informative:
    AI large model refers to a type of artificial intelligence model that 
    is trained on massive amounts of data using deep learning techniques. 
    These models are characterized by their large size, high complexity, 
-   and high computational requirements. AI large models have become 
-   increasingly important in various fields, such as natural language 
-   processing, computer vision, and speech recognition.
+   and high computational requirements. 
    
    There are usually two types of AI large models, AI foundation model 
    and customized model. AI foundation large model is a model that can 
