@@ -784,7 +784,7 @@ informative:
    specific domain tasks. Customized models are trained for specific 
    industries or domains, and more focused on solving specific problems, 
    but may not be applicable to other domains. AI foundation models
-   usually involve mega-scale parametere, while customized model involves 
+   usually involve mega-scale parameters, while customized models involve 
    large or middle-scale parameters.
    
    Also, AI large model contains two key phases: training and inference. 
