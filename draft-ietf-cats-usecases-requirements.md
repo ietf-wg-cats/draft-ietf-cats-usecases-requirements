@@ -787,7 +787,7 @@ informative:
    usually involve mega-scale parameters, while customized models involve 
    large or middle-scale parameters.
    
-   Also, AI large model contains two key phases: training and inference. 
+   Also, AI large model involves two key phases: training and inference. 
    Training refers to the process of developing an AI model by feeding it 
    with large amounts of data and optimizing it to learn and improve its 
    performance. Training has high demand on computing and memory resource. 
