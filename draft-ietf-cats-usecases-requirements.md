@@ -777,7 +777,7 @@ informative:
    These models are characterized by their large size, high complexity, 
    and high computational requirements. 
    
-   There are usually two types of AI large models, AI foundation model 
+   There are two types of AI large models, AI foundation model 
    and customized model. AI foundation large model is a model that can 
    handle multiple tasks and domains, and has wider applicability and 
    flexibility, but may not perform as well as customized model in 
