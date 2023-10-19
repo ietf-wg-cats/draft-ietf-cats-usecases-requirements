@@ -781,7 +781,7 @@ informative:
    and customized model. AI foundation large model is a model that can 
    handle multiple tasks and domains, and has wider applicability and 
    flexibility, but may not perform as well as customized model in 
-   specific domain tasks. Customized model is trained for specific 
+   specific domain tasks. Customized models are trained for specific 
    industries or domains, and more focused on solving specific problems, 
    but may not be applicable to other domains. AI foundation model 
    usually involve mega-scale parametere, while customized model involves 
