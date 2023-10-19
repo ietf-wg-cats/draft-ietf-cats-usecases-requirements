@@ -206,7 +206,7 @@ informative:
      An endpoint that is connected to a service provider network.
 
    Computing-Aware Traffic Steering (CATS):  A traffic engineering
-     approach [I-D.ietf-teas-rfc3272bis] that takes into account the
+     approach {{?I-D.ietf-teas-rfc3272bis}} that takes into account the
      dynamic nature of computing resources and network state to optimize
      service-specific traffic forwarding towards a given service contact
      instance.  Various relevant metrics may be used to enforce such
@@ -219,7 +219,7 @@ informative:
      these resources may be:
  
         * Exposed by one or multiple processes (a.k.a.  Service
-        Functions (SFs) ).  [RFC7665]
+        Functions (SFs)) {{?RFC7665}}.
  
         * Provided by virtual instances, physical, or a combination
         thereof.
