@@ -783,7 +783,7 @@ informative:
    flexibility, but may not perform as well as customized model in 
    specific domain tasks. Customized models are trained for specific 
    industries or domains, and more focused on solving specific problems, 
-   but may not be applicable to other domains. AI foundation model 
+   but may not be applicable to other domains. AI foundation models
    usually involve mega-scale parametere, while customized model involves 
    large or middle-scale parameters.
    
