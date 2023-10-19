@@ -812,7 +812,7 @@ informative:
    achieve low latency as the AI inference is deployed near to device. And 
    it requires low demand on device resources. But when handling AI inference 
    tasks, if traffic load between device and edge is high or edge computing 
-   resource is overloaded,  traffic steering is needed to ensure the QoS.
+   resource is overloaded, traffic steering is needed to ensure the QoS.
 
 ~~~~
                          Training + Inference
@@ -883,6 +883,34 @@ informative:
                Inference         Inference          Inference
 ~~~~
 {: #fig-6 title="Cloud-edge-device co-inference" artwork-align="center"}  
+
+   {{fig-7}} shows the Edge inference AI model deployment. 
+   In this case, the customized model is deployed on the edge and device 
+   is requesting the customized model's AI inference service. So, the edge 
+   can infer by its own without the cloud. It can achieve low latency 
+   as the AI inference is deployed near to device. And it requires low 
+   demand on device resources. But when handling AI inference tasks, if 
+   traffic load between device and edge is high or edge computing resource
+   is overloaded, traffic steering is needed to ensure the QoS.
+
+~~~~
+                           Training + Inference
+       +----------------------------------------------------------+
+       |  +--------------+  +--------------+   +--------------+   |
+       |  |     Edge     |  |     Edge     |   |     Edge     |   |
+       |  | +----------+ |  | +----------+ |   | +----------+ |   |
+       |  | |Customized| |  | |Customized| |   | |Customized| |   |
+       |  | |  Models  | |  | |  Models  | |   | |  Models  | |   |
+       |  | +----------+ |  | +----------+ |   | +----------+ |   |
+       |  +--------------+  +--------------+   +--------------+   |
+       +----------+-----------------+---------------+-------------+
+                  |                 |               |
+                  |                 |               |
+             +----+---+        +----+---+       +---+----+
+             | Device |        | Device |   ... | Device |
+             +--------+        +--------+       +--------+
+~~~~
+{: #fig-7 title="Edge inference" artwork-align="center"}  
 
    Many AI tasks brings on high demand on network resource and computing resource: 
    vison, audio, multimodal. Also, it is common that same customized model is 
