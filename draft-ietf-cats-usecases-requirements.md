@@ -773,7 +773,8 @@ informative:
 ##  Computing-Aware AI large model
    
    AI large model refers to a type of artificial intelligence model that 
-   is trained on massive amounts of data using deep learning techniques. 
+   is trained on massive amounts of data using deep learning techniques 
+   (https://www.merantix.com/blog/the-significance-of-ai-models#:~:text=Large%20AI%20Models%2C%20also%20known,are%20used%20to%20build%20them). 
    These models are characterized by their large size, high complexity, 
    and high computational requirements. 
    
