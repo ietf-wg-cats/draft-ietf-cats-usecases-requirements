@@ -1,0 +1,982 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2024-05-09T00:57:05.655287+00:00",
+  "repo": "cats-wg/draft-ietf-cats-usecases-requirements",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [],
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOKfPAms5cnqa2",
+      "title": "Add use case of Computing-Aware AI large model",
+      "url": "https://github.com/cats-wg/draft-ietf-cats-usecases-requirements/pull/1",
+      "state": "OPEN",
+      "author": "QingAn",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Add use case of Computing-Aware AI large model, based on the discussion during IETF 117.",
+      "createdAt": "2023-10-12T10:49:21Z",
+      "updatedAt": "2023-10-20T10:34:37Z",
+      "baseRepository": "cats-wg/draft-ietf-cats-usecases-requirements",
+      "baseRefName": "main",
+      "baseRefOid": "17811e95cd6e130e93ad3bd4daf553721947696f",
+      "headRepository": "QingAn/draft-ietf-cats-usecases-requirements",
+      "headRefName": "patch-1",
+      "headRefOid": "dd8aad958562b490009a01dbaa7fc494e3020996",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "QingAn",
+          "authorAssociation": "NONE",
+          "body": "> It looks to me Fig 5 & 6 both are co-interence model. Does that mean, the remote cloud side always plays the key role? \r\n\r\nDuring the inference, if the customized model is deployed on the edge and device is requesting the customized model's AI inference service, then the edge itself will be the key. If device is requesting the foundation model's AI inference service, then remote cloud side will be the key.\r\n\r\n> Curious to know, which is the most affecting contributor to inference, from device to edge or from edge to the cloud in terms of delay/bandwidth/computing resources? Would edge do the work alone without the help from the cloud side?\r\n\r\nSimilarly,  if the customized model is deployed on the edge and device is requesting the customized model's AI inference service, then the edge can work independently.\r\n\r\n",
+          "createdAt": "2023-10-18T09:18:04Z",
+          "updatedAt": "2023-10-18T09:18:04Z"
+        },
+        {
+          "author": "VMatrix1900",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> > It looks to me Fig 5 & 6 both are co-interence model. Does that mean, the remote cloud side always plays the key role?\r\n> \r\n> During the inference, if the customized model is deployed on the edge and device is requesting the customized model's AI inference service, then the edge itself will be the key. If device is requesting the foundation model's AI inference service, then remote cloud side will be the key.\r\n> \r\n> > Curious to know, which is the most affecting contributor to inference, from device to edge or from edge to the cloud in terms of delay/bandwidth/computing resources? Would edge do the work alone without the help from the cloud side?\r\n> \r\n> Similarly, if the customized model is deployed on the edge and device is requesting the customized model's AI inference service, then the edge can work independently.\r\n\r\nSo there is a third scenario in which the edge can inference by its own without the cloud. It seems to me this scenario is the most suitable one for the CATS. Can you add a third figure to demonstrate it?  And add the explanation text too.\r\n\r\nBy permutation, I wonder is there a scenario in which device and edge co-inference without the cloud? ",
+          "createdAt": "2023-10-18T13:20:14Z",
+          "updatedAt": "2023-10-18T13:20:14Z"
+        },
+        {
+          "author": "QingAn",
+          "authorAssociation": "NONE",
+          "body": "> Thanks for this contrib.\r\n> \r\n> I would shorten the \"generic introductory part\" but focus more on CATS-specific matters and highlight what is unique to the IA-as-an-app. Thanks.\r\n\r\nThanks for the comments. I have made the update and also some reply to your comment. Please take a look.",
+          "createdAt": "2023-10-19T07:37:29Z",
+          "updatedAt": "2023-10-19T07:37:29Z"
+        },
+        {
+          "author": "QingAn",
+          "authorAssociation": "NONE",
+          "body": "> So there is a third scenario in which the edge can inference by its own without the cloud. It seems to me this scenario is the most suitable one for the CATS. Can you add a third figure to demonstrate it? And add the explanation text too.\r\n\r\nDone. Please take a look.\r\n\r\n> \r\n> By permutation, I wonder is there a scenario in which device and edge co-inference without the cloud?\r\n\r\nFrankly, I hadn't considered this scenario before. But theoretically, it is possible.\r\n",
+          "createdAt": "2023-10-19T07:55:26Z",
+          "updatedAt": "2023-10-19T07:55:26Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKfPAms5jxelk",
+          "commit": {
+            "abbreviatedOid": "ae4403b"
+          },
+          "author": "VMatrix1900",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-12T11:23:58Z",
+          "updatedAt": "2023-10-12T11:23:58Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": "What is the relation between digial twin and AI large model?",
+              "createdAt": "2023-10-12T11:23:58Z",
+              "updatedAt": "2023-10-12T11:23:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5j4CRB",
+          "commit": {
+            "abbreviatedOid": "ae4403b"
+          },
+          "author": "QingAn",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-13T03:31:09Z",
+          "updatedAt": "2023-10-13T03:31:10Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": "Sorry, typo. I copied the digital twin first paragraph to follow the format. Forgot to delete",
+              "createdAt": "2023-10-13T03:31:10Z",
+              "updatedAt": "2023-10-13T03:31:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5kPEZr",
+          "commit": {
+            "abbreviatedOid": "2a8abf6"
+          },
+          "author": "liyizhou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "It looks to me Fig 5 & 6 both are co-interence model. Does that mean, the remote cloud side always plays the key role? Curious to know, which is the most affecting contributor to inference, from device to edge or from edge to the cloud in terms of delay/bandwidth/computing resources? Would edge do the work alone without the help from the cloud side? ",
+          "createdAt": "2023-10-17T08:18:34Z",
+          "updatedAt": "2023-10-17T08:18:34Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKfPAms5ke_R0",
+          "commit": {
+            "abbreviatedOid": "2a8abf6"
+          },
+          "author": "boucadair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "Thanks for this contrib. \r\n\r\nI would shorten the \"generic introductory part\" but focus more on CATS-specific matters and highlight what is unique to the IA-as-an-app. Thanks.  ",
+          "createdAt": "2023-10-18T18:37:05Z",
+          "updatedAt": "2023-10-18T18:43:42Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "Can we have a citation here?",
+              "createdAt": "2023-10-18T18:37:05Z",
+              "updatedAt": "2023-10-18T18:43:42Z"
+            },
+            {
+              "originalPosition": 11,
+              "body": "I would delete the last sentence. It does not add much.",
+              "createdAt": "2023-10-18T18:37:40Z",
+              "updatedAt": "2023-10-18T18:43:42Z"
+            },
+            {
+              "originalPosition": 13,
+              "body": "The subtle \"usualy\" may be confusing for some readers absent an authoritative reference to cite;",
+              "createdAt": "2023-10-18T18:38:33Z",
+              "updatedAt": "2023-10-18T18:43:42Z"
+            },
+            {
+              "originalPosition": 17,
+              "body": "```suggestion\r\n   specific domain tasks. Customized models are trained for specific \r\n```",
+              "createdAt": "2023-10-18T18:38:56Z",
+              "updatedAt": "2023-10-18T18:43:42Z"
+            },
+            {
+              "originalPosition": 19,
+              "body": "```suggestion\r\n   but may not be applicable to other domains. AI foundation models\r\n```",
+              "createdAt": "2023-10-18T18:39:09Z",
+              "updatedAt": "2023-10-18T18:43:42Z"
+            },
+            {
+              "originalPosition": 20,
+              "body": "What is a \"mega-sclae parametere\"?",
+              "createdAt": "2023-10-18T18:40:01Z",
+              "updatedAt": "2023-10-18T18:43:42Z"
+            },
+            {
+              "originalPosition": 20,
+              "body": "```suggestion\r\n   usually involve mega-scale parameters, while customized models involve \r\n```",
+              "createdAt": "2023-10-18T18:40:23Z",
+              "updatedAt": "2023-10-18T18:43:42Z"
+            },
+            {
+              "originalPosition": 23,
+              "body": "```suggestion\r\n   Also, AI large model involves two key phases: training and inference. \r\n```\r\n\r\nIs this really specific to these models?",
+              "createdAt": "2023-10-18T18:40:53Z",
+              "updatedAt": "2023-10-18T18:43:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5ki8w5",
+          "commit": {
+            "abbreviatedOid": "2a8abf6"
+          },
+          "author": "QingAn",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-19T07:06:15Z",
+          "updatedAt": "2023-10-19T07:06:15Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "Actually, it is not a direct citation, but a rewording of several citations, including:\r\n\r\n- https://www.merantix.com/blog/the-significance-of-ai-models#:~:text=Large%20AI%20Models%2C%20also%20known,are%20used%20to%20build%20them.\r\n- https://aws.amazon.com/cn/blogs/aws/generative-ai-with-large-language-models-new-hands-on-course-by-deeplearning-ai-and-aws/#:~:text=Generative%20AI%20is%20powered%20by,across%20many%20natural%2Dlanguage%20tasks.\r\n- https://techcommunity.microsoft.com/t5/ai-machine-learning-blog/training-large-models-in-azure-machine-learning/ba-p/3834865\r\n\r\nIs it ok to list several citation links?",
+              "createdAt": "2023-10-19T07:06:15Z",
+              "updatedAt": "2023-10-19T07:06:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5ki97_",
+          "commit": {
+            "abbreviatedOid": "2a8abf6"
+          },
+          "author": "QingAn",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-19T07:09:16Z",
+          "updatedAt": "2023-10-19T07:09:16Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "Agree and deleted.",
+              "createdAt": "2023-10-19T07:09:16Z",
+              "updatedAt": "2023-10-19T07:09:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5ki-eA",
+          "commit": {
+            "abbreviatedOid": "2a8abf6"
+          },
+          "author": "QingAn",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-19T07:10:36Z",
+          "updatedAt": "2023-10-19T07:10:37Z",
+          "comments": [
+            {
+              "originalPosition": 13,
+              "body": "Agree to delete \"usually\".",
+              "createdAt": "2023-10-19T07:10:37Z",
+              "updatedAt": "2023-10-19T07:10:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5kjD46",
+          "commit": {
+            "abbreviatedOid": "2a8abf6"
+          },
+          "author": "QingAn",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-19T07:23:53Z",
+          "updatedAt": "2023-10-19T07:23:54Z",
+          "comments": [
+            {
+              "originalPosition": 23,
+              "body": "Good question. Actually, training is a universal phase that each AI model need to do, while inference is not. AI large model, in most cases refers to large language model, involves inference. But for some other AI models, like a model trained to categorize images, inference is not needed.",
+              "createdAt": "2023-10-19T07:23:53Z",
+              "updatedAt": "2023-10-19T07:23:54Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5kjFnt",
+          "commit": {
+            "abbreviatedOid": "2a8abf6"
+          },
+          "author": "QingAn",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-19T07:27:14Z",
+          "updatedAt": "2023-10-19T07:27:15Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "Sorry, typo, it should be \"mega-scale parameters\"",
+              "createdAt": "2023-10-19T07:27:15Z",
+              "updatedAt": "2023-10-19T07:27:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5ksjyh",
+          "commit": {
+            "abbreviatedOid": "2a8abf6"
+          },
+          "author": "boucadair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-20T07:24:24Z",
+          "updatedAt": "2023-10-20T07:24:25Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "I would pick one of these and cite it.",
+              "createdAt": "2023-10-20T07:24:24Z",
+              "updatedAt": "2023-10-20T07:24:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5ksku4",
+          "commit": {
+            "abbreviatedOid": "2a8abf6"
+          },
+          "author": "boucadair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-20T07:26:57Z",
+          "updatedAt": "2023-10-20T07:26:57Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "I saw the nit, but I don't see what is a \"mega-scale parameter\". I see what is a massive scale DC, data, etc. but not sure what these parameters are.  ",
+              "createdAt": "2023-10-20T07:26:57Z",
+              "updatedAt": "2023-10-20T07:26:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5ktTo8",
+          "commit": {
+            "abbreviatedOid": "2a8abf6"
+          },
+          "author": "VMatrix1900",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-20T09:11:18Z",
+          "updatedAt": "2023-10-20T09:11:18Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "From [ourworldindata](https://ourworldindata.org/grapher/artificial-intelligence-parameter-count#:~:text=Parameters%20are%20variables%20in%20an,in%20an%20artificial%20neural%20network.):\r\n`Parameters are variables in an AI system whose values areadjusted during training to establish how input data get stransformed into the desired output.`\r\n\r\nWhen training, the parameter is loaded into the GPU memory. So more parameters requires more GPUs to train it. \r\n\r\nCan we give a number for mega-scale parameter? For example, billion/trillion? Or how much resource it takes to train it.",
+              "createdAt": "2023-10-20T09:11:18Z",
+              "updatedAt": "2023-10-20T09:11:18Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5ktYq4",
+          "commit": {
+            "abbreviatedOid": "2a8abf6"
+          },
+          "author": "VMatrix1900",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-20T09:23:07Z",
+          "updatedAt": "2023-10-20T09:23:07Z",
+          "comments": [
+            {
+              "originalPosition": 23,
+              "body": "I am not sure about that. From [Google AI model inference](https://www.google.com/search?q=ai+model+inference):\r\n`Machine learning inference is the process of running live data into a machine learning algorithm to calculate output such as a single numerical score.`\r\n\r\nIt seems categorize images is also inference.\r\n\r\nMaybe the difference between the large model and traditional ai model is that it can generate a lot of content(so called AIGC: AI Generated Content). But I am not sure about what the difference it makes related to CATS.",
+              "createdAt": "2023-10-20T09:23:07Z",
+              "updatedAt": "2023-10-20T09:23:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5ktrvK",
+          "commit": {
+            "abbreviatedOid": "2a8abf6"
+          },
+          "author": "QingAn",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-20T10:09:20Z",
+          "updatedAt": "2023-10-20T10:09:20Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "Done. Please take a look",
+              "createdAt": "2023-10-20T10:09:20Z",
+              "updatedAt": "2023-10-20T10:09:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5kttFl",
+          "commit": {
+            "abbreviatedOid": "2a8abf6"
+          },
+          "author": "QingAn",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-20T10:12:57Z",
+          "updatedAt": "2023-10-20T10:12:57Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "This [link](https://infohub.delltechnologies.com/l/generative-ai-in-the-enterprise/large-model-training/#:~:text=Large%20generative%20AI%20models%20have,single%20NVIDIA%20Tesla%20V100%20GPU.) gives an example.\r\n\r\nLarge generative AI models have significant compute requirements for training. According to OpenAI, for Chat GPT-3 with 175B parameters, the model size is approximately 350 GB, and it would take 355 years to train GPT-3 on a single NVIDIA Tesla V100 GPU.\r\n\r\nSo, is it ok to change to \"AI foundation model usually involve billions of parameters\"?",
+              "createdAt": "2023-10-20T10:12:57Z",
+              "updatedAt": "2023-10-20T10:12:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5kt3-c",
+          "commit": {
+            "abbreviatedOid": "2a8abf6"
+          },
+          "author": "QingAn",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-20T10:34:37Z",
+          "updatedAt": "2023-10-20T10:34:37Z",
+          "comments": [
+            {
+              "originalPosition": 23,
+              "body": "By looking at different citations, I think this one from [xilinx](https://www.xilinx.com/applications/ai-inference/difference-between-deep-learning-training-and-inference.html#:~:text=Machine%20learning%20inference%20is%20the,sort%20different%20fruits%20by%20color.) is worth consideration\r\n\r\nMachine learning inference is the ability of a system to make predictions from novel data.\r\n\r\nSo, in this case, I agree classifying images is an inference, since a machine learning model trained to classify images of cats and dogs can be used to infer whether a new image is of a cat or a dog.\r\n\r\nAnd so, inference can be a common ability of AI models.\r\n\r\n> Maybe the difference between the large model and traditional ai model is that it can generate a lot of content(so called AIGC: AI Generated Content).\r\n\r\nIn my view, why AI large model has billions of parameters is because it deals with natural languages.\r\n\r\n> But I am not sure about what the difference it makes related to CATS.\r\n\r\nI think if an AI large model aims to generate images or videos, then it will often bring on high demand on network resource and computing resource, which is the area related to CATS.",
+              "createdAt": "2023-10-20T10:34:37Z",
+              "updatedAt": "2023-10-20T10:34:37Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "id": "PR_kwDOKfPAms5c6LsS",
+      "title": "Update draft-ietf-cats-usecases-requirements.md",
+      "url": "https://github.com/cats-wg/draft-ietf-cats-usecases-requirements/pull/2",
+      "state": "OPEN",
+      "author": "bpatient78",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Update Introduction, Terminologies and part of requirements. 1)The introduction part has been rewritten to avoid some verbose description. 2)Recent update on the definition of service related terms has been added into the Terminology part, as well as the definition on \"network edge\" and \"edge computing\", in order to make clarification. 3)Requirements on \"service instance selection\" have been adjusted. 4)Some vague expressions like\"quickly select\" and \"flexible use\" have been modified or explained. 5)Requirement on \"metric collection\" has been added. 6)Requirements on \"Session and service continuity\" have been modified.",
+      "createdAt": "2023-10-16T14:44:46Z",
+      "updatedAt": "2023-10-23T14:29:03Z",
+      "baseRepository": "cats-wg/draft-ietf-cats-usecases-requirements",
+      "baseRefName": "main",
+      "baseRefOid": "17811e95cd6e130e93ad3bd4daf553721947696f",
+      "headRepository": "bpatient78/draft-ietf-cats-usecases-requirements",
+      "headRefName": "patch-2",
+      "headRefOid": "0ec85390c8b1617723aee07a41528ed1ab93916c",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKfPAms5kJu8Q",
+          "commit": {
+            "abbreviatedOid": "ef6050a"
+          },
+          "author": "boucadair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2023-10-16T15:13:48Z",
+          "updatedAt": "2023-10-16T15:20:14Z",
+          "comments": [
+            {
+              "originalPosition": 72,
+              "body": "```suggestion\r\n     approach {{?I-D.ietf-teas-rfc3272bis}} that takes into account the\r\n```",
+              "createdAt": "2023-10-16T15:13:49Z",
+              "updatedAt": "2023-10-16T15:20:14Z"
+            },
+            {
+              "originalPosition": 85,
+              "body": "```suggestion\r\n        Functions (SFs)) {{?RFC7665}}.\r\n```",
+              "createdAt": "2023-10-16T15:14:23Z",
+              "updatedAt": "2023-10-16T15:20:14Z"
+            },
+            {
+              "originalPosition": 99,
+              "body": "```suggestion\r\n        constitutes a service instance.\r\n        \r\nService contact instance:\r\n:  A client-facing service function instance\r\n      that is responsible for receiving requests in the context of a\r\n      given service.  A service request is processed according to the\r\n      service logic (e.g., handle locally or solicit backend resources).\r\n      Steering beyond the service contact instance is hidden to both\r\n      clients and CATS components.\r\n\r\n : A service contact instance is reachable via at least one Egress\r\n      CATS Forwarder.\r\n\r\n: A service can be accessed via multiple service contact instances\r\n      running at the same or different locations (service sites).\r\n\r\n: The same service contact instance may dispatch service requests to\r\n      one or more service instances (e.g., an instance that behaves as a\r\n      service load-balancer).\r\n```",
+              "createdAt": "2023-10-16T15:16:35Z",
+              "updatedAt": "2023-10-16T15:20:14Z"
+            },
+            {
+              "originalPosition": 63,
+              "body": "Add a mention that the terminology echoes what is draft-ldbc-cats-framework.",
+              "createdAt": "2023-10-16T15:17:24Z",
+              "updatedAt": "2023-10-16T15:20:14Z"
+            },
+            {
+              "originalPosition": 224,
+              "body": "not sure what is meant by \"dimensions\" here.",
+              "createdAt": "2023-10-16T15:18:11Z",
+              "updatedAt": "2023-10-16T15:20:14Z"
+            },
+            {
+              "originalPosition": 250,
+              "body": "I don't parse this requirement",
+              "createdAt": "2023-10-16T15:19:10Z",
+              "updatedAt": "2023-10-16T15:20:14Z"
+            },
+            {
+              "originalPosition": 148,
+              "body": "I would maintain the old formatting.\r\n\r\n```suggestion\r\n   R1:\r\n   : MUST provide a discovery and resolving methodology for the\r\n```",
+              "createdAt": "2023-10-16T15:20:06Z",
+              "updatedAt": "2023-10-16T15:20:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5kOpwj",
+          "commit": {
+            "abbreviatedOid": "ef6050a"
+          },
+          "author": "liyizhou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-17T07:33:27Z",
+          "updatedAt": "2023-10-17T07:33:27Z",
+          "comments": [
+            {
+              "originalPosition": 99,
+              "body": "If both service instance and service contact instance exist, from my understanding, service instance is not a very useful concept. In the document, there are a number of occurences of \"selection of service or service selection\" here and there. After introducing service contact instance, which is selected, service instance or service contact instance? More like service contact instance to me. ",
+              "createdAt": "2023-10-17T07:33:27Z",
+              "updatedAt": "2023-10-17T07:33:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5kO4zr",
+          "commit": {
+            "abbreviatedOid": "ef6050a"
+          },
+          "author": "liyizhou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-17T07:57:03Z",
+          "updatedAt": "2023-10-17T07:57:03Z",
+          "comments": [
+            {
+              "originalPosition": 224,
+              "body": "```suggestion\r\n   allowing the customized metrics definition, which is used for the\r\n```",
+              "createdAt": "2023-10-17T07:57:03Z",
+              "updatedAt": "2023-10-17T07:57:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5kO5Xo",
+          "commit": {
+            "abbreviatedOid": "ef6050a"
+          },
+          "author": "liyizhou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-17T07:58:07Z",
+          "updatedAt": "2023-10-17T07:58:08Z",
+          "comments": [
+            {
+              "originalPosition": 250,
+              "body": "same question here. Shall we just say service continuity?",
+              "createdAt": "2023-10-17T07:58:07Z",
+              "updatedAt": "2023-10-17T07:58:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5kO62K",
+          "commit": {
+            "abbreviatedOid": "ef6050a"
+          },
+          "author": "liyizhou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "Please see inlines. ",
+          "createdAt": "2023-10-17T08:00:44Z",
+          "updatedAt": "2023-10-17T08:00:44Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKfPAms5kSPyv",
+          "commit": {
+            "abbreviatedOid": "ef6050a"
+          },
+          "author": "dirk-trossen-huawei",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-17T14:20:07Z",
+          "updatedAt": "2023-10-17T14:20:07Z",
+          "comments": [
+            {
+              "originalPosition": 250,
+              "body": "Isn't session continuity that is important, i.e., the instance affinity? ",
+              "createdAt": "2023-10-17T14:20:07Z",
+              "updatedAt": "2023-10-17T14:20:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5kSRkk",
+          "commit": {
+            "abbreviatedOid": "ef6050a"
+          },
+          "author": "dirk-trossen-huawei",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-17T14:22:56Z",
+          "updatedAt": "2023-10-17T14:22:56Z",
+          "comments": [
+            {
+              "originalPosition": 224,
+              "body": "what are 'customized definitions'? Adding one's own definition outside the common ones? If so, how is a decision to be made then for instance (contact point) selection since the selection point would need to know and understand that 'customized' definition? Are we opening a can of worms here?",
+              "createdAt": "2023-10-17T14:22:56Z",
+              "updatedAt": "2023-10-17T14:22:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5kZwd9",
+          "commit": {
+            "abbreviatedOid": "ef6050a"
+          },
+          "author": "liyizhou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-18T08:43:34Z",
+          "updatedAt": "2023-10-18T08:43:34Z",
+          "comments": [
+            {
+              "originalPosition": 224,
+              "body": "Vendor specific instead of customized? From my understanding, the original text tried to explain there were different ways to express metrics. Some can be standardized without much controversies (called common metrics in the given text), and some may not. ",
+              "createdAt": "2023-10-18T08:43:34Z",
+              "updatedAt": "2023-10-18T08:43:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5kZ03d",
+          "commit": {
+            "abbreviatedOid": "ef6050a"
+          },
+          "author": "dirk-trossen-huawei",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-18T08:52:26Z",
+          "updatedAt": "2023-10-18T08:52:26Z",
+          "comments": [
+            {
+              "originalPosition": 224,
+              "body": "I understand that ;-) But how do we want to design an interoperable system (since this is an SDO work) where the metrics are vendor-specific, which means that the decision algorithms are likely, too. What is left is the encapsulation format and that's it? Sorry for sounding cynical but opening the door to vendor-specific metrics renders the idea of thinking about metrics rather futile but it postulates the idea of vendor lock-in (for the metrics and the decision algorithms) for the deployed solution to work.  ",
+              "createdAt": "2023-10-18T08:52:26Z",
+              "updatedAt": "2023-10-18T08:52:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5kZ1tn",
+          "commit": {
+            "abbreviatedOid": "ef6050a"
+          },
+          "author": "liyizhou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-18T08:54:04Z",
+          "updatedAt": "2023-10-18T08:54:05Z",
+          "comments": [
+            {
+              "originalPosition": 250,
+              "body": "It looks like session affitinity/persistence, instance affinity, and service continuity(?) were used quite interchangeably in the document. like: \r\n\"Such required transfer of state/context makes it desirable to have session persistence (or instance affinity) as the default, ...\"  \r\nUsing a single terminology?",
+              "createdAt": "2023-10-18T08:54:05Z",
+              "updatedAt": "2023-10-18T08:54:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5kZ24_",
+          "commit": {
+            "abbreviatedOid": "ef6050a"
+          },
+          "author": "dirk-trossen-huawei",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-18T08:56:21Z",
+          "updatedAt": "2023-10-18T08:56:21Z",
+          "comments": [
+            {
+              "originalPosition": 224,
+              "body": "BTW, an approach where 'vendor-specific- would work is to define an interface of conveying metrics to the decision algorithms that does not, well, require ANY metric knowledge at all. My suggestion to use mere cardinals at the interface allows for interpreting those cardinals in any way you want at the application and vendor level. You may now have energy-aware decision (e.g., the cardinal being a Joule expression of your instance), compute-aware decision (e.g., the cardinal reflecting a deployed compute unit or even an instantaneous compute load), or a storage-aware decision (e.g., the cardinal expressing the occupancy of the associated hard disk). It can be whatever the application and vendor wants while the interface, conveying just a cardinal, remains the same. But having an interface where we allow for agreed/common metrics and proprietary ones at the same time creeps the vendor lock into the backdoor",
+              "createdAt": "2023-10-18T08:56:21Z",
+              "updatedAt": "2023-10-18T08:56:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5kZ3w5",
+          "commit": {
+            "abbreviatedOid": "ef6050a"
+          },
+          "author": "dirk-trossen-huawei",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-18T08:58:03Z",
+          "updatedAt": "2023-10-18T08:58:03Z",
+          "comments": [
+            {
+              "originalPosition": 250,
+              "body": "Agree on that! Given that CATS is about selecting the right instance contact point, I think we should converge to use 'instance affinity', i.e., the affinity of one needed decision at time t to a previous decision at time t-eps. ",
+              "createdAt": "2023-10-18T08:58:03Z",
+              "updatedAt": "2023-10-18T08:58:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5kb0B_",
+          "commit": {
+            "abbreviatedOid": "ef6050a"
+          },
+          "author": "VMatrix1900",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-18T12:59:36Z",
+          "updatedAt": "2023-10-18T12:59:37Z",
+          "comments": [
+            {
+              "originalPosition": 250,
+              "body": "Agree. This should be aligned with section 4.5 of [CATS framework draft](https://datatracker.ietf.org/doc/draft-ldbc-cats-framework/) as well which uses service contact instance affinity... But it seems like the service contact instance is defined in the framework draft instead of this one.",
+              "createdAt": "2023-10-18T12:59:36Z",
+              "updatedAt": "2023-10-18T12:59:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5kb0eP",
+          "commit": {
+            "abbreviatedOid": "ef6050a"
+          },
+          "author": "VMatrix1900",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-18T13:00:25Z",
+          "updatedAt": "2023-10-18T13:00:26Z",
+          "comments": [
+            {
+              "originalPosition": 99,
+              "body": "s/service instance/service contact instance/g",
+              "createdAt": "2023-10-18T13:00:26Z",
+              "updatedAt": "2023-10-18T13:00:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5kb3IM",
+          "commit": {
+            "abbreviatedOid": "ef6050a"
+          },
+          "author": "VMatrix1900",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-18T13:05:23Z",
+          "updatedAt": "2023-10-18T13:05:24Z",
+          "comments": [
+            {
+              "originalPosition": 63,
+              "body": "I wonder if we need to define the teminology in this document and change the framework draft to reference this one?",
+              "createdAt": "2023-10-18T13:05:23Z",
+              "updatedAt": "2023-10-18T13:05:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5kb5Hc",
+          "commit": {
+            "abbreviatedOid": "ef6050a"
+          },
+          "author": "VMatrix1900",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-18T13:09:00Z",
+          "updatedAt": "2023-10-18T13:09:01Z",
+          "comments": [
+            {
+              "originalPosition": 224,
+              "body": "> BTW, an approach where 'vendor-specific- would work is to define an interface of conveying metrics to the decision algorithms that does not, well, require ANY metric knowledge at all. My suggestion to use mere cardinals at the interface allows for interpreting those cardinals in any way you want at the application and vendor level. You may now have energy-aware decision (e.g., the cardinal being a Joule expression of your instance), compute-aware decision (e.g., the cardinal reflecting a deployed compute unit or even an instantaneous compute load), or a storage-aware decision (e.g., the cardinal expressing the occupancy of the associated hard disk). It can be whatever the application and vendor wants while the interface, conveying just a cardinal, remains the same. But having an interface where we allow for agreed/common metrics and proprietary ones at the same time creeps the vendor lock into the backdoor\r\n\r\nWhat is the difference? You still get proprietary interpretation of the same number which make it hard to interop, right?",
+              "createdAt": "2023-10-18T13:09:00Z",
+              "updatedAt": "2023-10-18T13:09:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5kcTLO",
+          "commit": {
+            "abbreviatedOid": "ef6050a"
+          },
+          "author": "dirk-trossen-huawei",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-18T13:47:41Z",
+          "updatedAt": "2023-10-18T13:47:41Z",
+          "comments": [
+            {
+              "originalPosition": 224,
+              "body": "Not really. If the cardinal is input to a simple utility function, the realization of it in the intermediary elements as well as the signaling of values can all be standard-based, which is what you want. What remains proprietary, as you point out, is the 'interpretation' of the cardinal and its optimization (through the utility function) - but that is OK since it's entirely left to the application to interpret it anyway, isn't it? ",
+              "createdAt": "2023-10-18T13:47:41Z",
+              "updatedAt": "2023-10-18T13:47:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5kcUs2",
+          "commit": {
+            "abbreviatedOid": "ef6050a"
+          },
+          "author": "dirk-trossen-huawei",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-18T13:49:09Z",
+          "updatedAt": "2023-10-18T13:49:09Z",
+          "comments": [
+            {
+              "originalPosition": 224,
+              "body": "...I mean why would/should the overlay provider know anyway on which basis the application would want to optimize its reception of traffic at different egress points? Hence, the more semantics are exposed across the business interface (which exists between app and CATS provider), the more issues you will have in terms of acceptance.",
+              "createdAt": "2023-10-18T13:49:09Z",
+              "updatedAt": "2023-10-18T13:49:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5ke90T",
+          "commit": {
+            "abbreviatedOid": "ef6050a"
+          },
+          "author": "boucadair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-18T18:33:09Z",
+          "updatedAt": "2023-10-18T18:33:09Z",
+          "comments": [
+            {
+              "originalPosition": 63,
+              "body": "I prefer to do it in the other way around (that is, leave the terms in the framework). We need to keep in mind this part from the charter:\r\n\r\n> o Groundwork may be documented via a set of informational Internet-\r\n> Drafts, **not necessarily for publication as RFCs**:\r\n",
+              "createdAt": "2023-10-18T18:33:09Z",
+              "updatedAt": "2023-10-18T18:33:09Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5ke-U1",
+          "commit": {
+            "abbreviatedOid": "ef6050a"
+          },
+          "author": "boucadair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-18T18:34:34Z",
+          "updatedAt": "2023-10-18T18:34:34Z",
+          "comments": [
+            {
+              "originalPosition": 99,
+              "body": "> If both service instance and service contact instance exist, from my understanding, service instance is not a very useful concept. In the document, there are a number of occurences of \"selection of service or service selection\" here and there. After introducing service contact instance, which is selected, service instance or service contact instance? More like service contact instance to me.\r\n\r\nAgree. service instance should be used in very few occurrences; what matters is the service contact instance. \r\n",
+              "createdAt": "2023-10-18T18:34:34Z",
+              "updatedAt": "2023-10-18T18:34:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5kh2ka",
+          "commit": {
+            "abbreviatedOid": "0ec8539"
+          },
+          "author": "VMatrix1900",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-19T03:31:05Z",
+          "updatedAt": "2023-10-19T03:31:05Z",
+          "comments": [
+            {
+              "originalPosition": 63,
+              "body": "You are right.",
+              "createdAt": "2023-10-19T03:31:05Z",
+              "updatedAt": "2023-10-19T03:31:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5k3k14",
+          "commit": {
+            "abbreviatedOid": "ef6050a"
+          },
+          "author": "bpatient78",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-23T11:20:23Z",
+          "updatedAt": "2023-10-23T11:20:24Z",
+          "comments": [
+            {
+              "originalPosition": 99,
+              "body": "Hi Med, my understanding is that these terminologies should echo what is in draft-ldbc-cats-framework, but the problem is that not all terms are needed in this use case & requirement draft. The definition of \"service contact instance\" will introduce other terms like Egress, CATS forward, etc, which are not referenced in this document. That's why I didn't refer these terms from draft-ldbc-cats-framework. And BTW, currently, draft-ldbc-cats-framework is not adopted by the WG, and terminologies within the draft may be updated. What do you think?",
+              "createdAt": "2023-10-23T11:20:24Z",
+              "updatedAt": "2023-10-23T11:20:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms5k5OnL",
+          "commit": {
+            "abbreviatedOid": "ef6050a"
+          },
+          "author": "bpatient78",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-23T14:29:03Z",
+          "updatedAt": "2023-10-23T14:29:03Z",
+          "comments": [
+            {
+              "originalPosition": 224,
+              "body": "Hi, all, due to time limitation for uploading the draft, I just rewording this sentence to be \"...there SHOULD be some other ways for metrics definition, which is used for the selection of specific service instance.\" I know this is not the perfect requirement, and it needs further discussion. ",
+              "createdAt": "2023-10-23T14:29:03Z",
+              "updatedAt": "2023-10-23T14:29:04Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
