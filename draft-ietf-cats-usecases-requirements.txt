@@ -2,12 +2,10 @@
 
 
 
-Computing-Aware Traffic Steering                                  K. Yao
+cats                                                              K. Yao
 Internet-Draft                                              China Mobile
 Intended status: Informational                                D. Trossen
-Expires: 14 April 2024                               Huawei Technologies
-                                                            M. Boucadair
-                                                                  Orange
+Expires: 4 January 2025                              Huawei Technologies
                                                          L. M. Contreras
                                                               Telefonica
                                                                   H. Shi
@@ -15,7 +13,9 @@ Expires: 14 April 2024                               Huawei Technologies
                                                      Huawei Technologies
                                                                 S. Zhang
                                                             China Unicom
-                                                         12 October 2023
+                                                                   Q. An
+                                                           Alibaba Group
+                                                             3 July 2024
 
 
  Computing-Aware Traffic Steering (CATS) Problem Statement, Use Cases,
@@ -60,11 +60,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 April 2024.
+   This Internet-Draft will expire on 4 January 2025.
 
 Copyright Notice
 
-   Copyright (c) 2023 IETF Trust and the persons identified as the
+   Copyright (c) 2024 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -79,7 +79,7 @@ Copyright Notice
 Table of Contents
 
    1.  Introduction
-   2.  Conventions and Definitions
+   2.  Definition of Terms
    3.  Problem Statement
      3.1.  Multi-deployment of Edge Sites and Service
      3.2.  Traffic Steering among Edges Sites and Service Instances
@@ -88,20 +88,25 @@ Table of Contents
      4.2.  Computing-Aware Intelligent Transportation
      4.3.  Computing-Aware Digital Twin
      4.4.  Computing-Aware SD-WAN
+     4.5.  Computing-Aware AI Large Model Inference
    5.  Requirements
      5.1.  Support dynamic and effective selection among multiple
-           serivce instances
+           service instances
      5.2.  Support Agreement on Metric Representation
      5.3.  Support Moderate Metric Distributing
-     5.4.  Support Flexible Use of Metrics
-     5.5.  Support Session and Service Continuity
+     5.4.  Support Alternative Definition and Use of Metrics
+     5.5.  Support Instance Affinity
      5.6.  Preserve Communication Confidentiality
    6.  Security Considerations
    7.  IANA Considerations
    8.  References
      8.1.  Normative References
      8.2.  Informative References
-   Acknowledgments
+   Appendix A.  Appendix A
+     A.1.  CATS for Content Delivery Network(CDN)
+     A.2.  CATS for MIGU Cloud Rendering
+     A.3.  CATS for High-speed Internet of Vehicles
+   Acknowledgements
    Contributors
    Authors' Addresses
 
@@ -138,23 +143,21 @@ Table of Contents
    to the most suitable computing resource in order to meet the users'
    service demand.
 
-   Depending on the locations of computing resource and their capacity,
-   different amounts of resource from different locations can be used to
-   deliver a service.  At peak hours, computing resources closest to a
-   client might not be sufficient to handle all the incoming service
-   requests.  Longer response times or even dropping of requests could
-   be experienced by users.  Increasing the computing resources hosted
-   at each location to the potential maximum capacity is neither
-   feasible nor economically viable in many cases.  Offloading
-   computation intensive processing to the user devices would place huge
-   pressure on local resources such as the battery, and the needed data
-   set (for the computation) that may not exist on the user device
-   because of the size of data pool or due to data governance reasons.
-
-   Service providers often have their own server sites, many of which
+   Service providers often have their own service sites, many of which
    have been enhanced to support computing services.  A service instance
    deployed at a single site might not provide sufficient capacity to
    fully guarantee the quality of service required by a customer.
+   Especially at peak hours, computing resources at a single site can
+   not handle all the incoming service requests, leading to longer
+   response times or even dropping of requests experienced by clients.
+   Moreover, increasing the computing resources hosted at each location
+   to the potential maximum capacity is neither feasible nor
+   economically viable in many cases.  Offloading computation intensive
+   processing to the user devices is neither acceptable, since it would
+   place huge pressure on local resources such as the battery and incur
+   some data privacy issues if the needed data for computation is not
+   provided locally.
+
    Instead, the same service can be deployed at multiple sites for
    better availability and scalability.  Furthermore, it is desirable to
    balance the load across all service instances to improve throughput.
@@ -163,47 +166,95 @@ Table of Contents
    where the notion of 'best' may highly depend on the application
    demands.
 
-   A particular example is the popular and pervasive 5G Mobile Edge
-   Computing(MEC) service.  In 5G MEC, the Uplink Classifier(UL-CL)
-   functionality of User Plane Functions(UPFs) are deployed close to
-   edge sites, which are capable of effectively classifying & switching
-   uplink traffic to the suitable computing-resources that might be
-   located either in local-area Data Network(DN), operators' DN, or even
-   3rd-party's DN.  Through possibly using some 'intelligent' criteria,
-   this could warrant the selection of resources with either low, high-
-   computational power or all-involved requirements.
-
    This document describes sample usage scenarios that drive CATS
    requirements and will help to identify candidate solution
    architectures and solutions.
 
-2.  Conventions and Definitions
+2.  Definition of Terms
+
+   This document makes use of the following terms.  The terminology
+   echoes what is in [I-D.ldbc-cats-framework]:
+
+   Client:  An endpoint that is connected to a service provider network.
+
+   Computing-Aware Traffic Steering (CATS):  A traffic engineering
+     approach [I-D.ietf-teas-rfc3272bis] that takes into account the
+     dynamic nature of computing resources and network state to optimize
+     service-specific traffic forwarding towards a given service contact
+     instance.  Various relevant metrics may be used to enforce such
+     computing-aware traffic steering policies.
+
+   Service:  An offering that is made available by a provider by
+     orchestrating a set of resources (networking, compute, storage,
+     etc.).  Which and how these resources are solicited is part of the
+     service logic which is internal to the provider.  For example,
+     these resources may be:
+
+     *  Exposed by one or multiple processes (a.k.a. Service Functions
+        (SFs) [RFC7665].
+
+     *  Provided by virtual instances, physical, or a combination
+        thereof.
+
+     *  Hosted within the same or distinct nodes.
+
+     *  Hosted within the same or multiple service sites.
+
+     *  Chained to provide a service using a variety of means.
+
+     How a service is structured is out of the scope of CATS.
+
+     The same service can be provided in many locations; each of them
+     constitutes a service instance.
+
+   Service identifier:  An identifier representing a service, which the
+     clients use to access it.
+
+   Computing Service:  An offering that is made available by a provider
+     by orchestrating a set of computing resources to process
+     application content.
+
+     Some differences and similarities exist between service and
+     computing service:
+
+     *  Service is packet-based, while computing service is transaction-
+        based.  Application content is exposed within a computing
+        service.
+
+     *  Both service and computing service can be "on-path" or on
+        "endpoint", depending on the service logic or computing service
+        logic that are defined by the provider.
+
+   Service instance:  An instance of running resources according to a
+     given service logic.  Many such instances can be enabled by a
+     provider.  Instances that adhere to the same service logic provide
+     the same service.  An instance is typically running in a service
+     site.  Clients' requests are serviced by one of these instances.
+
+   Service site:  A location that hosts the resources that are required
+     to offer a service.  A service site may be a node or a set of
+     nodes.  A CATS-serviced site is a service site that is connected to
+     a CATS-Forwarder.
+
+   Network Edge:  The network edge is an architectural demarcation point
+     used to identify physical locations where the corporate network
+     connects to third-party networks.
+
+   Edge Computing:  Edge computing is a computing pattern that moves
+     computing infrastructures, i.e, servers, away from centralized data
+     centers and instead places it close to the end users for low
+     latency communication.
+
+     Relations with network edge: edge computing infrastructures connect
+     to corporate network through a network edge entry/exit point.
 
    Even though this document is not a protocol specification, it makes
    use of upper case key words to define requirements unambiguously.
-
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
    "OPTIONAL" in this document are to be interpreted as described in
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
-
-   This document makes use of the following terms:
-
-   Service:  An offering provided by a service provider, similar to the
-      notion of a 'service function' in [RFC7665], which may or may not
-      be of composite nature but appears in the problem space of CATS as
-      a single service to which traffic needs to be steered.
-
-   Service instance:  A run-time environment (e.g., a server or a
-      process on a server) that makes a service available.  A particular
-      service could be made available at multiple service instances at
-      the same or different locations.
-
-   Service identifier:  Used to uniquely identify a service, at the same
-      time identifying the whole set of service instances that each
-      represent the same service behavior, no matter where those service
-      instances are running.
 
 3.  Problem Statement
 
@@ -217,12 +268,12 @@ Table of Contents
    future.  Before deploying edge sites, there are some factors that
    need to be considered, such as:
 
-   o The exsiting infrastructure capacities, which could be updated to
-   edge sites, e.g. operators' machine room.
+   *  The existing infrastructure capacities, which could be updated to
+      edge sites, e.g. operators' machine room.
 
-   o The amount and frequency of computing resource that is needed.
+   *  The amount and frequency of computing resource that is needed.
 
-   o The network resource status linked to computing resource.
+   *  The network resource status linked to computing resource.
 
    To improve the effectiveness of service deployment, the problem of
    how to choose the optimal edge node on which to deploy services needs
@@ -233,27 +284,28 @@ Table of Contents
    flavor of CPU/GPU, etc.  More network and service factors may also be
    considered, such as:
 
-   o Network and computing resource topology: The overall consideration
-   of network access, connectivity, path protection or redundancy, and
-   the location and overall distribution of computing resources in the
-   network, and the relative position within the network topology.
+   *  Network and computing resource topology: The overall consideration
+      of network access, connectivity, path protection or redundancy,
+      and the location and overall distribution of computing resources
+      in the network, and the relative position within the network
+      topology.
 
-   o Location: The number of users, the differentiation of service
-   types, and the number of connections requested by users, etc.  For
-   edge nodes located in populous area with a large number of users and
-   service requests, service duplication could be deployed more than in
-   other areas.
+   *  Location: The number of users, the differentiation of service
+      types, and the number of connections requested by users, etc.  For
+      edge nodes located in populous area with a large number of users
+      and service requests, service duplication could be deployed more
+      than in other areas.
 
-   o Capacity of multiple edge nodes: Not only the capacity of a single
-   node, but also the total number of requests that can be processed by
-   the resource pool composed of multiple nodes.
+   *  Capacity of multiple edge nodes: Not only the capacity of a single
+      node, but also the total number of requests that can be processed
+      by the resource pool composed of multiple nodes.
 
-   o Service category: For example, whether the service is a multi-user
-   interaction, such as video conferencing, or games, or whether it just
-   resource acquisition, such as video viewing.  ALTO [RFC7285] can help
-   to obtain one or more of the above pieces of information, so as to
-   provide suggestions or formulate principles and strategies for
-   service deployment.
+   *  Service category: For example, whether the service is a multi-user
+      interaction, such as video conferencing, or games, or whether it
+      just resource acquisition, such as video viewing.  ALTO [RFC7285]
+      can help to obtain one or more of the above pieces of information,
+      so as to provide suggestions or formulate principles and
+      strategies for service deployment.
 
    This information could be collected periodically, and could record
    the total consumption of computing resources, or the total number of
@@ -277,7 +329,9 @@ Table of Contents
    provide all of the support needed for real-time or near-real-time
    services, and how it is necessary to steer traffic to different sites
    considering mobility of people, different time slots, events, server
-   loads, and network capabilities, etc.
+   loads, network capabilities, and some other factors which might not
+   be directly measured, i.e., properties of edge sites(e.g.,
+   geographical location), etc.
 
    In edge computing, the computing resources and network resources are
    considered when deploying edge sites and services.  Traffic is
@@ -342,25 +396,25 @@ Table of Contents
    potential traffic steering may be needed just for special service
    request or some small scheduling demand.
 
-           +----------------+    +---+                  +------------+
-         +----------------+ |- - |UE1|                +------------+ |
-         | +-----------+  | |    +---+             +--|    Edge    | |
-         | |Edge server|  | |    +---+       +- - -|PE|            | |
-         | +-----------+  | |- - |UE2|       |     +--|   Site 1   |-+
-         | +-----------+  | |    +---+                +------------+
-         | |Edge server|  | |     ...        |            |
-         | +-----------+  | +--+         Potential      +---+ +---+
-         | +-----------+  | |PE|- - - - - - -+          |UEa| |UEb|
-         | |Edge server|  | +--+         Steering       +---+ +---+
-         | +-----------+  | |    +---+       |                  |
-         | +-----------+  | |- - |UE3|                  +------------+
-         | |  ... ...  |  | |    +---+       |        +------------+ |
-         | +-----------+  | |     ...              +--|    Edge    | |
-         |                | |    +---+       +- - -|PE|            | |
-         |Edge data center|-+- - |UEn|             +--|   Site 2   |-+
-         +----------------+      +---+                +------------+
-         High computing resource              Limited computing resource
-         and more UE at metro area            and less UE at remote area
+        +----------------+    +---+                  +------------+
+      +----------------+ |- - |UE1|                +------------+ |
+      | +-----------+  | |    +---+             +--|    Edge    | |
+      | |Edge server|  | |    +---+       +- - -|PE|            | |
+      | +-----------+  | |- - |UE2|       |     +--|   Site 1   |-+
+      | +-----------+  | |    +---+                +------------+
+      | |Edge server|  | |     ...        |            |
+      | +-----------+  | +--+         Potential      +---+ +---+
+      | +-----------+  | |PE|- - - - - - -+          |UEa| |UEb|
+      | |Edge server|  | +--+         Steering       +---+ +---+
+      | +-----------+  | |    +---+       |                  |
+      | +-----------+  | |- - |UE3|                  +------------+
+      | |  ... ...  |  | |    +---+       |        +------------+ |
+      | +-----------+  | |     ...              +--|    Edge    | |
+      |                | |    +---+       +- - -|PE|            | |
+      |Edge data center|-+- - |UEn|             +--|   Site 2   |-+
+      +----------------+      +---+                +------------+
+      High computing resource              Limited computing resource
+      and more UE at metro area            and less UE at remote area
 
                  Figure 1: Common Deployment of Edge Sites
 
@@ -375,25 +429,25 @@ Table of Contents
    sites that serve common services will also change, so it may be
    necessary to steer some traffic back to the metro data center.
 
-           +----------------+                           +------------+
-         +----------------+ |                         +------------+ |
-         | +-----------+  | |  Steering traffic    +--|    Edge    | |
-         | |Edge server|  | |          +-----------|PE|            | |
-         | +-----------+  | |    +---+ |           +--|   Site 1   |-+
-         | +-----------+  | |- - |UEa| |    +----+----+-+----------+
-         | |Edge server|  | |    +---+ |    |           |           |
-         | +-----------+  | +--+       |  +---+ +---+ +---+ +---+ +---+
-         | +-----------+  | |PE|-------+  |UE1| |UE2| |UE3| |...| |UEn|
-         | |Edge server|  | +--+       |  +---+ +---+ +---+ +---+ +---+
-         | +-----------+  | |    +---+ |          |           |
-         | +-----------+  | |- - |UEb| |          +-----+-----+------+
-         | |  ... ...  |  | |    +---+ |              +------------+ |
-         | +-----------+  | |          |           +--|    Edge    | |
-         |                | |          +-----------|PE|            | |
-         |Edge data center|-+  Steering traffic    +--|   Site 2   |-+
-         +----------------+                           +------------+
-         High computing resource              Limited computing resource
-         and less UE at metro area            and more UE at remote area
+        +----------------+                           +------------+
+      +----------------+ |                         +------------+ |
+      | +-----------+  | |  Steering traffic    +--|    Edge    | |
+      | |Edge server|  | |          +-----------|PE|            | |
+      | +-----------+  | |    +---+ |           +--|   Site 1   |-+
+      | +-----------+  | |- - |UEa| |    +----+----+-+----------+
+      | |Edge server|  | |    +---+ |    |           |           |
+      | +-----------+  | +--+       |  +---+ +---+ +---+ +---+ +---+
+      | +-----------+  | |PE|-------+  |UE1| |UE2| |UE3| |...| |UEn|
+      | |Edge server|  | +--+       |  +---+ +---+ +---+ +---+ +---+
+      | +-----------+  | |    +---+ |          |           |
+      | +-----------+  | |- - |UEb| |          +-----+-----+------+
+      | |  ... ...  |  | |    +---+ |              +------------+ |
+      | +-----------+  | |          |           +--|    Edge    | |
+      |                | |          +-----------|PE|            | |
+      |Edge data center|-+  Steering traffic    +--|   Site 2   |-+
+      +----------------+                           +------------+
+      High computing resource              Limited computing resource
+      and less UE at metro area            and more UE at remote area
 
                 Figure 2: Steering Traffic among Edge Sites
 
@@ -411,8 +465,8 @@ Table of Contents
    use cases in the following section require both low latency and high
    computing resource usage or specific computing hardware capabilities
    (such as local GPU); hence joint optimization of network and
-   computing resource is needed to guarantee the Quality of
-   Experience(QoE).
+   computing resource is needed to guarantee the Quality of Experience
+   (QoE).
 
 4.  Use Cases
 
@@ -457,40 +511,40 @@ Table of Contents
    H.265 real-time decoding, 2K H.264 real-time encoding.  We can
    further divide the 20ms latency budget into:
 
-   1.  sensor sampling delay(client), which is considered imperceptible
-       by users is less than 1.5ms including an extra 0.5ms for
-       digitalization and end device processing.
+   (i)    sensor sampling delay(client), which is considered
+          imperceptible by users is less than 1.5ms including an extra
+          0.5ms for digitalization and end device processing.
 
-   2.  display refresh delay(client), which take 7.9ms based on the
-       144Hz display refreshing rate and 1ms extra delay to light up.
+   (ii)   display refresh delay(client), which take 7.9ms based on the
+          144Hz display refreshing rate and 1ms extra delay to light up.
 
-   3.  image/frame rendering delay(server), which could be reduced to
-       5.5ms.
+   (iii)  image/frame rendering delay(server), which could be reduced to
+          5.5ms.
 
-   4.  round trip network delay(network), which should be bounded to
-       20-1.5-5.5-7.9 = 5.1ms.
+   (iv)   round trip network delay(network), which should be bounded to
+          20-1.5-5.5-7.9 = 5.1ms.
 
-   So the the budgets for server(computing) delay and network delay are
+   So the budgets for server(computing) delay and network delay are
    almost equivalent, which make sense to consider both of the delay for
    computing and network.  And it can't meet the total delay
    requirements or find the best choice by either optimize the network
    or computing resource.
 
-   Based on the analysis, here are some further assumption as figure 3
+   Based on the analysis, here are some further assumption as Figure 3
    shows, the client could request any service instance among 3 edge
    sites.  The delay of client could be same, and the differences of
    different edge sites and corresponding network path has different
    delays:
 
-   Edge site 1:  The computing delay=4ms based on a light load, and the
-      corresponding network delay=9ms based on a heavy traffic.
+   *  Edge site 1: The computing delay=4ms based on a light load, and
+      the corresponding network delay=9ms based on a heavy traffic.
 
-   Edge site 2:  The computing delay=10ms based on a heavy load, and the
-      corresponding network delay=4ms based on a light traffic.
+   *  Edge site 2: The computing delay=10ms based on a heavy load, and
+      the corresponding network delay=4ms based on a light traffic.
 
-   Edge site 3:  The edge site 3's computing delay=5ms based on a normal
-      load, and the corresponding network delay=5ms based on a normal
-      traffic.
+   *  Edge site 3: The edge site 3's computing delay=5ms based on a
+      normal load, and the corresponding network delay=5ms based on a
+      normal traffic.
 
    In this case, we can't get a optimal network and computing total
    delay if choose the resource only based on either of computing or
@@ -517,33 +571,33 @@ Table of Contents
    site" may be good for latency but lacks GPU support and should
    therefore not be chosen.
 
-             Light Load          Heavy Load           Normal load
-           +------------+      +------------+       +------------+
-           |    Edge    |      |    Edge    |       |    Edge    |
-           |   Site 1   |      |   Site 2   |       |   Site 3   |
-           +-----+------+      +------+-----+       +------+-----+
-        computing|delay(4ms)          |           computing|delay(5ms)
-                 |           computing|delay(10ms)         |
-            +----+-----+        +-----+----+         +-----+----+
-            |  Egress  |        |  Egress  |         |  Egress  |
-            | Router 1 |        | Router 2 |         | Router 3 |
-            +----+-----+        +-----+----+         +-----+----+
-          newtork|delay(9ms)   newtork|delay(4ms)   newtork|delay(5ms)
-                 |                    |                    |
-                 |           +--------+--------+           |
-                 +-----------|  Infrastructure |-----------+
-                             +--------+--------+
-                                      |
-                                 +----+----+
-                                 | Ingress |
-                 +---------------|  Router |--------------+
-                 |               +----+----+              |
-                 |                    |                   |
-              +--+--+              +--+---+           +---+--+
-            +------+|            +------+ |         +------+ |
-            |Client|+            |Client|-+         |Client|-+
-            +------+             +------+           +------+
-                           client delay=1.5+7.9=9.4ms
+        Light Load          Heavy Load           Normal load
+      +------------+      +------------+       +------------+
+      |    Edge    |      |    Edge    |       |    Edge    |
+      |   Site 1   |      |   Site 2   |       |   Site 3   |
+      +-----+------+      +------+-----+       +------+-----+
+   computing|delay(4ms)          |           computing|delay(5ms)
+            |           computing|delay(10ms)         |
+       +----+-----+        +-----+----+         +-----+----+
+       |  Egress  |        |  Egress  |         |  Egress  |
+       | Router 1 |        | Router 2 |         | Router 3 |
+       +----+-----+        +-----+----+         +-----+----+
+     newtork|delay(9ms)   newtork|delay(4ms)   newtork|delay(5ms)
+            |                    |                    |
+            |           +--------+--------+           |
+            +-----------|  Infrastructure |-----------+
+                        +--------+--------+
+                                 |
+                            +----+----+
+                            | Ingress |
+            +---------------|  Router |--------------+
+            |               +----+----+              |
+            |                    |                   |
+         +--+--+              +--+---+           +---+--+
+       +------+|            +------+ |         +------+ |
+       |Client|+            |Client|-+         |Client|-+
+       +------+             +------+           +------+
+                      client delay=1.5+7.9=9.4ms
 
                      Figure 3: Computing-Aware AR or VR
 
@@ -561,7 +615,7 @@ Table of Contents
    input data is being processed by a stateful service instance that
    changes, if at all, only slowly over time due to the stickiness of
    the service that is being created by the client-specific data.  Other
-   splits of rendering and input tasks can be found in [TR22.874] for
+   splits of rendering and input tasks can be found in[TR22.874] for
    further reading.
 
    When it comes to the service instances themselves, those may be
@@ -570,7 +624,7 @@ Table of Contents
    timeout, to free up resources for other services.  Depending on the
    utilized node technologies, the lifetime of such "function as a
    service" may range from many minutes down to millisecond scale.
-   Therefore computing resources across participating edges exhibit a
+   Therefore, computing resources across participating edges exhibit a
    distributed (in terms of locations) as well as dynamic (in terms of
    resource availability) nature.  In order to achieve a satisfying
    service quality to end users, a service request will need to be sent
@@ -647,7 +701,7 @@ Table of Contents
    and fail-over capabilities, while also enabling physical mobility of
    the asset and the connection to a suitable "nearby" PLC instance.
    With this, traffic dynamicity may be similar to that observed in the
-   connected car scenario in the previous sub-section.  Crucial here is
+   connected car scenario in the previous subsection.  Crucial here is
    high availability and bounded latency since a failure of the
    (overall) PLC functionality may lead to a production line stop, while
    boundary violations of the latency may lead to loosing
@@ -693,9 +747,9 @@ Table of Contents
 
    In such cloudification deployments SD-WAN provides enterprises with
    centralized control over Customer-Premises Equipments(CPEs) in branch
-   offices and the cloudified CPEs(vCPEs) in the clouds.The CPEs connect
-   the clients in branch offices and the application servers in clouds.
-   The same application server in different clouds is called an
+   offices and the cloudified CPEs(vCPEs) in the clouds.  The CPEs
+   connect the clients in branch offices and the application servers in
+   clouds.  The same application server in different clouds is called an
    application instance.  Different application instances have different
    computing resource.
 
@@ -718,8 +772,8 @@ Table of Contents
       |Client3|            \---------|   WAN2   |------|  vCPE2  APP1  |
       +-------+                      +----------+      +---------------+
 
-   Figure 4: Illustration of Computing-aware SD-WAN for Enterprise
-                            Cloudification
+      Figure 4: Illustration of Computing-aware SD-WAN for Enterprise
+                               Cloudification
 
    The current computing load status of the application APP1 in cloud1
    and cloud2 is as follows: each application uses 6 vCPUs.  The load of
@@ -731,13 +785,96 @@ Table of Contents
    office.  The traffic of client3 follows the path: Client3 -> CPE ->
    WAN1 -> Cloud2 vCPE1 -> Cloud2 APP1
 
+4.5.  Computing-Aware AI Large Model Inference
+
+   AI(Artificial Intelligence) large model refers to models that are
+   characterized by their large size, high complexity, and high
+   computational requirements.  AI large models have become increasingly
+   important in various fields, such as natural language processing for
+   text classification, computer vision for image classification and
+   object detection, and speech recognition.
+
+   AI large model contains two key phases: training and inference.
+   Training refers to the process of developing an AI model by feeding
+   it with large amounts of data and optimizing it to learn and improve
+   its performance.  Training has high demand on computing and memory
+   resource, so that training is usually deployed in large central data
+   centers.  On the other hand, inference is the process of using the
+   trained AI model to make predictions or decisions based on new input
+   data.  Compared to training, the AI Inference does not consume large
+   amount of computing resources,and it is usually deployed at edge
+   sites and end devices for real time and dynamic service response.
+
+   Figure 5 shows the cloud-edge-device co-inference deployment.  Single
+   site deployment of the model can not provide enough compute resources
+   and is not sufficient for fulfilling some AI Inference work.  The
+   cloud-edge-device co-inference can not only guarantee the compute
+   resources but also achieve low latency as part of AI inference tasks
+   is deployed near clients or even within client devices.  When
+   handling AI inference tasks, if traffic load between clients and edge
+   sites is high or edge resource are overloaded, the response of
+   inference may not be accepted by services.  And CATS is needed to
+   ensure the QoS of AI inference
+
+   There are different types of deployments for cloud-edge-device co-
+   inference.  Depending on applications and compute resources.  Models
+   can be deployed in edge sites only or in both cloud and edge sites.
+   More specifically, some pruned models can be deployed in end devices
+   for compute offloading and low latency response.  In all of the cases
+   above, the problem of steering the traffic to different edge sites
+   fits in the scope of CATS.
+
+   The same trained model will be deployed in each edge sites so as to
+   provide undifferentiated inference service.  Service selection across
+   different edge sites is for low latency service response just like
+   use cases mentioned in other sections above.  Moreover, Specific
+   compute resources like GPUs which are most suitable for AI inference
+   are provided at each edge sites, and relevant metrics should be
+   collected and distributed to the network for better traffic steering
+   decision making.  Generalized compute resources like CPUs can also
+   finish AI inference, but they are less efficient and power saving
+   than GPUs.
+
+                            Cloud-Edge-Device Co-Inference
+             +------------------------------------------------------+
+             |                                                      |
+             |                       Cloud                          |
+             |                                                      |
+             |                 +------------------+                 |
+             |                 |   Large  Model   |                 |
+             |                 +------------------+                 |
+             +--------------------------+---------------------------+
+                                        |
+                                        |              Inference
+           +----------------------------+-----------------------------+
+           |  +--------------+  +--------------+   +--------------+   |
+           |  |     Edge     |  |     Edge     |   |     Edge     |   |
+           |  | +----------+ |  | +----------+ |   | +----------+ |   |
+           |  | |          | |  | |          | |   | |          | |   |
+           |  | |  Models  | |  | |  Models  | |   | |  Models  | |   |
+           |  | +----------+ |  | +----------+ |   | +----------+ |   |
+           |  +--------------+  +--------------+   +--------------+   |
+           +----------+-----------------+---------------+-------------+
+                      |                 |                  |
+                      |                 |                  |
+                 +----+-----+      +----+-----+       +----+-----+
+                 |  Device  |      |  Device  |   ... |  Device  |
+                 | +------+ |      | +------+ |       | +------+ |
+                 | |Pruned| |      | |Pruned| |       | |Pruned| |
+                 | |Model | |      | |Model | |       | |Model | |
+                 | +------+ |      | +------+ |       | +------+ |
+                 +----------+      +----------+       +----------+
+                   Inference         Inference          Inference
+
+     Figure 5: Illustration of Computing-aware AI large model inference
+
 5.  Requirements
 
    In the following, we outline the requirements for the CATS system to
    overcome the observed problems in the realization of the use cases
    above.
 
-5.1.  Support dynamic and effective selection among multiple serivce
+5.1.  Support dynamic and effective selection among multiple service
       instances
 
    The basic requirement of CATS is to support the dynamic access to
@@ -755,31 +892,41 @@ Table of Contents
    low latency, which warrants a quick mapping of the service identifier
    to the network locator.  This leads to naturally the in-band methods,
    involving the consideration of using metrics that are oriented
-   towards compute capabilities and resources, and their corelation with
-   services.  Therefore, a desirable system:
+   towards compute capabilities and resources, and their correlation
+   with services.  Therefore, a desirable system
 
-   R1:  MUST provide a discovery and resolving methodology for the
-      mapping of a service identifier to a specific address.
+   R1: MUST provide a discovery and resolving methodology for the
+   mapping of a service identifier to a specific address.
 
-   R2:  MUST provide an mapping methods for further quickly selecting
-      the service instance.
+   R2: MUST provide an mapping methods for further quickly selecting the
+   service instance.
+
+   R3: SHOULD provide a timeout limitation for selecting the service
+   instance.
+
+   R4: MUST provide a method to determine the availability of a service
+   instance.
+
+   R5: MUST provide a mechanism for solving the service contention
+   problem when multiple service instances with the same service
+   identifier are all available to provide computing services.
 
 5.2.  Support Agreement on Metric Representation
 
    Computing metrics can have many different semantics, particularly for
-   being service- specific.  Even the notion of a "computing load"
-   metric could be represented in many different ways.  Such
-   representation may entail information on the semantics of the metric
-   or it may be purely one or more semantic- free numerals.  Agreement
-   of the chosen representation among all service and network elements
-   participating in the service instance selection decision is
-   important.  Therefore, a desirable system
+   being service-specific.  Even the notion of a "computing load" metric
+   could be represented in many different ways.  Such representation may
+   entail information on the semantics of the metric or it may be purely
+   one or more semantic-free numerals.  Agreement of the chosen
+   representation among all service and network elements participating
+   in the service instance selection decision is important.  Therefore,
+   a desirable system
 
-   R3:  MUST agree on using metrics that are oriented towards compute
-      capabilities and resources and their representation among service
-      elements in the participating edges.
+   R6: MUST agree on using metrics that are oriented towards compute
+   capabilities and resources and their representation among service
+   elements in the participating edges.
 
-   R4: MUST include network metrics.
+   R7: MUST include network metrics.
 
 5.3.  Support Moderate Metric Distributing
 
@@ -804,13 +951,24 @@ Table of Contents
    network traffic.  While existing routing protocols may serve as a
    baseline for signaling metrics, other means to convey the metrics can
    equally be considered and even be realized.  Specifically, a
-   desirable system:
+   desirable system
 
-   R5:  MUST provide mechanisms to distribute the metrics
+   R8: MUST provide mechanisms for metric collection.
 
-   R6:  MUST realize means for rate control for distributing of metrics
+   Collecting metrics from all of the services instances may incur much
+   overhead for the decision maker, and thus hierarchical metric
+   collection is needed.  That is,
 
-5.4.  Support Flexible Use of Metrics
+   R9: SHOULD provide mechanisms to aggregate the metrics.
+
+   CATS components do not need to be aware of how metrics are collected
+   behind the aggregator.
+
+   R10: MUST provide mechanisms to distribute the metrics.
+
+   R11: MUST realize means for rate control for distributing of metrics.
+
+5.4.  Support Alternative Definition and Use of Metrics
 
    Considering computing resources assigned to a service instance on a
    server, which might be related to some critical metrics like the
@@ -818,8 +976,8 @@ Table of Contents
    cases.  Therefore, the CATS components might use both the network and
    computing metrics for service instance selection.  For this reason:
 
-   R7:  A computing semantic model SHOULD be defined for the mapping
-      selection.
+   R12: a computing semantic model SHOULD be defined for the mapping
+   selection.
 
    We recognize that different network nodes, e.g., routers, switches,
    etc., may have diversified capabilities even in the same routing
@@ -828,23 +986,24 @@ Table of Contents
    have been adopted by some nodes may not be supported by others,
    either due to technical reasons, administrative reasons, or something
    else.  There exist scenarios in which a node supporting service-
-   specific metrics might prefer some type of metrics to others
-   [TR22.874].  Of course, specific metrics might not be utilized at all
-   in other scenarios.  Hence:
+   specific metrics might prefer some type of metrics to
+   others[TR22.874].  Of course, specific metrics might not be utilized
+   at all in other scenarios.  Hence:
 
-   R8:  There MUST exist flexibility in term of metrics definition and
-      utilization for the selection of service instance.
+   R13: In addition to common metrics that are agreed by all CATS
+   components like processing delay, there SHOULD be some other ways for
+   metrics definition, which is used for the selection of specific
+   service instance.
 
    Therefore, a desirable system
 
-   R9:  MUST set up metric information that can be understood by CATS
-      components.
+   R14: MUST set up metric information that can be understood by CATS
+   components.
 
-   R10:  MUST use network and computing metrics in a flexible way that
-      includes a default action for the interoperation of network nodes
-      which may or may not support the specific metrics.
+   For metrics that CATS components do not understand or support, CATS
+   components will ignore them.
 
-5.5.  Support Session and Service Continuity
+5.5.  Support Instance Affinity
 
    In the CATS system, a service may be provided by one or more service
    instances that would be deployed at different locations in the
@@ -860,16 +1019,16 @@ Table of Contents
    the same result of the change of service instance.  If execution
    changes from one (e.g., virtualized) service instance to another,
    state/context needs transfer to another.  Such required transfer of
-   state/context makes it desirable to have session persistence (or
-   instance affinity) as the default, removing the need for explicit
-   context transfer, while also supporting an explicit state/context
-   transfer (e.g., when metrics change significantly).  So in those
-   situations:
+   state/context makes it desirable to have instance affinity as the
+   default, removing the need for explicit context transfer, while also
+   supporting an explicit state/context transfer (e.g., when metrics
+   change significantly).  So in those situations:
 
-   R11:  Session as well as service continuity MUST be maintained.
+   R15: Instance affinity MUST be maintained when state information is
+   needed.
 
-   The nature of this continuity is highly dependent on the nature of
-   the specific service, which could be seen as a 'instance affinity' to
+   The nature of this affinity is highly dependent on the nature of the
+   specific service, which could be seen as a 'instance affinity' to
    represent the relationship.  The minimal affinity of a single request
    represents a stateless service, where each service request may be
    responded to without any state being held at the service instance for
@@ -901,20 +1060,20 @@ Table of Contents
    instance.  So the UE and service instance mobility also need to be
    considered.
 
-   Therefore, a desirable system:
+   Therefore, a desirable system
 
-   R12:  MUST maintain "instance affinity" which MAY span one or more
-      service requests, i.e., all the packets from the same application-
-      level flow MUST go to the same service instance unless the
-      original service instance is unreachable
+   R16: MUST maintain instance affinity which MAY span one or more
+   service requests, i.e., all the packets from the same application-
+   level flow MUST go to the same service instance unless the original
+   service instance is unreachable
 
-   R13:  MUST avoid keeping fine runtime-state granularity in network
-      nodes for providing session and service continuity.
+   R17: MUST avoid keeping fine runtime-state granularity in network
+   nodes for providing instance affinity.
 
-   R14:  MUST provide mechanisms to minimize client side states in order
-      to achieve the instance affinity.
+   R18: MUST provide mechanisms to minimize client side states in order
+   to achieve the instance affinity.
 
-   R15:  SHOULD support the UE and service instance mobility.
+   R19: SHOULD support the UE and service instance mobility.
 
 5.6.  Preserve Communication Confidentiality
 
@@ -931,9 +1090,9 @@ Table of Contents
    consider whether the computing information exposed in the network can
    help make full use of traffic steering.  Therefore, a CATS system
 
-   R16:  MUST preserve the confidentiality of the communication relation
-      between user and service provider by minimizing the exposure of
-      user- relevant information according to user needs.
+   R20: MUST preserve the confidentiality of the communication relation
+   between user and service provider by minimizing the exposure of user-
+   relevant information according to user needs.
 
 6.  Security Considerations
 
@@ -944,21 +1103,21 @@ Table of Contents
    Service data sometimes needs to be moved among different edge sites
    to maintain service consistency and availability.  Therefore:
 
-   R17:  Service data MUST be protected from interception.
+   R21: service data MUST be protected from interception.
 
    The act of making compute requests may reveal the nature of user's
    activities, so that:
 
-   R18:  The nature of user's activities SHOULD be hidden as much as
-      possible.
+   R22: the nature of user's activities SHOULD be hidden as much as
+   possible.
 
    The behavior of the network can be adversely affected by modifying or
    interfering with advertisements of computing resource availability.
    Such attacks could deprive users' of the services they desires, and
    might be used to divert traffic to interception points.  Therefore,
 
-   R19:  Secure advertisements are REQUIRED to prevent rogue nodes from
-      participating in the network.
+   R23: secure advertisements are REQUIRED to prevent rogue nodes from
+   participating in the network.
 
 7.  IANA Considerations
 
@@ -973,30 +1132,6 @@ Table of Contents
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/rfc/rfc2119>.
 
-   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
-              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
-              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
-
-8.2.  Informative References
-
-   [GAIA-X]   Gaia-X, "GAIA-X: A Federated Data Infrastructure for
-              Europe", 2021.
-
-   [HORITA]   Horita, Y., "Extended electronic horizon for automated
-              driving ITS Telecommunications (ITST)", 2015.
-
-   [I-D.contreras-alto-service-edge]
-              Contreras, L. M., Randriamasy, S., Ros-Giralt, J., Perez,
-              D. A. L., and C. E. Rothenberg, "Use of ALTO for
-              Determining Service Edge", Work in Progress, Internet-
-              Draft, draft-contreras-alto-service-edge-09, 10 July 2023,
-              <https://datatracker.ietf.org/doc/html/draft-contreras-
-              alto-service-edge-09>.
-
-   [Industry4.0]
-              Industry4.0, "Details of the Asset Administration Shell,
-              Part 1 & Part 2", 2020.
-
    [RFC7285]  Alimi, R., Ed., Penno, R., Ed., Yang, Y., Ed., Kiesel, S.,
               Previdi, S., Roome, W., Shalunov, S., and R. Woundy,
               "Application-Layer Traffic Optimization (ALTO) Protocol",
@@ -1008,17 +1143,306 @@ Table of Contents
               DOI 10.17487/RFC7665, October 2015,
               <https://www.rfc-editor.org/rfc/rfc7665>.
 
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
+
+8.2.  Informative References
+
+   [GAIA-X]   Gaia-X, "GAIA-X: A Federated Data Infrastructure for
+              Europe", 2021.
+
+   [HORITA]   Horita, Y., "Extended electronic horizon for automated
+              driving", Proceedings of 14th International Conference on
+              ITS Telecommunications (ITST), 2015.
+
+   [I-D.contreras-alto-service-edge]
+              Contreras, L. M., Randriamasy, S., Ros-Giralt, J., Perez,
+              D. A. L., and C. E. Rothenberg, "Use of ALTO for
+              Determining Service Edge", Work in Progress, Internet-
+              Draft, draft-contreras-alto-service-edge-10, 13 October
+              2023, <https://datatracker.ietf.org/doc/html/draft-
+              contreras-alto-service-edge-10>.
+
+   [I-D.ietf-teas-rfc3272bis]
+              Farrel, A., "Overview and Principles of Internet Traffic
+              Engineering", Work in Progress, Internet-Draft, draft-
+              ietf-teas-rfc3272bis-27, 12 August 2023,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
+              rfc3272bis-27>.
+
+   [I-D.ldbc-cats-framework]
+              Li, C., Du, Z., Boucadair, M., Contreras, L. M., and J.
+              Drake, "A Framework for Computing-Aware Traffic Steering
+              (CATS)", Work in Progress, Internet-Draft, draft-ldbc-
+              cats-framework-06, 8 February 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ldbc-cats-
+              framework-06>.
+
+   [Industry4.0]
+              Industry4.0, "Details of the Asset Administration Shell,
+              Part 1 & Part 2", 2020.
+
    [TR22.874] 3GPP, "Study on traffic characteristics and performance
               requirements for AI/ML model transfer in 5GS (Release
               18)", 2021.
 
-Acknowledgments
+Appendix A.  Appendix A
+
+   This section presents several attempts to apply CATS solutions for
+   improving service performance in different use cases.  It is a
+   temporary and procedural section which might be deleted or merged in
+   future updates.  The major reason is to help facilitate the
+   discussion and definition of CATS metrics and solidify CATS framework
+   and CATS solutions.
+
+A.1.  CATS for Content Delivery Network(CDN)
+
+   CDN is mature enough to deploy contents like high resolution videos
+   near clients, so as to provide good performance.  However, when
+   existing CDN servers can not guarantee the quality of service, for
+   example, there is not enough query per second(QPS) offering
+   capabilities, CATS can help relieve the problem and improve the
+   overall performance through better load balancing.  Two deployment
+   methods of CATS are tested in two different provinces of China, i.e.
+   distributed solution and centralized solution.  Some preliminary
+   results show that CATS can guarantee the service performance at
+   client side when there are large number of concurrent sessions
+   coming, compared to existing CDN scheduling solutions.  Key
+   performance indicators include the end-to-end scheduling delay,
+   average computing capabities after load balancing(measured as queries
+   per second).
+
+   Figure 6 below illustrates the deployment of CATS solution in ten
+   cities of Henan, China.  Two ingress nodes are deployed in Zhengzhou,
+   which is the provincial capital of Henan.  All egress nodes are
+   deployed in the other nine cities, with each egress node settled in
+   only one city respectively.  Client terminals are deployed near
+   ingress nodes in Zhengzhou.  The provincial networking can test the
+   performance gains of CATS solutions over 100 kilometers.
+
+ +--------------------+      +------------------+    +-----------------+
+ | +---------+ Luoyang|      |   +---------+    |    |   +---------+   |
+ | |Edge site+--+     |      |   |Edge site|    |    |   |Edge site|   |
+ | +---------+  |     |      |   +---+-----+    |    |   +---------+   |
+ |              |     |      |       |   Jiaozuo|    |      |  Anyang  |
+ |      +-------+---+ |      | +-----+-----+    |    | +-----------+   |
+ |      |CATS Egress+----------+CATS Egress|    |   +--+CATS Egress|   |
+ |      +-----------+ |      | +-----------+    |   || +-----------+   |
+ +--------------------+      +------------------+   +------------------+
+           |                            |            |
+       +------------------------------------+     +--------------------+
+       |   |         Zhengzhou          |   |     | |      +---------+ |
+       | +-+----------+      +----------+-+ |     | |    +-+Edge site| |
+     +---+CATS Ingress+----+ |CATS Ingress+-----+ | |    | +---------+ |
+     | | +------------+    | +------------+ |   | | |    |   Xinxiang  |
+     | +------------------------------------+   | | +----+------+      |
+     |                     |                    +---+CATS Egress|      |
+     |                     |                      | +-----------+      |
++------------------+    +--------------------+    +--------------------+
+|    +-----------+ |    |  |     +---------+ |
+|    |CATS Egress| |    |  |   +-+Edge site| |
+|    +----+----+-+ |    |  |   | +---------+ |
+| Kaifeng |    |   |    |  |   |    Xuchang  |
+| +-------+-+  |   |    | ++---+------+      |
+| |Edge site|  |   |    | |CATS Egress+----------------+
+| +---------+  |   |    | +-----------+      |         |
++------------------+    +-------------------+          |
+               |           |     |                     |
+               |           |     |                     |
++------------------+       |  +------------------+  +------------------+
+|    +-----------+ |       |  | +-----------+    |  | +-----------+    |
+|  +-+CATS Egress+---------+  | |CATS Egress|    |  | |CATS Egress|    |
+|  | +-----------+ |          | +-------+---+    |  | +-------+---+    |
+|  |  Zhoukou      |          | Xinyang |        |  | Nanyang |        |
+|  +----------+    |          |      +--+------+ |  |      +--+------+ |
+|  ++Edge site|    |          |      |Edge site| |  |      |Edge site| |
+|   +---------+    |          |      +---------+ |  |      +---------+ |
++------------------+          +------------------+  +------------------+
+
+      Figure 6: Deployment of CATS in ten cities of Henan, China
+
+   Figure 7 below illustrates the deployment of CATS solution in three
+   cities of Jiangsu, China.  The ingress node is deployed in Wuxi,
+   while the other two egress nodes are deployed in Xuzhou and Suzhou,
+   respectively.  Client devices like laptops and the centralized
+   controller are deployed near the ingress node in Wuxi, since Wuxi
+   owns the largest computing capabilities inside the city and can
+   support over 200,000 connections per second at its peak value.  CATS
+   can help alleviate the stress of load balancing at peak hours.
+
+                                                   +-----------------+
+                                                   |     +---------+ |
+        +-----------+          +------------+      |   +-+Edge site| |
+        |   Flow    |          | Controller |      |   | +---------+ |
+        | Generator |          +-+----------+      |   |  Suzhou     |
+        +---------+-+            |                 | +-+---------+   |
+                  |  +-----------+                 | |CATS Egress|   |
+                  |  |                             | +-----------+   |
+    +-------------------------+                    +-----------------+
+    | +------+    |  |        |                         |
+    | |client|    |  |   +------------------------------+
+    | +----+-+    |  |   |    |
+    |      |   +--+--+---+--+ |
+    |      +---+CATS Ingress+-------------+        +------------------+
+    |          ++-----------+ |           |        | +-----------+    |
+    | +------+  |             |           +----------+CATS Egress|    |
+    | |client+--+   Wuxi      |                    | +-------+---+    |
+    | +------+                |                    | Xuzhou  |        |
+    +-------------------------+                    |      +--+------+ |
+                                                   |      |Edge site| |
+                                                   |      +---------+ |
+                                                   +------------------+
+
+       Figure 7: Deployment of CATS in three cities of Jiangsu, China
+
+A.2.  CATS for MIGU Cloud Rendering
+
+   MIGU is the digital content subsidiary of China Mobile, offering
+   various digital and interactive applications which are enriched by
+   5G, cloud rendering, and AI.  Cloud rendering needs a lot of compute
+   resources to be deployed at edge sites, in order to satisfy the real-
+   time modeling requirements.  In cooperation with China Mobile
+   Zhejiang Co.  Ltd, MIGU has deployed its cloud rendering applications
+   at various edge sites in Zhejiang, in order to test how CATS solution
+   can improve the overall performance of image rendering.  Key
+   performance indicators include the resolution and sharpness of images
+   or videos, and processing delay.
+
+   Figure 8 below illustrate the deployment of MIGU cloud rendering
+   applications in Zhejiang.  Three edge sites are deployed in Wenzhou,
+   Ningbo, and Jiaxing, respectively.  In each site, there are some
+   servers for processing rendering services and some corresponding
+   management nodes.  One CATS egress node is deployed outside each site
+   for service instance selection.  There is a MIGU cloud platform which
+   collects the compute metrics from three different sites, and then it
+   passes these information to the central controller and the controller
+   will synchronize these information to the ingress node which is
+   deployed in Hanzhou, near the client.
+
+                                           +--------+
+                                           |MIGU    |
+                  +------------------------+Cloud   +----------+-------+
+                  |                        |Platform|          |       |
+                  |                        +--------+          |       |
+                  |                                            |       |
+                  |                              +------------------+  |
+                  |                              |     +----------+ |  |
+         +--------+---+                          |     |Management| |  |
+         | Controller |                          |     |Instance  | |  |
+         +----+-------+                          |     +------+---+ |  |
+              |                    +-----------+ | Wenzhou    |     |  |
+              |        +-----------+CATS Egress| | Edge site  |     |  |
+              |        |           +-----+-----+ |     +------+--+  |  |
+              |        |                 |       |     |Rendering|  |  |
+              |        |                 +-------------+Instance |  |  |
+              |        |                         |     +---------+  |  |
+              |        |                         +------------------+  |
+              |        |                                               |
+              |        |                         +------------------+  |
+ +-------------------------+                     |     +----------+ |  |
+ |            |        |   |                     |     |Management+----+
+ |  Hangzhou  |        |   |                     |     |Instance  | |  |
+ |            |        |   |                     |     +------+---+ |  |
+ |          +-+--------+-+ |       +-----------+ | Ningbo     |     |  |
+ |          |CATS Ingress+---------+CATS Egress| | Edge site  |     |  |
+ |          ++---------+-+ |       +-----+-----+ |     +------+--+  |  |
+ | +------+  |         |   |             |       |     |Rendering|  |  |
+ | |client+--+         |   |             +-------------+Instance |  |  |
+ | +------+            |   |                     |     +---------+  |  |
+ +-------------------------+                     +------------------+  |
+                       |                                               |
+                       |                         +------------------+  |
+                       |                         |     +----------+ |  |
+                       |                         |     |Management+----+
+                       |                         |     |Instance  | |
+                       |                         |     +------+---+ |
+                       |           +-----------+ | Jiaxing    |     |
+                       +-----------+CATS Egress| | Edge site  |     |
+                                   +-----+-----+ |     +------+--+  |
+                                         |       |     |Rendering|  |
+                                         +-------------+Instance |  |
+                                                 |     +---------+  |
+                                                 +------------------+
+
+   Figure 8: Deployment of CATS for MIGU App Performance Improvement
+                           in Zhejiang, China
+
+A.3.  CATS for High-speed Internet of Vehicles
+
+   In high-speed Internet of vehicles (IoV), high-speed vehicles, such
+   as cars, trains, subways, etc., need to communicate with other
+   vehicles, infrastructure or cloud service through network to run
+   applications carried by vehicles.  These applications can be divided
+   into two types.  One type of applications will affect the driving,
+   such as autonomous driving, remote control, and intelligent driving
+   services.  They have extremely high requirements on network delay,
+   and the console needs to make quick judgments and responses.
+   Otherwise, as the vehicle travels quickly, a brief misoperation may
+   lead to extremely serious traffic accidents.  And they have extremely
+   high requirements for service switching efficiency.  The coverage of
+   a base station is limited, and the capabilities of different service
+   sites are also different.  Vehicle movement will inevitably cause
+   switching of access station and service site.  The delay and service
+   changes caused by switching also directly affect the experience and
+   safety of driving.  Another type of applications is not related to
+   driving, such as voice communications, streaming media, and other
+   entertainment services.  They do not have strict requirements on
+   real-time performance and service switching efficiency, but may
+   requires higher computing capability.  Due to the complex
+   requirements of high-speed IoV on computing capability, an efficient
+   way is needed to jointly schedule computing and network resources..
+
+   The hybrid CATS scheme combines both the characteristics of
+   centralized and distributed schemes.  In hybrid CATS scheme, the
+   awareness and advertisement of computing status are performed by a
+   centralized orchestration system, service selection and path
+   computation are performed by network devices.  As shown in Figure 9,
+   the centralized computing status advertisement can reduce the
+   deployment hurdle of CATS.
+
+                       +--------------+       +------------------+
+                       |  network     |       | cloud management |
+                       |  controller  |       | platform         |
+                       +--------------+       +------------------+
+                                 /                         \
+                    +------------------+      +---------------+
+                    |     R2     R3    |------|service instance|
+                    |                  |      +----------------+
+           Vehicle--|R1(ingress router)|
+                    |                  |      +---------------+
+                    |     R4     R5    |------|service instance|
+                    +------------------+      +---------------+
+
+       Figure 9: Deployment of CATS for Intelligent Transportation in
+                                Hebei, China
+
+   The hybrid CATS scheme based high-speed IoV solution has been
+   deployed and validated for the first time in Hebei, China by China
+   Unicom.  The computing and network status were comprehensively used
+   for service selection and path computation, which provided high
+   quality computing service with the optimal service site and optimal
+   forwarding path for vehicle terminal applications.  Distributed
+   routing mode provides real-time optimization and fast switching
+   capabilities for delay-sensitive applications, such as the autonomous
+   driving.  Some non-delay sensitive applications, such as online media
+   and entertainment, used centralized routing decision mode to achieve
+   global resource scheduling.
+
+Acknowledgements
 
    The author would like to thank Adrian Farrel, Peng Liu, Luigi
-   Ianoone, Christian Jacquenet and Yuexia Fu for their valuable
+   Iannone, Christian Jacquenet and Yuexia Fu for their valuable
    suggestions to this document.
 
 Contributors
+
+   The following people have substantially contributed to this document:
+
+   Mohamed Boucadair
+   Orange
+   Email: mohamed.boucadair@orange.com
+
 
    Peter Willis
    Email: pjw7904@rjt.edu
@@ -1043,6 +1467,16 @@ Contributors
    Email: huang.guangping@zte.com.cn
 
 
+   Dongyu Yuan
+   ZTE
+   Email: yuan.dongyu@zte.com.cn
+
+
+   Xinxin Yi
+   China Unicom
+   Email: yixx3@chinaunicom.cn
+
+
 Authors' Addresses
 
    Kehan Yao
@@ -1053,11 +1487,6 @@ Authors' Addresses
    Dirk Trossen
    Huawei Technologies
    Email: dirk.trossen@huawei.com
-
-
-   Mohamed Boucadair
-   Orange
-   Email: mohamed.boucadair@orange.com
 
 
    Luis M. Contreras
@@ -1078,3 +1507,8 @@ Authors' Addresses
    Shuai Zhang
    China Unicom
    Email: zhangs366@chinaunicom.cn
+
+
+   Qing An
+   Alibaba Group
+   Email: anqing.aq@alibaba-inc.com
