@@ -13,9 +13,6 @@ author:
 - name: Kehan Yao
   org: China Mobile
   email: yaokehan@chinamobile.com
-- name: Dirk Trossen
-  org: Huawei Technologies
-  email: dirk.trossen@huawei.com
 - name: Luis M. Contreras
   org: Telefonica
   email: luismiguel.contrerasmurillo@telefonica.com
@@ -33,6 +30,9 @@ author:
   email: anqing.aq@alibaba-inc.com
 
 contributor:
+- name: Dirk Trossen
+  org: Huawei Technologies
+  email: dirk.trossen@huawei.com
 - name: Mohamed Boucadair
   org: Orange
   email: mohamed.boucadair@orange.com
