@@ -4,10 +4,8 @@
 
 cats                                                              K. Yao
 Internet-Draft                                              China Mobile
-Intended status: Informational                                D. Trossen
-Expires: 4 January 2025                              Huawei Technologies
-                                                         L. M. Contreras
-                                                              Telefonica
+Intended status: Informational                           L. M. Contreras
+Expires: 4 January 2025                                       Telefonica
                                                                   H. Shi
                                                                    Y. Li
                                                      Huawei Technologies
@@ -1439,6 +1437,11 @@ Contributors
 
    The following people have substantially contributed to this document:
 
+   Dirk Trossen
+   Huawei Technologies
+   Email: dirk.trossen@huawei.com
+
+
    Mohamed Boucadair
    Orange
    Email: mohamed.boucadair@orange.com
@@ -1482,11 +1485,6 @@ Authors' Addresses
    Kehan Yao
    China Mobile
    Email: yaokehan@chinamobile.com
-
-
-   Dirk Trossen
-   Huawei Technologies
-   Email: dirk.trossen@huawei.com
 
 
    Luis M. Contreras
