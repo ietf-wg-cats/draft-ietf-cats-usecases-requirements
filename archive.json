@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-08-08T01:03:46.916124+00:00",
+  "timestamp": "2024-08-11T01:09:12.374129+00:00",
   "repo": "cats-wg/draft-ietf-cats-usecases-requirements",
   "labels": [
     {
@@ -56,21 +56,21 @@
       "id": "PR_kwDOKfPAms5cnqa2",
       "title": "Add use case of Computing-Aware AI large model",
       "url": "https://github.com/cats-wg/draft-ietf-cats-usecases-requirements/pull/1",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "QingAn",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "Add use case of Computing-Aware AI large model, based on the discussion during IETF 117.",
       "createdAt": "2023-10-12T10:49:21Z",
-      "updatedAt": "2023-10-20T10:34:37Z",
+      "updatedAt": "2024-08-08T08:48:06Z",
       "baseRepository": "cats-wg/draft-ietf-cats-usecases-requirements",
       "baseRefName": "main",
       "baseRefOid": "17811e95cd6e130e93ad3bd4daf553721947696f",
       "headRepository": "QingAn/draft-ietf-cats-usecases-requirements",
       "headRefName": "patch-1",
       "headRefOid": "dd8aad958562b490009a01dbaa7fc494e3020996",
-      "closedAt": null,
+      "closedAt": "2024-08-08T08:47:49Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -102,6 +102,13 @@
           "body": "> So there is a third scenario in which the edge can inference by its own without the cloud. It seems to me this scenario is the most suitable one for the CATS. Can you add a third figure to demonstrate it? And add the explanation text too.\r\n\r\nDone. Please take a look.\r\n\r\n> \r\n> By permutation, I wonder is there a scenario in which device and edge co-inference without the cloud?\r\n\r\nFrankly, I hadn't considered this scenario before. But theoretically, it is possible.\r\n",
           "createdAt": "2023-10-19T07:55:26Z",
           "updatedAt": "2023-10-19T07:55:26Z"
+        },
+        {
+          "author": "VMatrix1900",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Merged.",
+          "createdAt": "2024-08-08T08:48:04Z",
+          "updatedAt": "2024-08-08T08:48:04Z"
         }
       ],
       "reviews": [
@@ -467,25 +474,33 @@
       "id": "PR_kwDOKfPAms5c6LsS",
       "title": "Update draft-ietf-cats-usecases-requirements.md",
       "url": "https://github.com/cats-wg/draft-ietf-cats-usecases-requirements/pull/2",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "bpatient78",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "Update Introduction, Terminologies and part of requirements. 1)The introduction part has been rewritten to avoid some verbose description. 2)Recent update on the definition of service related terms has been added into the Terminology part, as well as the definition on \"network edge\" and \"edge computing\", in order to make clarification. 3)Requirements on \"service instance selection\" have been adjusted. 4)Some vague expressions like\"quickly select\" and \"flexible use\" have been modified or explained. 5)Requirement on \"metric collection\" has been added. 6)Requirements on \"Session and service continuity\" have been modified.",
       "createdAt": "2023-10-16T14:44:46Z",
-      "updatedAt": "2023-10-23T14:29:03Z",
+      "updatedAt": "2024-08-08T09:00:53Z",
       "baseRepository": "cats-wg/draft-ietf-cats-usecases-requirements",
       "baseRefName": "main",
       "baseRefOid": "17811e95cd6e130e93ad3bd4daf553721947696f",
       "headRepository": "bpatient78/draft-ietf-cats-usecases-requirements",
       "headRefName": "patch-2",
       "headRefOid": "0ec85390c8b1617723aee07a41528ed1ab93916c",
-      "closedAt": null,
+      "closedAt": "2024-08-08T09:00:53Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "VMatrix1900",
+          "authorAssociation": "COLLABORATOR",
+          "body": "All changes are merged into the latest draft. ",
+          "createdAt": "2024-08-08T09:00:53Z",
+          "updatedAt": "2024-08-08T09:00:53Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOKfPAms5kJu8Q",
