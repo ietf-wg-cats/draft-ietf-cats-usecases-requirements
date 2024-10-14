@@ -171,73 +171,14 @@ and solutions.
 
 # Definition of Terms {#definition-of-terms}
 
-This document makes use of the following terms. The terminology
-echoes what is in {{I-D.ldbc-cats-framework}}:
+This document uses the terms defined in in {{I-D.ldbc-cats-framework}}.
+
+The document makes use of the following terms:
 
 {: hangIndent='2'}
-Client:
-: An endpoint that is connected to a service
-  provider network.
-
-Computing-Aware Traffic Steering (CATS):
-: A traffic engineering approach {{I-D.ietf-teas-rfc3272bis}} that takes
-  into account the dynamic nature of computing resources and network
-  state to optimize service-specific traffic forwarding towards a
-  given service contact instance.
-  Various relevant metrics may be used to enforce such computing-aware
-  traffic steering policies.
-
-Service:
-: An offering that is made available by a
-  provider by orchestrating a set of resources (networking, compute,
-  storage, etc.). Which and how these resources are solicited is part
-  of the service logic which is internal to the provider. For example,
-  these resources may be:
-
-   * Exposed by one or multiple processes (a.k.a.​ Service Functions
-     (SFs) {{RFC7665}}.
-   * Provided by virtual instances, physical, or a combination thereof.
-   * Hosted within the same or distinct nodes.
-   * Hosted within the same or multiple service sites.
-   * Chained to provide a service using a variety of means.
-
-  How a service is structured is out of the scope of CATS.
-
-  The same service can be provided in many locations; each of
-  them constitutes a service instance.
-
 Service identifier:
 : An identifier representing a
   service, which the clients use to access it.
-
-Computing Service:
-: An offering that is made available
-  by a provider by orchestrating a set of computing resources to
-  process application content.
-
-  Some differences and similarities exist between service and
-  computing service:
-
-   * Service is packet-based, while computing service is
-     transaction-based. Application content is exposed within a
-     computing service.
-   * Both service and computing service can be "on-path" or on
-     "endpoint", depending on the service logic or computing service
-     logic that are defined by the provider.
-
-Service instance:
-: An instance of running resources
-  according to a given service logic. Many such instances can be
-  enabled by a provider. Instances that adhere to the same service
-  logic provide the same service. An instance is typically running in
-  a service site. Clients' requests are serviced by one of these
-  instances.
-
-Service site:
-: A location that hosts the resources that
-  are required to offer a service. A service site may be a node or a
-  set of nodes. A CATS-serviced site is a service site that is
-  connected to a CATS-Forwarder.
 
 Network Edge:
 : The network edge is an architectural
@@ -256,8 +197,8 @@ Edge Computing:
 
 Even though this document is not a protocol specification, it makes
 use of upper case key words to define requirements unambiguously.
-{::boilerplate bcp14-tagged}
 
+{::boilerplate bcp14-tagged}
 
 # Problem Statement
 
