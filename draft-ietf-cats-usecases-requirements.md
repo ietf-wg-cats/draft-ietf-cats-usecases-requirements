@@ -1419,6 +1419,6 @@ document:
 
 The authors would like to thank Adrian Farrel, Peng Liu, Luigi
 Iannone, Christian Jacquenet and Yuexia Fu for their valuable
-suggestions to this document. 
+suggestions to this document.
 
 The authors would like to thank Yizhou Li for her early IETF work of Compute First Network (CFN) and Dynamic Anycast (Dyncast) which inspired the CATS work.
