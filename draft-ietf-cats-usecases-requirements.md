@@ -170,7 +170,7 @@ and solutions.
 # Definition of Terms {#definition-of-terms}
 
 This document makes use of the following terms. The terminology
-echoes what is in {{I-D.ietf-cats-framework}}:
+echoes what is in {{?I-D.ietf-cats-framework}}:
 
 {: hangIndent='2'}
 Client:
