@@ -19,9 +19,6 @@ author:
 - name: Hang Shi
   org: Huawei Technologies
   email: shihang9@huawei.com
-- name: Yizhou Li
-  org: Huawei Technologies
-  email: liyizhou@huawei.com
 - name: Shuai Zhang
   org: China Unicom
   email: zhangs366@chinaunicom.cn
@@ -30,6 +27,9 @@ author:
   email: anqing.aq@alibaba-inc.com
 
 contributor:
+- name: Yizhou Li
+  org: Huawei Technologies
+  email: liyizhou@huawei.com
 - name: Dirk Trossen
   org: Huawei Technologies
   email: dirk.trossen@huawei.com
@@ -1417,6 +1417,8 @@ document:
 # Acknowledgements {#Acknowledgements}
 {:unnumbered}
 
-The author would like to thank Adrian Farrel, Peng Liu, Luigi
+The authors would like to thank Adrian Farrel, Peng Liu, Luigi
 Iannone, Christian Jacquenet and Yuexia Fu for their valuable
-suggestions to this document.
+suggestions to this document. 
+
+The authors would like to thank Yizhou Li for her early IETF work of Compute First Network (CFN) and Dynamic Anycast (Dyncast) which inspired the CATS work.
