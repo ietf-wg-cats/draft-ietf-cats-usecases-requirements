@@ -7,7 +7,6 @@ Internet-Draft                                              China Mobile
 Intended status: Informational                           L. M. Contreras
 Expires: 4 January 2025                                       Telefonica
                                                                   H. Shi
-                                                                   Y. Li
                                                      Huawei Technologies
                                                                 S. Zhang
                                                             China Unicom
@@ -1429,13 +1428,22 @@ A.3.  CATS for High-speed Internet of Vehicles
 
 Acknowledgements
 
-   The author would like to thank Adrian Farrel, Peng Liu, Luigi
+   The authors would like to thank Adrian Farrel, Peng Liu, Luigi
    Iannone, Christian Jacquenet and Yuexia Fu for their valuable
    suggestions to this document.
+
+   The authors would like to thank Yizhou Li for her early IETF work of
+   Compute First Network (CFN) and Dynamic Anycast (Dyncast) which
+   inspired the CATS work.
 
 Contributors
 
    The following people have substantially contributed to this document:
+
+   Yizhou Li
+   Huawei Technologies
+   Email: liyizhou@huawei.com
+
 
    Dirk Trossen
    Huawei Technologies
@@ -1495,11 +1503,6 @@ Authors' Addresses
    Hang Shi
    Huawei Technologies
    Email: shihang9@huawei.com
-
-
-   Yizhou Li
-   Huawei Technologies
-   Email: liyizhou@huawei.com
 
 
    Shuai Zhang
