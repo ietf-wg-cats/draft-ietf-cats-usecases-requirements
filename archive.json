@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-13T01:15:46.376106+00:00",
+  "timestamp": "2024-10-15T01:12:08.053800+00:00",
   "repo": "cats-wg/draft-ietf-cats-usecases-requirements",
   "labels": [
     {
@@ -990,6 +990,86 @@
               "updatedAt": "2023-10-23T14:29:04Z"
             }
           ]
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "id": "PR_kwDOKfPAms5-ey-q",
+      "title": "update references",
+      "url": "https://github.com/cats-wg/draft-ietf-cats-usecases-requirements/pull/3",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-10-14T05:29:30Z",
+      "updatedAt": "2024-10-14T13:16:33Z",
+      "baseRepository": "cats-wg/draft-ietf-cats-usecases-requirements",
+      "baseRefName": "main",
+      "baseRefOid": "85143b71ca4552fbae4b4b26bf0e56fb5c9f7456",
+      "headRepository": "cats-wg/draft-ietf-cats-usecases-requirements",
+      "headRefName": "boucadair-patch-1",
+      "headRefOid": "fb1c0a0fda4243792ef4ff44fb06ed0da9202bb0",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKfPAms6ND8OP",
+          "commit": {
+            "abbreviatedOid": "fb1c0a0"
+          },
+          "author": "VMatrix1900",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-14T13:16:33Z",
+          "updatedAt": "2024-10-14T13:16:33Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "id": "PR_kwDOKfPAms5-e1bR",
+      "title": "remove redundant terms",
+      "url": "https://github.com/cats-wg/draft-ietf-cats-usecases-requirements/pull/4",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-10-14T05:38:02Z",
+      "updatedAt": "2024-10-14T13:17:17Z",
+      "baseRepository": "cats-wg/draft-ietf-cats-usecases-requirements",
+      "baseRefName": "main",
+      "baseRefOid": "85143b71ca4552fbae4b4b26bf0e56fb5c9f7456",
+      "headRepository": "cats-wg/draft-ietf-cats-usecases-requirements",
+      "headRefName": "remove-redundant-terms",
+      "headRefOid": "d0a9d8c86adbe84e9affa91ed186dd48472f2579",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKfPAms6ND8ph",
+          "commit": {
+            "abbreviatedOid": "d0a9d8c"
+          },
+          "author": "VMatrix1900",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-10-14T13:17:17Z",
+          "updatedAt": "2024-10-14T13:17:17Z",
+          "comments": []
         }
       ]
     }
