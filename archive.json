@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-17T01:11:24.316147+00:00",
+  "timestamp": "2024-10-20T01:17:15.795658+00:00",
   "repo": "cats-wg/draft-ietf-cats-usecases-requirements",
   "labels": [
     {
@@ -49,7 +49,24 @@
       "color": "ffffff"
     }
   ],
-  "issues": [],
+  "issues": [
+    {
+      "number": 5,
+      "id": "I_kwDOKfPAms6axoLa",
+      "title": "Update Requirements of CATS metrics ",
+      "url": "https://github.com/cats-wg/draft-ietf-cats-usecases-requirements/issues/5",
+      "state": "OPEN",
+      "author": "bpatient78",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Hi, co-authors,\r\n\r\nI 'm revisiting the parts describing the requirements of CATS metrics, namely section 5.2, 5.3, and 5.4. I've also collected I-Ds related to CATS metrics and listed in the following slide:\r\n<img width=\"1380\" alt=\"metric lifecycle\" src=\"https://github.com/user-attachments/assets/eb9ac2d7-10fb-411c-be1b-d3e1f72b8668\">\r\n\r\nI think the current description on requirements of CATS metrics is not well-organized. For example, section 5.2 and 5.4 cross mentioning the metrics definition requirements. which should be merged. Section 5.3 is on metrics usage where metric collection, selection, and distribution are mentioned, but like the requirement on metric update are missing, which should be added.  \r\n\r\nAlso,  from the minutes of IETF120, some requirements mentioned in draft-du-cats-computing-modeling-description-03 need to be considered and merged into this document. \r\n\r\nhttps://datatracker.ietf.org/meeting/120/materials/minutes-120-cats-01.html\r\n\r\nTherefore, I have the following sugguestions:\r\n\r\n* section 5.2 is still on  metric definition and representation. but need to merge requirements from the current section 5.4 and also the requirements from draft-du-cats-computing-modeling-description-03\r\n\r\n* section 5.3 should be remained, and some sugguested modifications: \r\n     - in terms of metric collection, should we support bidirectional collection?\r\n     - we should add a new requirement on metric update.  \r\n     \r\n* in terms of metric accuracy assessment, I'm not sure where the requirement should be added, but I think it is important. Since we'd better not regulate CATS systems always using fixed metrics when providing services. They should change policies according to real behaviors.",
+      "createdAt": "2024-10-18T07:37:00Z",
+      "updatedAt": "2024-10-18T07:37:00Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
   "pulls": [
     {
       "number": 1,
@@ -1045,7 +1062,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-10-14T05:38:02Z",
-      "updatedAt": "2024-10-14T13:17:17Z",
+      "updatedAt": "2024-10-18T08:54:37Z",
       "baseRepository": "cats-wg/draft-ietf-cats-usecases-requirements",
       "baseRefName": "main",
       "baseRefOid": "85143b71ca4552fbae4b4b26bf0e56fb5c9f7456",
@@ -1056,7 +1073,29 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "bpatient78",
+          "authorAssociation": "NONE",
+          "body": "Hi Med, all, \r\n\r\nThere was a mailing list thread earlier in this year on the discussion of what is \"computing service\".\r\n \r\nhttps://mailarchive.ietf.org/arch/msg/cats/V6tMfRIpqIbIXHNFD54RarQOrOA/https://mailarchive.ietf.org/arch/msg/cats/V6tMfRIpqIbIXHNFD54RarQOrOA/\r\n\r\nbased on some discussion happened in IETF119 Brisbane. Please take a look. Personally, I think the definition in framework draft is a bit general. \r\n\r\nBest,\r\nKehan",
+          "createdAt": "2024-10-18T07:49:38Z",
+          "updatedAt": "2024-10-18T07:50:02Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I got a message error when accessing the link. \r\n\r\nAnyway, if the existing entry in the framework is too generic, let's fix that in the framework for the sake of consistency of our CARS documents. Thanks.",
+          "createdAt": "2024-10-18T08:39:13Z",
+          "updatedAt": "2024-10-18T08:39:13Z"
+        },
+        {
+          "author": "bpatient78",
+          "authorAssociation": "NONE",
+          "body": "Hi, Med,\r\nSorry for copying the link twice. I think the following link is accessible. I've created a issue in CATS framework repo before, issue #90(closed now).\r\n\r\nhttps://mailarchive.ietf.org/arch/msg/cats/V6tMfRIpqIbIXHNFD54RarQOrOA/\r\n\r\nBTW, I've created a issue #5 on updating metric requirements of this document, please take a look and your sugguestion is very welcomed.\r\n\r\nhttps://github.com/cats-wg/draft-ietf-cats-usecases-requirements/issues/5\r\n\r\n\r\nBest,\r\nKehan",
+          "createdAt": "2024-10-18T08:54:36Z",
+          "updatedAt": "2024-10-18T08:54:36Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOKfPAms6ND8ph",
