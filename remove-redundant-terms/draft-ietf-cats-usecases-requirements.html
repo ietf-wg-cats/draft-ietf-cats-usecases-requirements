@@ -1327,40 +1327,39 @@ and solutions.<a href="#section-1-7" class="pilcrow">¶</a></p>
       <h2 id="name-definition-of-terms">
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-definition-of-terms" class="section-name selfRef">Definition of Terms</a>
       </h2>
-<p id="section-2-1">This document uses the terms defined in in <span>[<a href="#I-D.ldbc-cats-framework" class="cite xref">I-D.ldbc-cats-framework</a>]</span>.<a href="#section-2-1" class="pilcrow">¶</a></p>
-<p id="section-2-2">The document makes use of the following terms:<a href="#section-2-2" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel" id="section-2-3">
-        <dt id="section-2-3.1">Service identifier:</dt>
-        <dd style="margin-left: 1.0em" id="section-2-3.2">
-          <p id="section-2-3.2.1">An identifier representing a
-service, which the clients use to access it.<a href="#section-2-3.2.1" class="pilcrow">¶</a></p>
+<p id="section-2-1">This document uses the terms defined in <span>[<a href="#I-D.ietf-cats-framework" class="cite xref">I-D.ietf-cats-framework</a>]</span>.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-2-2">
+        <dt id="section-2-2.1">Service identifier:</dt>
+        <dd style="margin-left: 1.0em" id="section-2-2.2">
+          <p id="section-2-2.2.1">An identifier representing a
+service, which the clients use to access it.<a href="#section-2-2.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-3.3">Network Edge:</dt>
-        <dd style="margin-left: 1.0em" id="section-2-3.4">
-          <p id="section-2-3.4.1">The network edge is an architectural
+<dt id="section-2-2.3">Network Edge:</dt>
+        <dd style="margin-left: 1.0em" id="section-2-2.4">
+          <p id="section-2-2.4.1">The network edge is an architectural
 demarcation point used to identify physical locations where the
-corporate network connects to third-party networks.<a href="#section-2-3.4.1" class="pilcrow">¶</a></p>
+corporate network connects to third-party networks.<a href="#section-2-2.4.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-3.5">Edge Computing:</dt>
-        <dd style="margin-left: 1.0em" id="section-2-3.6">
-          <p id="section-2-3.6.1">Edge computing is a computing pattern
+<dt id="section-2-2.5">Edge Computing:</dt>
+        <dd style="margin-left: 1.0em" id="section-2-2.6">
+          <p id="section-2-2.6.1">Edge computing is a computing pattern
 that moves computing infrastructures, i.e, servers, away from
 centralized data centers and instead places it close to the end
-users for low latency communication.<a href="#section-2-3.6.1" class="pilcrow">¶</a></p>
-<p id="section-2-3.6.2">Relations with network edge: edge computing infrastructures
+users for low latency communication.<a href="#section-2-2.6.1" class="pilcrow">¶</a></p>
+<p id="section-2-2.6.2">Relations with network edge: edge computing infrastructures
 connect to corporate network through a network edge entry/exit
-point.<a href="#section-2-3.6.2" class="pilcrow">¶</a></p>
+point.<a href="#section-2-2.6.2" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
-<p id="section-2-4">Even though this document is not a protocol specification, it makes
-use of upper case key words to define requirements unambiguously.<a href="#section-2-4" class="pilcrow">¶</a></p>
-<p id="section-2-5">The key words "<span class="bcp14">MUST</span>", "<span class="bcp14">MUST NOT</span>", "<span class="bcp14">REQUIRED</span>", "<span class="bcp14">SHALL</span>", "<span class="bcp14">SHALL NOT</span>", "<span class="bcp14">SHOULD</span>", "<span class="bcp14">SHOULD NOT</span>", "<span class="bcp14">RECOMMENDED</span>", "<span class="bcp14">NOT RECOMMENDED</span>",
+<p id="section-2-3">Even though this document is not a protocol specification, it makes
+use of upper case key words to define requirements unambiguously.<a href="#section-2-3" class="pilcrow">¶</a></p>
+<p id="section-2-4">The key words "<span class="bcp14">MUST</span>", "<span class="bcp14">MUST NOT</span>", "<span class="bcp14">REQUIRED</span>", "<span class="bcp14">SHALL</span>", "<span class="bcp14">SHALL NOT</span>", "<span class="bcp14">SHOULD</span>", "<span class="bcp14">SHOULD NOT</span>", "<span class="bcp14">RECOMMENDED</span>", "<span class="bcp14">NOT RECOMMENDED</span>",
 "<span class="bcp14">MAY</span>", and "<span class="bcp14">OPTIONAL</span>" in this document are to be interpreted as
 described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they
-appear in all capitals, as shown here.<a href="#section-2-5" class="pilcrow">¶</a></p>
+appear in all capitals, as shown here.<a href="#section-2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="problem-statement">
@@ -2345,13 +2344,9 @@ participating in the network.<a href="#section-6-7" class="pilcrow">¶</a></p>
         <dd>
 <span class="refAuthor">Contreras, L. M.</span>, <span class="refAuthor">Randriamasy, S.</span>, <span class="refAuthor">Ros-Giralt, J.</span>, <span class="refAuthor">Perez, D. A. L.</span>, and <span class="refAuthor">C. E. Rothenberg</span>, <span class="refTitle">"Use of ALTO for Determining Service Edge"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-contreras-alto-service-edge-10</span>, <time datetime="2023-10-13" class="refDate">13 October 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-contreras-alto-service-edge-10">https://datatracker.ietf.org/doc/html/draft-contreras-alto-service-edge-10</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="I-D.ietf-teas-rfc3272bis">[I-D.ietf-teas-rfc3272bis]</dt>
+<dt id="I-D.ietf-cats-framework">[I-D.ietf-cats-framework]</dt>
         <dd>
-<span class="refAuthor">Farrel, A.</span>, <span class="refTitle">"Overview and Principles of Internet Traffic Engineering"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-rfc3272bis-27</span>, <time datetime="2023-08-12" class="refDate">12 August 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-rfc3272bis-27">https://datatracker.ietf.org/doc/html/draft-ietf-teas-rfc3272bis-27</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="I-D.ldbc-cats-framework">[I-D.ldbc-cats-framework]</dt>
-        <dd>
-<span class="refAuthor">Li, C.</span>, <span class="refAuthor">Du, Z.</span>, <span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Contreras, L. M.</span>, and <span class="refAuthor">J. Drake</span>, <span class="refTitle">"A Framework for Computing-Aware Traffic Steering (CATS)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ldbc-cats-framework-06</span>, <time datetime="2024-02-08" class="refDate">8 February 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ldbc-cats-framework-06">https://datatracker.ietf.org/doc/html/draft-ldbc-cats-framework-06</a>&gt;</span>. </dd>
+<span class="refAuthor">Li, C.</span>, <span class="refAuthor">Du, Z.</span>, <span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Contreras, L. M.</span>, and <span class="refAuthor">J. Drake</span>, <span class="refTitle">"A Framework for Computing-Aware Traffic Steering (CATS)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-cats-framework-04</span>, <time datetime="2024-10-17" class="refDate">17 October 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-cats-framework-04">https://datatracker.ietf.org/doc/html/draft-ietf-cats-framework-04</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="Industry4.0">[Industry4.0]</dt>
         <dd>
