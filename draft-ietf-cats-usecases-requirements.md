@@ -60,8 +60,6 @@ normative:
   RFC7285:
   RFC7665:
 informative:
-  I-D.ietf-teas-rfc3272bis:
-  I-D.ldbc-cats-framework:
   I-D.contreras-alto-service-edge:
   TR22.874:
     title: Study on traffic characteristics and performance requirements for AI/ML
@@ -172,7 +170,7 @@ and solutions.
 # Definition of Terms {#definition-of-terms}
 
 This document makes use of the following terms. The terminology
-echoes what is in {{I-D.ldbc-cats-framework}}:
+echoes what is in {{?I-D.ietf-cats-framework}}:
 
 {: hangIndent='2'}
 Client:
@@ -180,7 +178,7 @@ Client:
   provider network.
 
 Computing-Aware Traffic Steering (CATS):
-: A traffic engineering approach {{I-D.ietf-teas-rfc3272bis}} that takes
+: A traffic engineering approach {{?RFC9522}} that takes
   into account the dynamic nature of computing resources and network
   state to optimize service-specific traffic forwarding towards a
   given service contact instance.
