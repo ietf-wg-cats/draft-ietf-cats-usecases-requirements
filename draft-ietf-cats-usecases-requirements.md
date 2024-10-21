@@ -1204,17 +1204,16 @@ alleviate the stress of load balancing at peak hours.
 ~~~~
 {: #figa2 artwork-align="center" title="Deployment of CATS in three cities of Jiangsu, China"}
 
-From the experiments in CDN, benefits of CATS can be summarized as follows.	
- 		
-CATS can adapt to network quality degradation more timely than	
-traditional approaches. The frequency of DNS request for available	
-service instances is set to be 600 seconds normally, which is a bit	
-too long when the network quality can not be guaranteed. In a CATS	
-system, the metric update and distribution frequency is set to be 15	
-seconds in this case, which is the same as the normal refresh	
-frequency of BGP update. Therefore, after the first DNS request for	
-a service instance, CATS will alternatively select other instances no	
-later than 15 seconds if the current service instance do not work	
+From the experiments in CDN, benefits of CATS can be summarized as follows.
+CATS can adapt to network quality degradation more timely than
+traditional approaches. The frequency of DNS request for available
+service instances is set to be 600 seconds normally, which is a bit
+too long when the network quality can not be guaranteed. In a CATS
+system, the metric update and distribution frequency is set to be 15
+seconds in this case, which is the same as the normal refresh
+frequency of BGP update. Therefore, after the first DNS request for
+a service instance, CATS will alternatively select other instances no
+later than 15 seconds if the current service instance do not work
 well or the quality of path towards this instance drops.
 
 ## CATS for MIGU Cloud Rendering
