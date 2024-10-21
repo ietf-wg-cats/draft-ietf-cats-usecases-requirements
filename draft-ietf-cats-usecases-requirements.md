@@ -169,7 +169,7 @@ and solutions.
 
 # Definition of Terms {#definition-of-terms}
 
-This document uses the terms defined in in {{I-D.ldbc-cats-framework}}.
+This document uses the terms defined in in {{I-D.ietf-cats-framework}}.
 
 {: hangIndent='2'}
 Service identifier:
