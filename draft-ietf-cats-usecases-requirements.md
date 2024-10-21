@@ -60,8 +60,6 @@ normative:
   RFC7285:
   RFC7665:
 informative:
-  I-D.ietf-teas-rfc3272bis:
-  I-D.ldbc-cats-framework:
   I-D.contreras-alto-service-edge:
   TR22.874:
     title: Study on traffic characteristics and performance requirements for AI/ML
@@ -172,8 +170,6 @@ and solutions.
 # Definition of Terms {#definition-of-terms}
 
 This document uses the terms defined in in {{I-D.ldbc-cats-framework}}.
-
-The document makes use of the following terms:
 
 {: hangIndent='2'}
 Service identifier:
