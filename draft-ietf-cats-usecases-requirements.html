@@ -1327,125 +1327,39 @@ and solutions.<a href="#section-1-7" class="pilcrow">¶</a></p>
       <h2 id="name-definition-of-terms">
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-definition-of-terms" class="section-name selfRef">Definition of Terms</a>
       </h2>
-<p id="section-2-1">This document makes use of the following terms. The terminology
-echoes what is in <span>[<a href="#I-D.ietf-cats-framework" class="cite xref">I-D.ietf-cats-framework</a>]</span>:<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-1">This document uses the terms defined in <span>[<a href="#I-D.ietf-cats-framework" class="cite xref">I-D.ietf-cats-framework</a>]</span>.<a href="#section-2-1" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-2-2">
-        <dt id="section-2-2.1">Client:</dt>
+        <dt id="section-2-2.1">Service identifier:</dt>
         <dd style="margin-left: 1.0em" id="section-2-2.2">
-          <p id="section-2-2.2.1">An endpoint that is connected to a service
-provider network.<a href="#section-2-2.2.1" class="pilcrow">¶</a></p>
+          <p id="section-2-2.2.1">An identifier representing a
+service, which the clients use to access it.<a href="#section-2-2.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-2.3">Computing-Aware Traffic Steering (CATS):</dt>
+<dt id="section-2-2.3">Network Edge:</dt>
         <dd style="margin-left: 1.0em" id="section-2-2.4">
-          <p id="section-2-2.4.1">A traffic engineering approach <span>[<a href="#RFC9522" class="cite xref">RFC9522</a>]</span> that takes
-into account the dynamic nature of computing resources and network
-state to optimize service-specific traffic forwarding towards a
-given service contact instance.
-Various relevant metrics may be used to enforce such computing-aware
-traffic steering policies.<a href="#section-2-2.4.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-2-2.5">Service:</dt>
-        <dd style="margin-left: 1.0em" id="section-2-2.6">
-          <p id="section-2-2.6.1">An offering that is made available by a
-provider by orchestrating a set of resources (networking, compute,
-storage, etc.). Which and how these resources are solicited is part
-of the service logic which is internal to the provider. For example,
-these resources may be:<a href="#section-2-2.6.1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-2-2.6.2.1">
-              <p id="section-2-2.6.2.1.1">Exposed by one or multiple processes (a.k.a.​ Service Functions
-(SFs) <span>[<a href="#RFC7665" class="cite xref">RFC7665</a>]</span>.<a href="#section-2-2.6.2.1.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="section-2-2.6.2.2">
-              <p id="section-2-2.6.2.2.1">Provided by virtual instances, physical, or a combination thereof.<a href="#section-2-2.6.2.2.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="section-2-2.6.2.3">
-              <p id="section-2-2.6.2.3.1">Hosted within the same or distinct nodes.<a href="#section-2-2.6.2.3.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="section-2-2.6.2.4">
-              <p id="section-2-2.6.2.4.1">Hosted within the same or multiple service sites.<a href="#section-2-2.6.2.4.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="section-2-2.6.2.5">
-              <p id="section-2-2.6.2.5.1">Chained to provide a service using a variety of means.<a href="#section-2-2.6.2.5.1" class="pilcrow">¶</a></p>
-</li>
-          </ul>
-<p id="section-2-2.6.3">How a service is structured is out of the scope of CATS.<a href="#section-2-2.6.3" class="pilcrow">¶</a></p>
-<p id="section-2-2.6.4">The same service can be provided in many locations; each of
-them constitutes a service instance.<a href="#section-2-2.6.4" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-2-2.7">Service identifier:</dt>
-        <dd style="margin-left: 1.0em" id="section-2-2.8">
-          <p id="section-2-2.8.1">An identifier representing a
-service, which the clients use to access it.<a href="#section-2-2.8.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-2-2.9">Computing Service:</dt>
-        <dd style="margin-left: 1.0em" id="section-2-2.10">
-          <p id="section-2-2.10.1">An offering that is made available
-by a provider by orchestrating a set of computing resources to
-process application content.<a href="#section-2-2.10.1" class="pilcrow">¶</a></p>
-<p id="section-2-2.10.2">Some differences and similarities exist between service and
-computing service:<a href="#section-2-2.10.2" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-2-2.10.3.1">
-              <p id="section-2-2.10.3.1.1">Service is packet-based, while computing service is
-transaction-based. Application content is exposed within a
-computing service.<a href="#section-2-2.10.3.1.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="section-2-2.10.3.2">
-              <p id="section-2-2.10.3.2.1">Both service and computing service can be "on-path" or on
-"endpoint", depending on the service logic or computing service
-logic that are defined by the provider.<a href="#section-2-2.10.3.2.1" class="pilcrow">¶</a></p>
-</li>
-          </ul>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-2-2.11">Service instance:</dt>
-        <dd style="margin-left: 1.0em" id="section-2-2.12">
-          <p id="section-2-2.12.1">An instance of running resources
-according to a given service logic. Many such instances can be
-enabled by a provider. Instances that adhere to the same service
-logic provide the same service. An instance is typically running in
-a service site. Clients' requests are serviced by one of these
-instances.<a href="#section-2-2.12.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-2-2.13">Service site:</dt>
-        <dd style="margin-left: 1.0em" id="section-2-2.14">
-          <p id="section-2-2.14.1">A location that hosts the resources that
-are required to offer a service. A service site may be a node or a
-set of nodes. A CATS-serviced site is a service site that is
-connected to a CATS-Forwarder.<a href="#section-2-2.14.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-2-2.15">Network Edge:</dt>
-        <dd style="margin-left: 1.0em" id="section-2-2.16">
-          <p id="section-2-2.16.1">The network edge is an architectural
+          <p id="section-2-2.4.1">The network edge is an architectural
 demarcation point used to identify physical locations where the
-corporate network connects to third-party networks.<a href="#section-2-2.16.1" class="pilcrow">¶</a></p>
+corporate network connects to third-party networks.<a href="#section-2-2.4.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-2.17">Edge Computing:</dt>
-        <dd style="margin-left: 1.0em" id="section-2-2.18">
-          <p id="section-2-2.18.1">Edge computing is a computing pattern
+<dt id="section-2-2.5">Edge Computing:</dt>
+        <dd style="margin-left: 1.0em" id="section-2-2.6">
+          <p id="section-2-2.6.1">Edge computing is a computing pattern
 that moves computing infrastructures, i.e, servers, away from
 centralized data centers and instead places it close to the end
-users for low latency communication.<a href="#section-2-2.18.1" class="pilcrow">¶</a></p>
-<p id="section-2-2.18.2">Relations with network edge: edge computing infrastructures
+users for low latency communication.<a href="#section-2-2.6.1" class="pilcrow">¶</a></p>
+<p id="section-2-2.6.2">Relations with network edge: edge computing infrastructures
 connect to corporate network through a network edge entry/exit
-point.<a href="#section-2-2.18.2" class="pilcrow">¶</a></p>
+point.<a href="#section-2-2.6.2" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
 <p id="section-2-3">Even though this document is not a protocol specification, it makes
-use of upper case key words to define requirements unambiguously.
-The key words "<span class="bcp14">MUST</span>", "<span class="bcp14">MUST NOT</span>", "<span class="bcp14">REQUIRED</span>", "<span class="bcp14">SHALL</span>", "<span class="bcp14">SHALL NOT</span>", "<span class="bcp14">SHOULD</span>", "<span class="bcp14">SHOULD NOT</span>", "<span class="bcp14">RECOMMENDED</span>", "<span class="bcp14">NOT RECOMMENDED</span>",
+use of upper case key words to define requirements unambiguously.<a href="#section-2-3" class="pilcrow">¶</a></p>
+<p id="section-2-4">The key words "<span class="bcp14">MUST</span>", "<span class="bcp14">MUST NOT</span>", "<span class="bcp14">REQUIRED</span>", "<span class="bcp14">SHALL</span>", "<span class="bcp14">SHALL NOT</span>", "<span class="bcp14">SHOULD</span>", "<span class="bcp14">SHOULD NOT</span>", "<span class="bcp14">RECOMMENDED</span>", "<span class="bcp14">NOT RECOMMENDED</span>",
 "<span class="bcp14">MAY</span>", and "<span class="bcp14">OPTIONAL</span>" in this document are to be interpreted as
 described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they
-appear in all capitals, as shown here.<a href="#section-2-3" class="pilcrow">¶</a></p>
+appear in all capitals, as shown here.<a href="#section-2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="problem-statement">
@@ -2437,10 +2351,6 @@ participating in the network.<a href="#section-6-7" class="pilcrow">¶</a></p>
 <dt id="Industry4.0">[Industry4.0]</dt>
         <dd>
 <span class="refAuthor">Industry4.0</span>, <span class="refTitle">"Details of the Asset Administration Shell, Part 1 &amp; Part 2"</span>, <time datetime="2020" class="refDate">2020</time>. </dd>
-<dd class="break"></dd>
-<dt id="RFC9522">[RFC9522]</dt>
-        <dd>
-<span class="refAuthor">Farrel, A., Ed.</span>, <span class="refTitle">"Overview and Principles of Internet Traffic Engineering"</span>, <span class="seriesInfo">RFC 9522</span>, <span class="seriesInfo">DOI 10.17487/RFC9522</span>, <time datetime="2024-01" class="refDate">January 2024</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9522">https://www.rfc-editor.org/rfc/rfc9522</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="TR22.874">[TR22.874]</dt>
       <dd>
