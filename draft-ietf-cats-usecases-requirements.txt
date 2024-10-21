@@ -89,10 +89,11 @@ Table of Contents
    5.  Requirements
      5.1.  Support dynamic and effective selection among multiple
            service instances
-     5.2.  Support Agreement on Metric Representation and Definition
-     5.3.  Use of Metrics
-     5.4.  Support Instance Affinity
-     5.5.  Preserve Communication Confidentiality
+     5.2.  Support Agreement on Metric Representation
+     5.3.  Support Moderate Metric Distributing
+     5.4.  Support Alternative Definition and Use of Metrics
+     5.5.  Support Instance Affinity
+     5.6.  Preserve Communication Confidentiality
    6.  Security Considerations
    7.  IANA Considerations
    8.  References
@@ -169,7 +170,7 @@ Table of Contents
 2.  Definition of Terms
 
    This document makes use of the following terms.  The terminology
-   echoes [I-D.ietf-cats-framework]:
+   echoes what is in [I-D.ietf-cats-framework]:
 
    Client:  An endpoint that is connected to a service provider network.
 
@@ -907,7 +908,7 @@ Table of Contents
    problem when multiple service instances with the same service
    identifier are all available to provide computing services.
 
-5.2.  Support Agreement on Metric Representation and Definition
+5.2.  Support Agreement on Metric Representation
 
    Computing metrics can have many different semantics, particularly for
    being service-specific.  Even the notion of a "computing load" metric
@@ -924,32 +925,7 @@ Table of Contents
 
    R7: MUST include network metrics.
 
-   To better understand the meaning of different metrics and to better
-   support appropriate use of metrics,
-
-   R8: a computing semantic model SHOULD be defined for the mapping
-   selection.
-
-   There are also some principles and requirements for CATS metrics
-   definition.
-
-   R9: The computing metrics in CATS MUST be simple, so that it will not
-   incur too much overhead for network nodes to process CATS metrics and
-   it will not expose too much information of service instances.
-
-   We recognize that different network nodes, e.g., routers, switches,
-   etc., may have diversified capabilities even in the same routing
-   domain, let alone in different administrative domains and from
-   different vendors.  Therefore, to work properly in a CATS system,
-
-   R10: There MUST set up metric information that can be understood by
-   CATS components.  For metrics that CATS components do not understand
-   or support, CATS components will ignore them.
-
-   R11: The computing metrics in CATS MUST be vendor-independent and
-   operating system(OS)-independent.
-
-5.3.  Use of Metrics
+5.3.  Support Moderate Metric Distributing
 
    Network path costs in the current routing system usually do not
    change very frequently.  Network traffic engineering metrics (such as
@@ -974,55 +950,57 @@ Table of Contents
    equally be considered and even be realized.  Specifically, a
    desirable system
 
-   R12: MUST provide mechanisms for metric collection.
+   R8: MUST provide mechanisms for metric collection.
 
-   R13: MUST declare the direction of metric collection, bidirectional
-   or unidirectional, and entities who will do metric collection.
-   Because it will impact the frequency of metric update, the method of
-   metric distribution, and where to make decisions based on the
-   metrics.
+   Collecting metrics from all of the services instances may incur much
+   overhead for the decision maker, and thus hierarchical metric
+   collection is needed.  That is,
 
-   Metric selection is also important.  Collecting metrics from all of
-   the services instances may incur much overhead for the decision
-   maker, and also it will also impact routing behaviors.  Meanwhile,
-   the optimization objectives of decision points may vary under
-   different use cases, for example, sometimes a CATS system may choose
-   delay as the core metric for delay-sensitive applications, and
-   sometimes it may set load as the first priority for better load
-   balancing among service instances.  Therefore,
+   R9: SHOULD provide mechanisms to aggregate the metrics.
 
-   R14: SHOULD provide mechanisms to aggregate the metrics when there
-   are multiple service instances behind the same egress node of a CATS
-   domain.  CATS components do not need to be aware of how metrics are
-   collected behind the aggregator.
+   CATS components do not need to be aware of how metrics are collected
+   behind the aggregator.
 
-   R15: MUST provide mechanisms to select metrics to adapt to different
-   optimization objectives.
+   R10: MUST provide mechanisms to distribute the metrics.
 
-   The decision point may not be directly connected with service
-   instances or metric collectors, therefore,
+   R11: MUST realize means for rate control for distributing of metrics.
 
-   R16: MUST provide mechanisms to distribute the metrics.
+5.4.  Support Alternative Definition and Use of Metrics
 
-   R17: MUST realize means for rate control for distributing of metrics.
+   Considering computing resources assigned to a service instance on a
+   server, which might be related to some critical metrics like the
+   processing delay, is crucial in addition to the network delay in some
+   cases.  Therefore, the CATS components might use both the network and
+   computing metrics for service instance selection.  For this reason:
 
-   The update frequency of the computing metrics may be various.  Some
-   of the metrics may be more dynamic, and some are relatively static.
-   Accordingly, different distribution methods may be chosen with
-   respect to different update frequencies of relevant metrics.
-   Therefore,
+   R12: a computing semantic model SHOULD be defined for the mapping
+   selection.
 
-   R18: MUST be clear of the update frequency of CATS metrics and its
-   corresponding distribution method.
+   We recognize that different network nodes, e.g., routers, switches,
+   etc., may have diversified capabilities even in the same routing
+   domain, let alone in different administrative domains.  So, metrics
+   that are oriented towards compute capabilities and resources that
+   have been adopted by some nodes may not be supported by others,
+   either due to technical reasons, administrative reasons, or something
+   else.  There exist scenarios in which a node supporting service-
+   specific metrics might prefer some type of metrics to
+   others[TR22.874].  Of course, specific metrics might not be utilized
+   at all in other scenarios.  Hence:
 
-   Sometimes, a metric that is chosen is not accurate for service
-   instance selection under some circumstances, in such case, a
-   desirable system
+   R13: In addition to common metrics that are agreed by all CATS
+   components like processing delay, there SHOULD be some other ways for
+   metrics definition, which is used for the selection of specific
+   service instance.
 
-   R19: SHOULD provide mechanisms to assess selection accuracy and re-
-   select metrics if the selection result is not accurate.
+   Therefore, a desirable system
 
-5.4.  Support Instance Affinity
+   R14: MUST set up metric information that can be understood by CATS
+   components.
+
+   For metrics that CATS components do not understand or support, CATS
+   components will ignore them.
+
+5.5.  Support Instance Affinity
 
    In the CATS system, a service may be provided by one or more service
    instances that would be deployed at different locations in the
@@ -1043,7 +1021,7 @@ Table of Contents
    supporting an explicit state/context transfer (e.g., when metrics
    change significantly).  So in those situations:
 
-   R20: Instance affinity MUST be maintained when state information is
+   R15: Instance affinity MUST be maintained when state information is
    needed.
 
    The nature of this affinity is highly dependent on the nature of the
@@ -1081,20 +1059,20 @@ Table of Contents
 
    Therefore, a desirable system
 
-   R21: MUST maintain instance affinity which MAY span one or more
+   R16: MUST maintain instance affinity which MAY span one or more
    service requests, i.e., all the packets from the same application-
    level flow MUST go to the same service instance unless the original
    service instance is unreachable
 
-   R22: MUST avoid keeping fine runtime-state granularity in network
+   R17: MUST avoid keeping fine runtime-state granularity in network
    nodes for providing instance affinity.
 
-   R23: MUST provide mechanisms to minimize client side states in order
+   R18: MUST provide mechanisms to minimize client side states in order
    to achieve the instance affinity.
 
-   R24: SHOULD support the UE and service instance mobility.
+   R19: SHOULD support the UE and service instance mobility.
 
-5.5.  Preserve Communication Confidentiality
+5.6.  Preserve Communication Confidentiality
 
    Exposing the information of computing resources to the network may
    lead to the leakage of computing domain and application privacy.  In
@@ -1109,7 +1087,7 @@ Table of Contents
    consider whether the computing information exposed in the network can
    help make full use of traffic steering.  Therefore, a CATS system
 
-   R25: MUST preserve the confidentiality of the communication relation
+   R20: MUST preserve the confidentiality of the communication relation
    between user and service provider by minimizing the exposure of user-
    relevant information according to user needs.
 
@@ -1122,12 +1100,12 @@ Table of Contents
    Service data sometimes needs to be moved among different edge sites
    to maintain service consistency and availability.  Therefore:
 
-   R26: service data MUST be protected from interception.
+   R21: service data MUST be protected from interception.
 
    The act of making compute requests may reveal the nature of user's
    activities, so that:
 
-   R27: the nature of user's activities SHOULD be hidden as much as
+   R22: the nature of user's activities SHOULD be hidden as much as
    possible.
 
    The behavior of the network can be adversely affected by modifying or
@@ -1135,7 +1113,7 @@ Table of Contents
    Such attacks could deprive users' of the services they desires, and
    might be used to divert traffic to interception points.  Therefore,
 
-   R28: secure advertisements are REQUIRED to prevent rogue nodes from
+   R23: secure advertisements are REQUIRED to prevent rogue nodes from
    participating in the network.
 
 7.  IANA Considerations
@@ -1166,10 +1144,6 @@ Table of Contents
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
-   [RFC9522]  Farrel, A., Ed., "Overview and Principles of Internet
-              Traffic Engineering", RFC 9522, DOI 10.17487/RFC9522,
-              January 2024, <https://www.rfc-editor.org/rfc/rfc9522>.
-
 8.2.  Informative References
 
    [GAIA-X]   Gaia-X, "GAIA-X: A Federated Data Infrastructure for
@@ -1195,16 +1169,13 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-cats-
               framework-04>.
 
-   [I-D.ietf-teas-rfc3272bis]
-              Farrel, A., "Overview and Principles of Internet Traffic
-              Engineering", Work in Progress, Internet-Draft, draft-
-              ietf-teas-rfc3272bis-27, 12 August 2023,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              rfc3272bis-27>.
-
    [Industry4.0]
               Industry4.0, "Details of the Asset Administration Shell,
               Part 1 & Part 2", 2020.
+
+   [RFC9522]  Farrel, A., Ed., "Overview and Principles of Internet
+              Traffic Engineering", RFC 9522, DOI 10.17487/RFC9522,
+              January 2024, <https://www.rfc-editor.org/rfc/rfc9522>.
 
    [TR22.874] 3GPP, "Study on traffic characteristics and performance
               requirements for AI/ML model transfer in 5GS (Release
