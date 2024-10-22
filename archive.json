@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-20T01:17:15.795658+00:00",
+  "timestamp": "2024-10-22T01:12:17.038135+00:00",
   "repo": "cats-wg/draft-ietf-cats-usecases-requirements",
   "labels": [
     {
@@ -1015,24 +1015,26 @@
       "id": "PR_kwDOKfPAms5-ey-q",
       "title": "update references",
       "url": "https://github.com/cats-wg/draft-ietf-cats-usecases-requirements/pull/3",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-10-14T05:29:30Z",
-      "updatedAt": "2024-10-14T13:16:33Z",
+      "updatedAt": "2024-10-21T09:11:01Z",
       "baseRepository": "cats-wg/draft-ietf-cats-usecases-requirements",
       "baseRefName": "main",
       "baseRefOid": "85143b71ca4552fbae4b4b26bf0e56fb5c9f7456",
       "headRepository": "cats-wg/draft-ietf-cats-usecases-requirements",
       "headRefName": "boucadair-patch-1",
       "headRefOid": "fb1c0a0fda4243792ef4ff44fb06ed0da9202bb0",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-10-21T09:11:00Z",
+      "mergedAt": "2024-10-21T09:11:00Z",
+      "mergedBy": "VMatrix1900",
+      "mergeCommit": {
+        "oid": "1df7a14af62b8bde7c0f4568202aa56a68ef4b99"
+      },
       "comments": [],
       "reviews": [
         {
@@ -1055,24 +1057,26 @@
       "id": "PR_kwDOKfPAms5-e1bR",
       "title": "remove redundant terms",
       "url": "https://github.com/cats-wg/draft-ietf-cats-usecases-requirements/pull/4",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-10-14T05:38:02Z",
-      "updatedAt": "2024-10-18T08:54:37Z",
+      "updatedAt": "2024-10-21T09:31:25Z",
       "baseRepository": "cats-wg/draft-ietf-cats-usecases-requirements",
       "baseRefName": "main",
-      "baseRefOid": "85143b71ca4552fbae4b4b26bf0e56fb5c9f7456",
+      "baseRefOid": "1df7a14af62b8bde7c0f4568202aa56a68ef4b99",
       "headRepository": "cats-wg/draft-ietf-cats-usecases-requirements",
       "headRefName": "remove-redundant-terms",
-      "headRefOid": "d0a9d8c86adbe84e9affa91ed186dd48472f2579",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "1825a6b143f5805d1e086a26431ea41b2615b8a0",
+      "closedAt": "2024-10-21T09:31:25Z",
+      "mergedAt": "2024-10-21T09:31:25Z",
+      "mergedBy": "VMatrix1900",
+      "mergeCommit": {
+        "oid": "68b6d74c5e52137ee39d6e89a89582f82ed635f6"
+      },
       "comments": [
         {
           "author": "bpatient78",
@@ -1094,6 +1098,13 @@
           "body": "Hi, Med,\r\nSorry for copying the link twice. I think the following link is accessible. I've created a issue in CATS framework repo before, issue #90(closed now).\r\n\r\nhttps://mailarchive.ietf.org/arch/msg/cats/V6tMfRIpqIbIXHNFD54RarQOrOA/\r\n\r\nBTW, I've created a issue #5 on updating metric requirements of this document, please take a look and your sugguestion is very welcomed.\r\n\r\nhttps://github.com/cats-wg/draft-ietf-cats-usecases-requirements/issues/5\r\n\r\n\r\nBest,\r\nKehan",
           "createdAt": "2024-10-18T08:54:36Z",
           "updatedAt": "2024-10-18T08:54:36Z"
+        },
+        {
+          "author": "VMatrix1900",
+          "authorAssociation": "COLLABORATOR",
+          "body": "CATS framework will become RFC and is more appropriate place for term definition. Kehan agrees to merge the PR.",
+          "createdAt": "2024-10-21T09:30:40Z",
+          "updatedAt": "2024-10-21T09:30:40Z"
         }
       ],
       "reviews": [
@@ -1109,8 +1120,83 @@
           "createdAt": "2024-10-14T13:17:17Z",
           "updatedAt": "2024-10-14T13:17:17Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOKfPAms6N54XA",
+          "commit": {
+            "abbreviatedOid": "d0a9d8c"
+          },
+          "author": "bpatient78",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "Hi Med, \r\n\r\nI understand that we should avoid the same definition of terms in two documents. But I have a question that is it proper to say \"This  document uses the terms defined in in {{I-D.ldbc-cats-framework}}\" ? Since it seems that the order is reversed. Normally, the use cases and requirement draft is ahead of framework draft. I'm not sure if this kind of description is appropriate. \r\n\r\nSorry that I'm not experienced, and just for confirmation. Thanks.\r\n\r\nBest,\r\nKehan   ",
+          "createdAt": "2024-10-21T01:51:52Z",
+          "updatedAt": "2024-10-21T01:51:52Z",
+          "comments": []
         }
       ]
+    },
+    {
+      "number": 6,
+      "id": "PR_kwDOKfPAms5_SmdJ",
+      "title": "Add benefit of CATS for CDN in Appendix",
+      "url": "https://github.com/cats-wg/draft-ietf-cats-usecases-requirements/pull/6",
+      "state": "MERGED",
+      "author": "VMatrix1900",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Submitted on behalf of Kehan Yao",
+      "createdAt": "2024-10-21T09:36:48Z",
+      "updatedAt": "2024-10-21T09:42:42Z",
+      "baseRepository": "cats-wg/draft-ietf-cats-usecases-requirements",
+      "baseRefName": "main",
+      "baseRefOid": "68b6d74c5e52137ee39d6e89a89582f82ed635f6",
+      "headRepository": "cats-wg/draft-ietf-cats-usecases-requirements",
+      "headRefName": "CDN-benefit",
+      "headRefOid": "6eb20a3ff47016359e32d49560ed484967068c97",
+      "closedAt": "2024-10-21T09:42:42Z",
+      "mergedAt": "2024-10-21T09:42:42Z",
+      "mergedBy": "VMatrix1900",
+      "mergeCommit": {
+        "oid": "90610f0698541362f817cd903df33b3c780bef39"
+      },
+      "comments": [
+        {
+          "author": "VMatrix1900",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This is an isolated udpate from Kehan Yao based on his trial experience. Merging it for IETF 121 now.  ",
+          "createdAt": "2024-10-21T09:42:37Z",
+          "updatedAt": "2024-10-21T09:42:37Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 7,
+      "id": "PR_kwDOKfPAms5_TDbI",
+      "title": "Reorg requirement section",
+      "url": "https://github.com/cats-wg/draft-ietf-cats-usecases-requirements/pull/7",
+      "state": "OPEN",
+      "author": "VMatrix1900",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Submitted on behalf of Kehan Yao.",
+      "createdAt": "2024-10-21T10:28:40Z",
+      "updatedAt": "2024-10-21T10:28:41Z",
+      "baseRepository": "cats-wg/draft-ietf-cats-usecases-requirements",
+      "baseRefName": "main",
+      "baseRefOid": "90610f0698541362f817cd903df33b3c780bef39",
+      "headRepository": "cats-wg/draft-ietf-cats-usecases-requirements",
+      "headRefName": "reorg-req-section",
+      "headRefOid": "26cc1a7260faecb42f8df72ec9f658ab202b04af",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
