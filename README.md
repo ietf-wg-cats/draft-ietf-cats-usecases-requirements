@@ -2,16 +2,16 @@
 
 This is the working area for the IETF [CATS Working Group](https://datatracker.ietf.org/wg/cats/documents/) Internet-Draft, "Computing-Aware Traffic Steering (CATS) Problem Statement, Use Cases, and Requirements".
 
-* [Editor's Copy](https://cats-wg.github.io/draft-ietf-cats-usecases-requirements/#go.draft-ietf-cats-usecases-requirements.html)
+* [Editor's Copy](https://ietf-wg-cats.github.io/draft-ietf-cats-usecases-requirements/#go.draft-ietf-cats-usecases-requirements.html)
 * [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-cats-usecases-requirements)
 * [Working Group Draft](https://datatracker.ietf.org/doc/html/draft-ietf-cats-usecases-requirements)
-* [Compare Editor's Copy to Working Group Draft](https://cats-wg.github.io/draft-ietf-cats-usecases-requirements/#go.draft-ietf-cats-usecases-requirements.diff)
+* [Compare Editor's Copy to Working Group Draft](https://ietf-wg-cats.github.io/draft-ietf-cats-usecases-requirements/#go.draft-ietf-cats-usecases-requirements.diff)
 
 
 ## Contributing
 
 See the
-[guidelines for contributions](https://github.com/cats-wg/draft-ietf-cats-usecases-requirements/blob/main/CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/ietf-wg-cats/draft-ietf-cats-usecases-requirements/blob/main/CONTRIBUTING.md).
 
 Contributions can be made by creating pull requests.
 The GitHub interface supports creating pull requests using the Edit (✏) button.
