@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-05T01:10:23.026063+00:00",
+  "timestamp": "2024-11-07T01:10:39.635443+00:00",
   "repo": "ietf-wg-cats/draft-ietf-cats-usecases-requirements",
   "labels": [
     {
@@ -1184,7 +1184,7 @@
       "labels": [],
       "body": "Submitted on behalf of Kehan Yao.",
       "createdAt": "2024-10-21T10:28:40Z",
-      "updatedAt": "2024-11-03T11:53:29Z",
+      "updatedAt": "2024-11-06T20:33:57Z",
       "baseRepository": "ietf-wg-cats/draft-ietf-cats-usecases-requirements",
       "baseRefName": "main",
       "baseRefOid": "90610f0698541362f817cd903df33b3c780bef39",
@@ -1234,6 +1234,26 @@
               "body": "Simple is a vague term.",
               "createdAt": "2024-11-03T11:53:29Z",
               "updatedAt": "2024-11-03T11:53:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms6QNJlM",
+          "commit": {
+            "abbreviatedOid": "26cc1a7"
+          },
+          "author": "giralt",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-06T20:33:47Z",
+          "updatedAt": "2024-11-06T20:33:57Z",
+          "comments": [
+            {
+              "originalPosition": 17,
+              "body": "A bit more thought after our recent conversation. I think R8 is a good requirement because the notion of having a model is relevant. But i think the above needs a bit of rewording. I would say:\r\n\r\n\"R8. A model of the compute and network resources MUST be defined. Such a model MUST characterize how metrics are abstracted out from the compute and network resources. We refer to this model as the Resource Model.\"\r\n\r\nThen I would also add:\r\n\r\n\"R9: The Resource Model MUST be implementable in an interoperable manner. That is, independent implementations of the Resource Model must be interoperable.\"\r\n\r\n\"R9: The Resource Model MUST be executable in a scalable manner. That is, an agent implementing the Resource Model must be able to execute it at the required time scale and at an affordable cost (e.g., memory footprint, energy, etc.)\"\r\n\r\n\"R10: The Resource Model MUST be useful. That is, the metrics that an agent can obtain by executing the Resource Model must be useful to make node and path selection decisions.\"",
+              "createdAt": "2024-11-06T20:33:47Z",
+              "updatedAt": "2024-11-06T20:41:04Z"
             }
           ]
         }
