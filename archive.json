@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-21T01:14:38.939404+00:00",
+  "timestamp": "2024-11-24T01:19:43.810855+00:00",
   "repo": "ietf-wg-cats/draft-ietf-cats-usecases-requirements",
   "labels": [
     {
@@ -63,6 +63,22 @@
       "body": "Hi, co-authors,\r\n\r\nI 'm revisiting the parts describing the requirements of CATS metrics, namely section 5.2, 5.3, and 5.4. I've also collected I-Ds related to CATS metrics and listed in the following slide:\r\n<img width=\"1380\" alt=\"metric lifecycle\" src=\"https://github.com/user-attachments/assets/eb9ac2d7-10fb-411c-be1b-d3e1f72b8668\">\r\n\r\nI think the current description on requirements of CATS metrics is not well-organized. For example, section 5.2 and 5.4 cross mentioning the metrics definition requirements. which should be merged. Section 5.3 is on metrics usage where metric collection, selection, and distribution are mentioned, but like the requirement on metric update are missing, which should be added.  \r\n\r\nAlso,  from the minutes of IETF120, some requirements mentioned in draft-du-cats-computing-modeling-description-03 need to be considered and merged into this document. \r\n\r\nhttps://datatracker.ietf.org/meeting/120/materials/minutes-120-cats-01.html\r\n\r\nTherefore, I have the following sugguestions:\r\n\r\n* section 5.2 is still on  metric definition and representation. but need to merge requirements from the current section 5.4 and also the requirements from draft-du-cats-computing-modeling-description-03\r\n\r\n* section 5.3 should be remained, and some sugguested modifications: \r\n     - in terms of metric collection, should we support bidirectional collection?\r\n     - we should add a new requirement on metric update.  \r\n     \r\n* in terms of metric accuracy assessment, I'm not sure where the requirement should be added, but I think it is important. Since we'd better not regulate CATS systems always using fixed metrics when providing services. They should change policies according to real behaviors.",
       "createdAt": "2024-10-18T07:37:00Z",
       "updatedAt": "2024-10-18T07:37:00Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 8,
+      "id": "I_kwDOKfPAms6f51gh",
+      "title": "CATS security requirements and considerations",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-usecases-requirements/issues/8",
+      "state": "OPEN",
+      "author": "bpatient78",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-11-22T10:30:02Z",
+      "updatedAt": "2024-11-22T10:30:02Z",
       "closedAt": null,
       "comments": []
     }
