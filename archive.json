@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-24T01:19:43.810855+00:00",
+  "timestamp": "2024-11-26T01:15:48.233847+00:00",
   "repo": "ietf-wg-cats/draft-ietf-cats-usecases-requirements",
   "labels": [
     {
@@ -78,9 +78,17 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-11-22T10:30:02Z",
-      "updatedAt": "2024-11-22T10:30:02Z",
+      "updatedAt": "2024-11-25T01:02:33Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "Maisy-ML",
+          "authorAssociation": "NONE",
+          "body": "Compromised or malicious computing resources will bring threats to network and services of users, such as data of services maybe stolen, output of computing services may have deviations and other computing resources are attacked by the compromised resources that collaborate with them for computation.  Therefore,\r\nR24: When making service decisions, the security status of resources should be taken into consideration.",
+          "createdAt": "2024-11-25T01:02:32Z",
+          "updatedAt": "2024-11-25T01:02:32Z"
+        }
+      ]
     }
   ],
   "pulls": [
