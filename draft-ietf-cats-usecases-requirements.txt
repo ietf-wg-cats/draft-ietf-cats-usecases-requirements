@@ -5,14 +5,14 @@
 cats                                                              K. Yao
 Internet-Draft                                              China Mobile
 Intended status: Informational                           L. M. Contreras
-Expires: 4 January 2025                                       Telefonica
+Expires: 8 June 2025                                          Telefonica
                                                                   H. Shi
                                                      Huawei Technologies
                                                                 S. Zhang
                                                             China Unicom
                                                                    Q. An
                                                            Alibaba Group
-                                                             3 July 2024
+                                                         5 December 2024
 
 
  Computing-Aware Traffic Steering (CATS) Problem Statement, Use Cases,
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 January 2025.
+   This Internet-Draft will expire on 8 June 2025.
 
 Copyright Notice
 
