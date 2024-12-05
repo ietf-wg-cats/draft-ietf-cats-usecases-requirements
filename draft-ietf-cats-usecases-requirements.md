@@ -7,7 +7,6 @@ title: Computing-Aware Traffic Steering (CATS) Problem Statement, Use Cases, and
 abbrev: >
   CATS: Problem, Use Cases, Requirements
 wg: cats
-date: 2024-07-03
 
 author:
 - name: Kehan Yao
