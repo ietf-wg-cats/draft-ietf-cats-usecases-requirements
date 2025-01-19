@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-16T01:09:53.588301+00:00",
+  "timestamp": "2025-01-19T01:14:59.527994+00:00",
   "repo": "ietf-wg-cats/draft-ietf-cats-usecases-requirements",
   "labels": [
     {
@@ -89,6 +89,22 @@
           "updatedAt": "2024-11-25T01:02:32Z"
         }
       ]
+    },
+    {
+      "number": 9,
+      "id": "I_kwDOKfPAms6maCvk",
+      "title": "Suggest adding the cases of fine tuning and federated learning",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-usecases-requirements/issues/9",
+      "state": "OPEN",
+      "author": "giralt",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Currently, in section 4.5 \"Computing-Aware AI Large Model Inference,\" it appears that training is exclusively reserved for the data center. However, there are relevant scenarios where the training (sometimes of already pre-trained models) occurs at the edge as well. Notably:\r\n\r\n(1) Fine tuning trains a pretrained model and can be done with smaller resources at the edge, and\r\n \r\n(2) Federated learning can perform continued training based on data sensed at the edge, further improving the model [1].\r\n \r\nBoth of these techniques benefit from running at the edge due to advantages such as privacy, low latency, lower utilization, cost and energy efficiency.\r\n\r\nThe suggestion here would be to:\r\n\r\n(1) Generalize the title of this section to avoid making it specific to \"Inference\". E.g., new title could be \"Computing-Aware Hybrid AI Workloads\", which would include inference, training and the fact that they can be hybrid (on-device or on one of the edge clouds) as mentioned in the section.\r\n\r\n(2) Adding the scenarios of fine tuning and federated learning as examples of training at the edge.\r\n\r\n-----\r\n[1] Federated Learning on the Edge, AAAI Spring Series Symposium 2024, March 25-27, 2024, Stanford University",
+      "createdAt": "2025-01-16T06:49:48Z",
+      "updatedAt": "2025-01-16T06:50:42Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
