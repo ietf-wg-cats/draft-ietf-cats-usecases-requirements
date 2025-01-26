@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-23T01:10:06.892349+00:00",
+  "timestamp": "2025-01-26T01:12:24.246958+00:00",
   "repo": "ietf-wg-cats/draft-ietf-cats-usecases-requirements",
   "labels": [
     {
@@ -119,6 +119,70 @@
       "body": "https://mailarchive.ietf.org/arch/msg/cats/rr6-2nPq9gmkHaDm52djh5pf_g0/\n\nplease do not forget to address my comments. Thanks.",
       "createdAt": "2025-01-21T15:29:12Z",
       "updatedAt": "2025-01-21T15:29:12Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 11,
+      "id": "I_kwDOKfPAms6naWnW",
+      "title": "Use cases or applicability of CATS, 3GPP 5Gedge and ORAN case",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-usecases-requirements/issues/11",
+      "state": "OPEN",
+      "author": "bpatient78",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "[draft-lcmw-cats-midhaul-02](https://datatracker.ietf.org/doc/draft-lcmw-cats-midhaul/)\n[draft-jiang-cats-usecase-5gedge-00](https://datatracker.ietf.org/doc/draft-jiang-cats-usecase-5gedge/)",
+      "createdAt": "2025-01-24T07:15:25Z",
+      "updatedAt": "2025-01-24T07:15:25Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 12,
+      "id": "I_kwDOKfPAms6naXi8",
+      "title": "Modification on Section 4.2 Intelligent Transportation",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-usecases-requirements/issues/12",
+      "state": "OPEN",
+      "author": "bpatient78",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "[draft-jeong-cats-its-use-cases-04](https://datatracker.ietf.org/doc/draft-jeong-cats-its-use-cases/)\n\n",
+      "createdAt": "2025-01-24T07:17:04Z",
+      "updatedAt": "2025-01-24T07:17:04Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 13,
+      "id": "I_kwDOKfPAms6nasxq",
+      "title": "prioritizing the use cases to better align with requirements",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-usecases-requirements/issues/13",
+      "state": "OPEN",
+      "author": "bpatient78",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "https://mailarchive.ietf.org/arch/msg/cats/mSysN-RDR05P3nj5aglrt6Q6in0/",
+      "createdAt": "2025-01-24T07:56:57Z",
+      "updatedAt": "2025-01-24T07:56:57Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 14,
+      "id": "I_kwDOKfPAms6naveR",
+      "title": "Should Energy use cases and corresponding requirements be included?",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-usecases-requirements/issues/14",
+      "state": "OPEN",
+      "author": "bpatient78",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "https://mailarchive.ietf.org/arch/msg/cats/twiXq70wADQ0D9PZVmA0OhP3XoU/",
+      "createdAt": "2025-01-24T08:03:54Z",
+      "updatedAt": "2025-01-24T08:03:54Z",
       "closedAt": null,
       "comments": []
     }
