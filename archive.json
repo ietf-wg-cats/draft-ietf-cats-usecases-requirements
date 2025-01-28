@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-26T01:12:24.246958+00:00",
+  "timestamp": "2025-01-28T01:09:59.713348+00:00",
   "repo": "ietf-wg-cats/draft-ietf-cats-usecases-requirements",
   "labels": [
     {
@@ -78,7 +78,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-11-22T10:30:02Z",
-      "updatedAt": "2024-11-25T01:02:33Z",
+      "updatedAt": "2025-01-26T02:44:52Z",
       "closedAt": null,
       "comments": [
         {
@@ -87,6 +87,13 @@
           "body": "Compromised or malicious computing resources will bring threats to network and services of users, such as data of services maybe stolen, output of computing services may have deviations and other computing resources are attacked by the compromised resources that collaborate with them for computation.  Therefore,\r\nR24: When making service decisions, the security status of resources should be taken into consideration.",
           "createdAt": "2024-11-25T01:02:32Z",
           "updatedAt": "2024-11-25T01:02:32Z"
+        },
+        {
+          "author": "bpatient78",
+          "authorAssociation": "NONE",
+          "body": "Thanks Meiling, I've update this part.",
+          "createdAt": "2025-01-26T02:44:51Z",
+          "updatedAt": "2025-01-26T02:44:51Z"
         }
       ]
     },
@@ -118,9 +125,17 @@
       "labels": [],
       "body": "https://mailarchive.ietf.org/arch/msg/cats/rr6-2nPq9gmkHaDm52djh5pf_g0/\n\nplease do not forget to address my comments. Thanks.",
       "createdAt": "2025-01-21T15:29:12Z",
-      "updatedAt": "2025-01-21T15:29:12Z",
+      "updatedAt": "2025-01-26T02:30:35Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "bpatient78",
+          "authorAssociation": "NONE",
+          "body": "Hi, Cheng, I've addresses most of your comments, some may need further explanation here.\n\n1.  s(substitute)/optimized energy consumption/optimal energy consumption\n[KY] optimized is right here. Since Optimal means the best.\n\n\n4.__OLD__\n\nThe process of selecting servers or service instance locations, and of directing traffic to them on chosen network resources is called \"Computing-Aware Traffic Steering\" (CATS).\n\n__NEW__\n\nThe process of selecting servers or service instance locations, and directing traffic to them on chosen network resources is called \"Computing-Aware Traffic Steering\" (CATS).\n\n[KY] I think the previous sentence is correct. the whole process \"of XXX, and of YYY\" is called \"CATS\".\n\n\n1.  R2, how to define quickly? And is it redundant with R5?\n[KY] I think R2, R3, R5 can be deleted. R1 is enough, and R4 can be retained. Is that okay?\n\n\n4.  R12: a computing semantic model SHOULD be defined for the mapping selection.\u00b6<https://datatracker.ietf.org/doc/html/draft-ietf-cats-usecases-requirements-04#section-5.4-2>\n[Cheng]What is semantic model? What is mapping selection? A mapping between ? may need clarification.\n\n[KY] Metric related requirements are reorganized in https://github.com/ietf-wg-cats/draft-ietf-cats-usecases-requirements/pull/7/files. I will consider your comments for metric related requirements. Since there are some other ongoing threads on modification of this part. Please double check after I updated the new version. Thanks.\n\n5. R16: MUST maintain instance affinity which MAY span one or more service requests\n\n[Cheng] what is represented by the \u2018which\u2019 in this sentence? I guess you are saying that the instance affinity must be maintained for the duration of a service transaction, and may extend the duration to cover more than one transactions?\n\n[KY] Hi Cheng, how about rewording this requirement as \"instance affinity MUST be maintained for service requests/transactions that below to the same flow\". \n\n\n6.  R17: MUST avoid keeping fine runtime-state granularity in network nodes for providing instance affinity.\u00b6<https://datatracker.ietf.org/doc/html/draft-ietf-cats-usecases-requirements-04#section-5.5-10>\n\n[Cheng] what is \u2018fine runtime-state granularity\u2019 , better to make it specific. Such as listing some so-called fine runtime-state granularity here to make readers understand what they cannot do.\n\nR18: MUST provide mechanisms to minimize client side states in order to achieve the instance affinity.\u00b6<https://datatracker.ietf.org/doc/html/draft-ietf-cats-usecases-requirements-04#section-5.5-11>\n\n[Cheng]I may find all the implementations can meet this requirement as long as they claim they have minimized the client side states. But it is hard to make it specific of what level is minimal.\n\n[KY] Hi, Cheng. I agree with your comments on R17 and R18. But it's hard to quantify these resources. I will post a discussion on these requirements.",
+          "createdAt": "2025-01-26T02:30:34Z",
+          "updatedAt": "2025-01-26T02:30:34Z"
+        }
+      ]
     },
     {
       "number": 11,
@@ -1304,7 +1319,7 @@
       "labels": [],
       "body": "Submitted on behalf of Kehan Yao.",
       "createdAt": "2024-10-21T10:28:40Z",
-      "updatedAt": "2024-11-06T20:33:57Z",
+      "updatedAt": "2025-01-27T07:15:02Z",
       "baseRepository": "ietf-wg-cats/draft-ietf-cats-usecases-requirements",
       "baseRefName": "main",
       "baseRefOid": "90610f0698541362f817cd903df33b3c780bef39",
@@ -1315,7 +1330,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "bpatient78",
+          "authorAssociation": "NONE",
+          "body": "Hi all, I've merged Jordi's comments and the update in this PR to PR #15 . I think this PR can be closed now. ",
+          "createdAt": "2025-01-27T07:15:00Z",
+          "updatedAt": "2025-01-27T07:15:00Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOKfPAms6Pwbti",
@@ -1378,6 +1401,32 @@
           ]
         }
       ]
+    },
+    {
+      "number": 15,
+      "id": "PR_kwDOKfPAms6JCrP4",
+      "title": "Update on CATS requirements(Use cases excluded)",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-usecases-requirements/pull/15",
+      "state": "OPEN",
+      "author": "bpatient78",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Update in Section 5: Merge the comments from issue #10, issue #8, and the comments from Jordi.   \r\n\r\nUse cases will be updated in the next PR.",
+      "createdAt": "2025-01-27T06:46:58Z",
+      "updatedAt": "2025-01-27T07:03:35Z",
+      "baseRepository": "ietf-wg-cats/draft-ietf-cats-usecases-requirements",
+      "baseRefName": "main",
+      "baseRefOid": "0c8aab5f855e3c80c1ceec800b04292d4f613b43",
+      "headRepository": "bpatient78/draft-ietf-cats-usecases-requirements",
+      "headRefName": "main",
+      "headRefOid": "fc2466efc6b96405398130a6c35240863d173665",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
