@@ -54,10 +54,18 @@ contributor:
 - name: Xinxin Yi
   org: China Unicom
   email: yixx3@chinaunicom.cn
+- name: Xinxin Yi
+  org: China Unicom
+  email: yixx3@chinaunicom.cn
+- name: Jordi Ros-Giralt
+  org: Qualcomm Europe, Inc.
+  email: jros@qti.qualcomm.com
+- name: Jaehoon Paul Jeong
+  org: Sungkyunkwan University
+  email: pauljeong@skku.edu
 
 normative:
   RFC7285:
-  RFC7665:
 informative:
   I-D.contreras-alto-service-edge:
   TR22.874:
@@ -86,14 +94,11 @@ informative:
 
 --- abstract
 
-Distributed computing is a tool that service providers can use to
+Distributed computing is a computing pattern that service providers can follow and use to
 achieve better service response time and optimized energy consumption.
-In such a distributed computing environment, providing services by
-utilizing computing resources hosted in various computing facilities
-aids support of services such as computationally intensive and delay
-sensitive services. Ideally, compute services are balanced across
-servers and network resources to enable higher throughput and lower
-response times. To achieve this, the choice of server and network
+In such a distributed computing environment, compute intensive and delay sensitive services can be improved by
+utilizing computing resources hosted in various computing facilities. Ideally, compute services are balanced across servers and network resources to enable higher throughput and lower
+response time. To achieve this, the choice of server and network
 resources should consider metrics that are oriented towards compute
 capabilities and resources instead of simply dispatching the service
 requests in a static way or optimizing solely on connectivity metrics.
@@ -104,53 +109,41 @@ directing traffic to them on chosen network resources is called
 This document provides the problem statement and the typical
 scenarios for CATS, which shows the necessity of considering more
 factors when steering traffic to the appropriate computing resource to
-best meet the customer's expectations and deliver the requested
-service.
+better meet the customer's expectations.
 
 --- middle
 
 # Introduction {#introduction}
 
-Network and computing convergence has been evolving in the Internet
-for considerable time. With Content Delivery Networks (CDNs)
-'frontloading' access to many services, over-the-top service
-provisioning has become a driving force for many services, such as
-video, storage and many others. Network operators have extended their
-capabilities by complementing their network infrastructure by developing
-CDN capabilities, particularly in edge sites. In addition, more
-computing resource are deployed at these edge sites as well.
+Over-the-top services depend on Content Delivery Networks (CDNs)
+for service provisioning, which has become a driving force for network operators to extend their 
+capabilities by complementing their network infrastructure with CDN capabilities, particularly in edge sites. In addition, more computing resources are deployed at these edge sites as well.
 
-The reason of the fast development of this converged network/compute
-infrastructure is user demand. On the one hand, users want the best
-experience, e.g., expressed in low latency and high reliability, for new
+The fast development of this converged network and compute infrastructure is driven by user demands. On one hand, users want the best experience, e.g., expressed in low latency and high reliability, for new
 emerging applications such as high-definition video, Augmented
-Reality(AR)/Virtual Reality(VR), live broadcast and so on. On the other
-hand, users want stable experience when moving to different areas.
+Reality(AR)/Virtual Reality(VR), live broadcast. On the other 
+hand, users want stable experience when moving among different areas.
 
-Generally, edge computing aims to provide better response times and
+Generally, edge computing aims to provide better response time and
 transfer rates compared to cloud computing, by moving the computing
 towards the edge of a network. There are millions of home gateways,
 thousands of base stations, and hundreds of central offices in a city
 that could serve as compute-capable nodes to deliver a service. Note
 that not all of these nodes would be considered as edge nodes in some
-views of the network, but they can all provide computing resources to
-enable a service.
+views of the network, but they can all provide computing resources for services.
 
-That brings about the key problem of deploying and scheduling traffic
-to the most suitable computing resource in order to meet the users'
-service demand.
+It brings some key problems on service deployment and traffic scheduling 
+to the most suitable computing resource in order to meet users' demands.
 
-Service providers often have their own service sites, many of which
-have been enhanced to support computing services. A service instance
-deployed at a single site might not provide sufficient capacity to fully
+A service instance deployed at a single site might not provide sufficient capacity to fully
 guarantee the quality of service required by a customer. Especially at
 peak hours, computing resources at a single site can not handle all the
-incoming service requests, leading to longer response times or even
+incoming service requests, leading to longer response time or even
 dropping of requests experienced by clients. Moreover, increasing the
 computing resources hosted at each location to the potential maximum
 capacity is neither feasible nor economically viable in many cases.
-Offloading computation intensive processing to the user devices is
-neither acceptable, since it would place huge pressure on local
+Offloading compute intensive processing to the user devices is
+not acceptable, since it would place pressure on local
 resources such as the battery and incur some data privacy issues if the
 needed data for computation is not provided locally.
 
@@ -445,7 +438,7 @@ instance's CPU, GPU and memory utilization has a high impact on the
 processing delay on encoding, decoding and rendering. At the same
 time, the network path quality to the edge site is a key for user
 experience of quality of audio/ video and input command response
-times.
+time.
 
 A Cloud VR service, such as a mobile gaming service, brings
 challenging requirements to both network and computing so that the
@@ -843,7 +836,7 @@ to enable the traffic steering and to further optimize the network and
 computing services. A unique service identifier is used by all the
 service instances for a specific service no matter which edge site an
 instance may attach to. The mapping of this service identifier to a
-network locator makes sure the data packet CATS potentially reach any
+network locator is basic to steer traffic to any
 of the service instances deployed in various edge sites.
 
 Moreover, according to CATS use cases, some applications require
@@ -853,24 +846,14 @@ methods, involving the consideration of using metrics that are
 oriented towards compute capabilities and resources, and their
 correlation with services. Therefore, a desirable system
 
-R1: MUST provide a discovery and resolving methodology for the
+R1: MUST provide a discovery and resolving method for the
 mapping of a service identifier to a specific address.
 
-R2: MUST provide an mapping methods for further quickly selecting
-the service instance.
-
-R3: SHOULD provide a timeout limitation for selecting the service
-instance.
-
-R4: MUST provide a method to determine the availability of a
+R2: MUST provide a method to determine the availability of a
 service instance.
 
-R5: MUST provide a mechanism for solving the service contention
-problem when multiple service instances with the same service
-identifier are all available to provide computing services.
 
-
-## Support Agreement on Metric Representation
+## Support Agreement on Metric Representation and Definition
 
 Computing metrics can have many different semantics, particularly
 for being service-specific. Even the notion of a "computing load"
@@ -881,14 +864,27 @@ the chosen representation among all service and network elements
 participating in the service instance selection decision is important.
 Therefore, a desirable system
 
-R6: MUST agree on using metrics that are oriented towards compute
+R3: MUST agree on using metrics that are oriented towards compute
 capabilities and resources and their representation among service
-elements in the participating edges.
+instaces in the participating edges.
 
-R7: MUST include network metrics.
+To better understand the meaning of different metrics and to better support appropriate use of metrics, 
 
+R4: A model of the compute and network resources MUST be defined. Such a model MUST characterize how metrics are abstracted out from the compute and network resources. We refer to this model as the Resource Model.
 
-## Support Moderate Metric Distributing
+R5: The Resource Model MUST be implementable in an interoperable manner. That is, independent implementations of the Resource Model must be interoperable.
+
+R6: The Resource Model MUST be executable in a scalable manner. That is, an agent implementing the Resource Model MUST be able to execute it at the required time scale and at an affordable cost (e.g., memory footprint, energy, etc.).
+
+R7: The Resource Model MUST be useful. That is, the metrics that an agent can obtain by executing the Resource Model must be useful to make node and path selection decisions.
+
+ We recognize that different network nodes, e.g., routers, switches, etc., may have diversified capabilities even in the same routing domain, let alone in different administrative domains and from different vendors. Therefore, to work properly in a CATS system,
+
+R8: There MUST set up metric information that can be understood by CATS components. For metrics that CATS components do not understand or support, CATS components will ignore them.
+
+R9: The computing metrics in CATS MUST be simple, that is distributing metrics and selecting path based on these metrics will not cause routing loops and route oscillation. 
+
+## Use of CATS Metrics
 
 Network path costs in the current routing system usually do not
 change very frequently. Network traffic engineering metrics (such as
@@ -913,57 +909,29 @@ baseline for signaling metrics, other means to convey the metrics can
 equally be considered and even be realized. Specifically, a desirable
 system
 
-R8: MUST provide mechanisms for metric collection.
+R10: MUST provide mechanisms for metric collection.
+
+R11: MUST declare the entity that collect metrics.
 
 Collecting metrics from all of the services instances may incur
 much overhead for the decision maker, and thus hierarchical metric
 collection is needed. That is,
 
-R9: SHOULD provide mechanisms to aggregate the metrics.
+R12: SHOULD provide mechanisms to aggregate the metrics.
 
 CATS components do not need to be aware of how metrics are
-collected behind the aggregator.
+collected behind the aggregator. The decision point may not be directly connected with service instances or metric collectors, therefore，
 
-R10: MUST provide mechanisms to distribute the metrics.
-
-R11: MUST realize means for rate control for distributing of
-metrics.
+R13: MUST provide mechanisms to distribute the metrics.
 
 
-## Support Alternative Definition and Use of Metrics
+The update frequency of the computing metrics may be various. Some of the metrics may be more dynamic, and some are relatively static. Accordingly, different distribution methods may be chosen with respect to different update frequencies of relevant metrics. Therefore,
 
-Considering computing resources assigned to a service instance on a
-server, which might be related to some critical metrics like the
-processing delay, is crucial in addition to the network delay in some
-cases. Therefore, the CATS components might use both the network and
-computing metrics for service instance selection. For this reason:
+R14: MUST be clear of the update frequency of CATS metrics and its corresponding distribution method.
 
-R12: a computing semantic model SHOULD be defined for the mapping
-selection.
+Sometimes, a metric that is chosen is not accurate for service instance selection, in such case, a desirable system
 
-We recognize that different network nodes, e.g., routers, switches,
-etc., may have diversified capabilities even in the same routing
-domain, let alone in different administrative domains. So, metrics
-that are oriented towards compute capabilities and resources that have
-been adopted by some nodes may not be supported by others, either due
-to technical reasons, administrative reasons, or something else. There
-exist scenarios in which a node supporting service-specific metrics
-might prefer some type of metrics to others{{TR22.874}}.
-Of course, specific metrics might not be utilized at all in other
-scenarios. Hence:
-
-R13: In addition to common metrics that are agreed by all CATS
-components like processing delay, there SHOULD be some other ways for
-metrics definition, which is used for the selection of specific
-service instance.
-
-Therefore, a desirable system
-
-R14: MUST set up metric information that can be understood by CATS
-components.
-
-For metrics that CATS components do not understand or support, CATS
-components will ignore them.
+R15: SHOULD provide mechanisms to assess selection accuracy and re-select metrics if the selection result is not accurate.
 
 
 ## Support Instance Affinity {#session-continuity}
@@ -987,11 +955,10 @@ explicit context transfer, while also supporting an explicit
 state/context transfer (e.g., when metrics change significantly). So
 in those situations:
 
-R15: Instance affinity MUST be maintained when state information is
-needed.
+R16: Instance affinity MUST be maintained when the transaction is stateful.
 
 The nature of this affinity is highly dependent on the nature of
-the specific service, which could be seen as a 'instance affinity' to
+the service, which could be seen as a 'instance affinity' to
 represent the relationship. The minimal affinity of a single request
 represents a stateless service, where each service request may be
 responded to without any state being held at the service instance for
@@ -1010,8 +977,8 @@ However, a client, e.g., a mobile UE, may have many applications
 running. If all, or majority, of the applications request the CATS-
 based services, then the runtime states that need to be created and
 accordingly maintained would require high granularity. In the extreme
-scenario, this granular requirement could reach the level of per-UE
-per-APP per-(sub)flow with regard to a service instance. Evidently,
+scenario, this granular requirement could reach the level of per-UE,
+per-APP, and per-(sub)flow with regard to a service instance. Evidently,
 these fine-granular runtime states can potentially place a heavy
 burden on network devices if they have to dynamically create and
 maintain them. On the other hand, it is not appropriate either to
@@ -1025,18 +992,15 @@ considered.
 
 Therefore, a desirable system
 
-R16: MUST maintain instance affinity which MAY span one or more
-service requests, i.e., all the packets from the same
-application-level flow MUST go to the same service instance unless the
-original service instance is unreachable
+R17: Instance affinity MUST be maintained for service requests or transactions that belong to the same flow.
 
-R17: MUST avoid keeping fine runtime-state granularity in network
-nodes for providing instance affinity.
+R18: MUST avoid keeping fine runtime-state granularity in network
+nodes for providing instance affinity. For example, as mentioned above, maintaining per-flow states for a specific APP. 
 
-R18: MUST provide mechanisms to minimize client side states in
+R19: MUST provide mechanisms to minimize client side states in
 order to achieve the instance affinity.
 
-R19: SHOULD support the UE and service instance mobility.
+R20: SHOULD support the UE and service instance mobility.
 
 
 ## Preserve Communication Confidentiality
@@ -1054,7 +1018,7 @@ same time, when anonymity is achieved, it is also necessary to
 consider whether the computing information exposed in the network can
 help make full use of traffic steering. Therefore, a CATS system
 
-R20: MUST preserve the confidentiality of the communication
+R21: MUST preserve the confidentiality of the communication
 relation between user and service provider by minimizing the exposure
 of user-relevant information according to user needs.
 
@@ -1069,12 +1033,12 @@ need to be considered when designing CATS system.
 Service data sometimes needs to be moved among different edge sites
 to maintain service consistency and availability. Therefore:
 
-R21: service data MUST be protected from interception.
+R22: service data MUST be protected from interception.
 
 The act of making compute requests may reveal the nature of user's
 activities, so that:
 
-R22: the nature of user's activities SHOULD be hidden as much as
+R23: the nature of user's activities SHOULD be hidden as much as
 possible.
 
 The behavior of the network can be adversely affected by modifying or
@@ -1082,9 +1046,12 @@ interfering with advertisements of computing resource availability. Such
 attacks could deprive users' of the services they desires, and might be
 used to divert traffic to interception points. Therefore,
 
-R23: secure advertisements are REQUIRED to prevent rogue nodes from
+R24: secure advertisements are REQUIRED to prevent rogue nodes from
 participating in the network.
 
+Compromised or malicious computing resources will bring threats to network and services of users, such as data of services maybe stolen, output of computing services may have deviations and other computing resources are attacked by the compromised resources that collaborate with them for computation. Therefore,
+
+R25: When making service decisions, the security status of computing resources SHOULD be taken into consideration.
 
 # IANA Considerations {#iana-considerations}
 
