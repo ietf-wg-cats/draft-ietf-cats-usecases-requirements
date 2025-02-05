@@ -116,12 +116,12 @@ better meet the customer's expectations.
 # Introduction {#introduction}
 
 Over-the-top services depend on Content Delivery Networks (CDNs)
-for service provisioning, which has become a driving force for network operators to extend their 
+for service provisioning, which has become a driving force for network operators to extend their
 capabilities by complementing their network infrastructure with CDN capabilities, particularly in edge sites. In addition, more computing resources are deployed at these edge sites as well.
 
 The fast development of this converged network and compute infrastructure is driven by user demands. On one hand, users want the best experience, e.g., expressed in low latency and high reliability, for new
 emerging applications such as high-definition video, Augmented
-Reality(AR)/Virtual Reality(VR), live broadcast. On the other 
+Reality(AR)/Virtual Reality(VR), live broadcast. On the other
 hand, users want stable experience when moving among different areas.
 
 Generally, edge computing aims to provide better response time and
@@ -132,7 +132,7 @@ that could serve as compute-capable nodes to deliver a service. Note
 that not all of these nodes would be considered as edge nodes in some
 views of the network, but they can all provide computing resources for services.
 
-It brings some key problems on service deployment and traffic scheduling 
+It brings some key problems on service deployment and traffic scheduling
 to the most suitable computing resource in order to meet users' demands.
 
 A service instance deployed at a single site might not provide sufficient capacity to fully
@@ -868,7 +868,7 @@ R3: MUST agree on using metrics that are oriented towards compute
 capabilities and resources and their representation among service
 instaces in the participating edges.
 
-To better understand the meaning of different metrics and to better support appropriate use of metrics, 
+To better understand the meaning of different metrics and to better support appropriate use of metrics,
 
 R4: A model of the compute and network resources MUST be defined. Such a model MUST characterize how metrics are abstracted out from the compute and network resources. We refer to this model as the Resource Model.
 
@@ -882,7 +882,7 @@ R7: The Resource Model MUST be useful. That is, the metrics that an agent can ob
 
 R8: There MUST set up metric information that can be understood by CATS components. For metrics that CATS components do not understand or support, CATS components will ignore them.
 
-R9: The computing metrics in CATS MUST be simple, that is distributing metrics and selecting path based on these metrics will not cause routing loops and route oscillation. 
+R9: The computing metrics in CATS MUST be simple, that is distributing metrics and selecting path based on these metrics will not cause routing loops and route oscillation.
 
 ## Use of CATS Metrics
 
@@ -995,7 +995,7 @@ Therefore, a desirable system
 R17: Instance affinity MUST be maintained for service requests or transactions that belong to the same flow.
 
 R18: MUST avoid keeping fine runtime-state granularity in network
-nodes for providing instance affinity. For example, as mentioned above, maintaining per-flow states for a specific APP. 
+nodes for providing instance affinity. For example, as mentioned above, maintaining per-flow states for a specific APP.
 
 R19: MUST provide mechanisms to minimize client side states in
 order to achieve the instance affinity.
