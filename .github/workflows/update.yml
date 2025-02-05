@@ -1,44 +1,36 @@
-name: "Archive Issues and Pull Requests"
-
-on:
-  schedule:
-    - cron: '0 0 * * 0,2,4'
-  repository_dispatch:
-    types: [archive]
-  workflow_dispatch:
-    inputs:
-      archive_full:
-        description: 'Recreate the archive from scratch'
-        default: false
-        type: boolean
+name: "Update Generated Files"
+# This rule is not run automatically.
+# It can be run manually to update all of the files that are part
+# of the template, specifically:
+#  - README.md
+#  - CONTRIBUTING.md
+#  - .note.xml
+#  - .github/CODEOWNERS
+#  - Makefile
+#
+#
+# This might be useful if you have:
+#  - added, removed, or renamed drafts (including after adoption)
+#  - added, removed, or changed draft editors
+#  - changed the title of drafts
+#
+# Note that this removes any customizations you have made to
+# the affected files.
+on: workflow_dispatch
 
 jobs:
   build:
-    name: "Archive Issues and Pull Requests"
+    name: "Update Files"
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
     - name: "Checkout"
       uses: actions/checkout@v4
 
-    # Note: No caching for this build!
-
-    - name: "Update Archive"
-      uses: martinthomson/i-d-template@v1
-      env:
-        ARCHIVE_FULL: ${{ inputs.archive_full }}
-      with:
-        make: archive
-        token: ${{ github.token }}
-
-    - name: "Update GitHub Pages"
+    - name: "Update Generated Files"
       uses: martinthomson/i-d-template@v1
       with:
-        make: gh-archive
+        make: update-files
         token: ${{ github.token }}
 
-    - name: "Save Archive"
-      uses: actions/upload-artifact@v4
-      with:
-        path: archive.json
+    - name: "Push Update"
+      run: git push
