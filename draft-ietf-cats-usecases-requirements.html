@@ -11,14 +11,11 @@
 <meta content="Shuai Zhang" name="author">
 <meta content="Qing An" name="author">
 <meta content="
-       Distributed computing is a tool that service providers can use to
+       Distributed computing is a computing pattern that service providers can follow and use to
 achieve better service response time and optimized energy consumption.
-In such a distributed computing environment, providing services by
-utilizing computing resources hosted in various computing facilities
-aids support of services such as computationally intensive and delay
-sensitive services. Ideally, compute services are balanced across
-servers and network resources to enable higher throughput and lower
-response times. To achieve this, the choice of server and network
+In such a distributed computing environment, compute intensive and delay sensitive services can be improved by
+utilizing computing resources hosted in various computing facilities. Ideally, compute services are balanced across servers and network resources to enable higher throughput and lower
+response time. To achieve this, the choice of server and network
 resources should consider metrics that are oriented towards compute
 capabilities and resources instead of simply dispatching the service
 requests in a static way or optimizing solely on connectivity metrics.
@@ -28,22 +25,21 @@ directing traffic to them on chosen network resources is called
        This document provides the problem statement and the typical
 scenarios for CATS, which shows the necessity of considering more
 factors when steering traffic to the appropriate computing resource to
-best meet the customer's expectations and deliver the requested
-service. 
+better meet the customer's expectations. 
     " name="description">
-<meta content="xml2rfc 3.25.0" name="generator">
+<meta content="xml2rfc 3.26.0" name="generator">
 <meta content="draft-ietf-cats-usecases-requirements-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.25.0
-    Python 3.12.7
+  xml2rfc 3.26.0
+    Python 3.12.8
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
-    Jinja2 3.1.4
+    Jinja2 3.1.5
     lxml 5.3.0
     platformdirs 4.3.6
-    pycountry 22.3.5
-    PyYAML 6.0.1
+    pycountry 24.6.1
+    PyYAML 6.0.2
     requests 2.32.3
     setuptools 70.3.0
     wcwidth 0.2.13
@@ -555,7 +551,11 @@ figcaption, caption {
   }
   pre, svg {
     display: inline-block;
-    overflow-x: auto;
+    /* In the horizontal direction, sometimes people make over-sized figures.
+       Scrollbars for those is therefore necessary: auto adds them as necessary..
+       In the vertical direction, the line-height can combine with the font
+       asender/descender height to produce scrollbars: hidden avoids that. */
+    overflow: auto hidden;
   }
   pre {
     max-width: 100%;
@@ -1061,11 +1061,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">CATS: Problem, Use Cases, Requirements</td>
-<td class="right">December 2024</td>
+<td class="right">February 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Yao, et al.</td>
-<td class="center">Expires 8 June 2025</td>
+<td class="center">Expires 9 August 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1078,12 +1078,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-cats-usecases-requirements-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-12-05" class="published">5 December 2024</time>
+<time datetime="2025-02-05" class="published">5 February 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-06-08">8 June 2025</time></dd>
+<dd class="expires"><time datetime="2025-08-09">9 August 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1112,14 +1112,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <h1 id="title">Computing-Aware Traffic Steering (CATS) Problem Statement, Use Cases, and Requirements</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">Distributed computing is a tool that service providers can use to
+<p id="section-abstract-1">Distributed computing is a computing pattern that service providers can follow and use to
 achieve better service response time and optimized energy consumption.
-In such a distributed computing environment, providing services by
-utilizing computing resources hosted in various computing facilities
-aids support of services such as computationally intensive and delay
-sensitive services. Ideally, compute services are balanced across
-servers and network resources to enable higher throughput and lower
-response times. To achieve this, the choice of server and network
+In such a distributed computing environment, compute intensive and delay sensitive services can be improved by
+utilizing computing resources hosted in various computing facilities. Ideally, compute services are balanced across servers and network resources to enable higher throughput and lower
+response time. To achieve this, the choice of server and network
 resources should consider metrics that are oriented towards compute
 capabilities and resources instead of simply dispatching the service
 requests in a static way or optimizing solely on connectivity metrics.
@@ -1129,8 +1126,7 @@ directing traffic to them on chosen network resources is called
 <p id="section-abstract-2">This document provides the problem statement and the typical
 scenarios for CATS, which shows the necessity of considering more
 factors when steering traffic to the appropriate computing resource to
-best meet the customer's expectations and deliver the requested
-service.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
+better meet the customer's expectations.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1151,7 +1147,7 @@ service.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 8 June 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 9 August 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1160,7 +1156,7 @@ service.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 <a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
-            Copyright (c) 2024 IETF Trust and the persons identified as the
+            Copyright (c) 2025 IETF Trust and the persons identified as the
             document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.2-2">
             This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1224,19 +1220,16 @@ service.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
                 <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-support-dynamic-and-effecti" class="internal xref">Support dynamic and effective selection among multiple service instances</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2">
-                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-support-agreement-on-metric" class="internal xref">Support Agreement on Metric Representation</a></p>
+                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-support-agreement-on-metric" class="internal xref">Support Agreement on Metric Representation and Definition</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3">
-                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="auto internal xref">5.3</a>.  <a href="#name-support-moderate-metric-dis" class="internal xref">Support Moderate Metric Distributing</a></p>
+                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="auto internal xref">5.3</a>.  <a href="#name-use-of-cats-metrics" class="internal xref">Use of CATS Metrics</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.4">
-                <p id="section-toc.1-1.5.2.4.1"><a href="#section-5.4" class="auto internal xref">5.4</a>.  <a href="#name-support-alternative-definit" class="internal xref">Support Alternative Definition and Use of Metrics</a></p>
+                <p id="section-toc.1-1.5.2.4.1"><a href="#section-5.4" class="auto internal xref">5.4</a>.  <a href="#name-support-instance-affinity" class="internal xref">Support Instance Affinity</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.5">
-                <p id="section-toc.1-1.5.2.5.1"><a href="#section-5.5" class="auto internal xref">5.5</a>.  <a href="#name-support-instance-affinity" class="internal xref">Support Instance Affinity</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.6">
-                <p id="section-toc.1-1.5.2.6.1"><a href="#section-5.6" class="auto internal xref">5.6</a>.  <a href="#name-preserve-communication-conf" class="internal xref">Preserve Communication Confidentiality</a></p>
+                <p id="section-toc.1-1.5.2.5.1"><a href="#section-5.5" class="auto internal xref">5.5</a>.  <a href="#name-preserve-communication-conf" class="internal xref">Preserve Communication Confidentiality</a></p>
 </li>
             </ul>
 </li>
@@ -1289,42 +1282,31 @@ service.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">Network and computing convergence has been evolving in the Internet
-for considerable time. With Content Delivery Networks (CDNs)
-'frontloading' access to many services, over-the-top service
-provisioning has become a driving force for many services, such as
-video, storage and many others. Network operators have extended their
-capabilities by complementing their network infrastructure by developing
-CDN capabilities, particularly in edge sites. In addition, more
-computing resource are deployed at these edge sites as well.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">The reason of the fast development of this converged network/compute
-infrastructure is user demand. On the one hand, users want the best
-experience, e.g., expressed in low latency and high reliability, for new
+<p id="section-1-1">Over-the-top services depend on Content Delivery Networks (CDNs)
+for service provisioning, which has become a driving force for network operators to extend their
+capabilities by complementing their network infrastructure with CDN capabilities, particularly in edge sites. In addition, more computing resources are deployed at these edge sites as well.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">The fast development of this converged network and compute infrastructure is driven by user demands. On one hand, users want the best experience, e.g., expressed in low latency and high reliability, for new
 emerging applications such as high-definition video, Augmented
-Reality(AR)/Virtual Reality(VR), live broadcast and so on. On the other
-hand, users want stable experience when moving to different areas.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">Generally, edge computing aims to provide better response times and
+Reality(AR)/Virtual Reality(VR), live broadcast. On the other
+hand, users want stable experience when moving among different areas.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">Generally, edge computing aims to provide better response time and
 transfer rates compared to cloud computing, by moving the computing
 towards the edge of a network. There are millions of home gateways,
 thousands of base stations, and hundreds of central offices in a city
 that could serve as compute-capable nodes to deliver a service. Note
 that not all of these nodes would be considered as edge nodes in some
-views of the network, but they can all provide computing resources to
-enable a service.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">That brings about the key problem of deploying and scheduling traffic
-to the most suitable computing resource in order to meet the users'
-service demand.<a href="#section-1-4" class="pilcrow">¶</a></p>
-<p id="section-1-5">Service providers often have their own service sites, many of which
-have been enhanced to support computing services. A service instance
-deployed at a single site might not provide sufficient capacity to fully
+views of the network, but they can all provide computing resources for services.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">It brings some key problems on service deployment and traffic scheduling
+to the most suitable computing resource in order to meet users' demands.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">A service instance deployed at a single site might not provide sufficient capacity to fully
 guarantee the quality of service required by a customer. Especially at
 peak hours, computing resources at a single site can not handle all the
-incoming service requests, leading to longer response times or even
+incoming service requests, leading to longer response time or even
 dropping of requests experienced by clients. Moreover, increasing the
 computing resources hosted at each location to the potential maximum
 capacity is neither feasible nor economically viable in many cases.
-Offloading computation intensive processing to the user devices is
-neither acceptable, since it would place huge pressure on local
+Offloading compute intensive processing to the user devices is
+not acceptable, since it would place pressure on local
 resources such as the battery and incur some data privacy issues if the
 needed data for computation is not provided locally.<a href="#section-1-5" class="pilcrow">¶</a></p>
 <p id="section-1-6">Instead, the same service can be deployed at multiple sites for
@@ -1653,7 +1635,7 @@ instance's CPU, GPU and memory utilization has a high impact on the
 processing delay on encoding, decoding and rendering. At the same
 time, the network path quality to the edge site is a key for user
 experience of quality of audio/ video and input command response
-times.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
+time.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
 <p id="section-4.1-4">A Cloud VR service, such as a mobile gaming service, brings
 challenging requirements to both network and computing so that the
 edge node to serve a service request has to be carefully selected to
@@ -2082,7 +2064,7 @@ to enable the traffic steering and to further optimize the network and
 computing services. A unique service identifier is used by all the
 service instances for a specific service no matter which edge site an
 instance may attach to. The mapping of this service identifier to a
-network locator makes sure the data packet CATS potentially reach any
+network locator is basic to steer traffic to any
 of the service instances deployed in various edge sites.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
 <p id="section-5.1-2">Moreover, according to CATS use cases, some applications require
 E2E low latency, which warrants a quick mapping of the service
@@ -2090,23 +2072,16 @@ identifier to the network locator. This leads to naturally the in-band
 methods, involving the consideration of using metrics that are
 oriented towards compute capabilities and resources, and their
 correlation with services. Therefore, a desirable system<a href="#section-5.1-2" class="pilcrow">¶</a></p>
-<p id="section-5.1-3">R1: <span class="bcp14">MUST</span> provide a discovery and resolving methodology for the
+<p id="section-5.1-3">R1: <span class="bcp14">MUST</span> provide a discovery and resolving method for the
 mapping of a service identifier to a specific address.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
-<p id="section-5.1-4">R2: <span class="bcp14">MUST</span> provide an mapping methods for further quickly selecting
-the service instance.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
-<p id="section-5.1-5">R3: <span class="bcp14">SHOULD</span> provide a timeout limitation for selecting the service
-instance.<a href="#section-5.1-5" class="pilcrow">¶</a></p>
-<p id="section-5.1-6">R4: <span class="bcp14">MUST</span> provide a method to determine the availability of a
-service instance.<a href="#section-5.1-6" class="pilcrow">¶</a></p>
-<p id="section-5.1-7">R5: <span class="bcp14">MUST</span> provide a mechanism for solving the service contention
-problem when multiple service instances with the same service
-identifier are all available to provide computing services.<a href="#section-5.1-7" class="pilcrow">¶</a></p>
+<p id="section-5.1-4">R2: <span class="bcp14">MUST</span> provide a method to determine the availability of a
+service instance.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="support-agreement-on-metric-representation">
+<div id="support-agreement-on-metric-representation-and-definition">
 <section id="section-5.2">
         <h3 id="name-support-agreement-on-metric">
-<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-support-agreement-on-metric" class="section-name selfRef">Support Agreement on Metric Representation</a>
+<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-support-agreement-on-metric" class="section-name selfRef">Support Agreement on Metric Representation and Definition</a>
         </h3>
 <p id="section-5.2-1">Computing metrics can have many different semantics, particularly
 for being service-specific. Even the notion of a "computing load"
@@ -2116,16 +2091,23 @@ or it may be purely one or more semantic-free numerals. Agreement of
 the chosen representation among all service and network elements
 participating in the service instance selection decision is important.
 Therefore, a desirable system<a href="#section-5.2-1" class="pilcrow">¶</a></p>
-<p id="section-5.2-2">R6: <span class="bcp14">MUST</span> agree on using metrics that are oriented towards compute
+<p id="section-5.2-2">R3: <span class="bcp14">MUST</span> agree on using metrics that are oriented towards compute
 capabilities and resources and their representation among service
-elements in the participating edges.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
-<p id="section-5.2-3">R7: <span class="bcp14">MUST</span> include network metrics.<a href="#section-5.2-3" class="pilcrow">¶</a></p>
+instaces in the participating edges.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
+<p id="section-5.2-3">To better understand the meaning of different metrics and to better support appropriate use of metrics,<a href="#section-5.2-3" class="pilcrow">¶</a></p>
+<p id="section-5.2-4">R4: A model of the compute and network resources <span class="bcp14">MUST</span> be defined. Such a model <span class="bcp14">MUST</span> characterize how metrics are abstracted out from the compute and network resources. We refer to this model as the Resource Model.<a href="#section-5.2-4" class="pilcrow">¶</a></p>
+<p id="section-5.2-5">R5: The Resource Model <span class="bcp14">MUST</span> be implementable in an interoperable manner. That is, independent implementations of the Resource Model must be interoperable.<a href="#section-5.2-5" class="pilcrow">¶</a></p>
+<p id="section-5.2-6">R6: The Resource Model <span class="bcp14">MUST</span> be executable in a scalable manner. That is, an agent implementing the Resource Model <span class="bcp14">MUST</span> be able to execute it at the required time scale and at an affordable cost (e.g., memory footprint, energy, etc.).<a href="#section-5.2-6" class="pilcrow">¶</a></p>
+<p id="section-5.2-7">R7: The Resource Model <span class="bcp14">MUST</span> be useful. That is, the metrics that an agent can obtain by executing the Resource Model must be useful to make node and path selection decisions.<a href="#section-5.2-7" class="pilcrow">¶</a></p>
+<p id="section-5.2-8">We recognize that different network nodes, e.g., routers, switches, etc., may have diversified capabilities even in the same routing domain, let alone in different administrative domains and from different vendors. Therefore, to work properly in a CATS system,<a href="#section-5.2-8" class="pilcrow">¶</a></p>
+<p id="section-5.2-9">R8: There <span class="bcp14">MUST</span> set up metric information that can be understood by CATS components. For metrics that CATS components do not understand or support, CATS components will ignore them.<a href="#section-5.2-9" class="pilcrow">¶</a></p>
+<p id="section-5.2-10">R9: The computing metrics in CATS <span class="bcp14">MUST</span> be simple, that is distributing metrics and selecting path based on these metrics will not cause routing loops and route oscillation.<a href="#section-5.2-10" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="support-moderate-metric-distributing">
+<div id="use-of-cats-metrics">
 <section id="section-5.3">
-        <h3 id="name-support-moderate-metric-dis">
-<a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-support-moderate-metric-dis" class="section-name selfRef">Support Moderate Metric Distributing</a>
+        <h3 id="name-use-of-cats-metrics">
+<a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-use-of-cats-metrics" class="section-name selfRef">Use of CATS Metrics</a>
         </h3>
 <p id="section-5.3-1">Network path costs in the current routing system usually do not
 change very frequently. Network traffic engineering metrics (such as
@@ -2147,57 +2129,27 @@ network traffic. While existing routing protocols may serve as a
 baseline for signaling metrics, other means to convey the metrics can
 equally be considered and even be realized. Specifically, a desirable
 system<a href="#section-5.3-3" class="pilcrow">¶</a></p>
-<p id="section-5.3-4">R8: <span class="bcp14">MUST</span> provide mechanisms for metric collection.<a href="#section-5.3-4" class="pilcrow">¶</a></p>
-<p id="section-5.3-5">Collecting metrics from all of the services instances may incur
+<p id="section-5.3-4">R10: <span class="bcp14">MUST</span> provide mechanisms for metric collection.<a href="#section-5.3-4" class="pilcrow">¶</a></p>
+<p id="section-5.3-5">R11: <span class="bcp14">MUST</span> declare the entity that collect metrics.<a href="#section-5.3-5" class="pilcrow">¶</a></p>
+<p id="section-5.3-6">Collecting metrics from all of the services instances may incur
 much overhead for the decision maker, and thus hierarchical metric
-collection is needed. That is,<a href="#section-5.3-5" class="pilcrow">¶</a></p>
-<p id="section-5.3-6">R9: <span class="bcp14">SHOULD</span> provide mechanisms to aggregate the metrics.<a href="#section-5.3-6" class="pilcrow">¶</a></p>
-<p id="section-5.3-7">CATS components do not need to be aware of how metrics are
-collected behind the aggregator.<a href="#section-5.3-7" class="pilcrow">¶</a></p>
-<p id="section-5.3-8">R10: <span class="bcp14">MUST</span> provide mechanisms to distribute the metrics.<a href="#section-5.3-8" class="pilcrow">¶</a></p>
-<p id="section-5.3-9">R11: <span class="bcp14">MUST</span> realize means for rate control for distributing of
-metrics.<a href="#section-5.3-9" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="support-alternative-definition-and-use-of-metrics">
-<section id="section-5.4">
-        <h3 id="name-support-alternative-definit">
-<a href="#section-5.4" class="section-number selfRef">5.4. </a><a href="#name-support-alternative-definit" class="section-name selfRef">Support Alternative Definition and Use of Metrics</a>
-        </h3>
-<p id="section-5.4-1">Considering computing resources assigned to a service instance on a
-server, which might be related to some critical metrics like the
-processing delay, is crucial in addition to the network delay in some
-cases. Therefore, the CATS components might use both the network and
-computing metrics for service instance selection. For this reason:<a href="#section-5.4-1" class="pilcrow">¶</a></p>
-<p id="section-5.4-2">R12: a computing semantic model <span class="bcp14">SHOULD</span> be defined for the mapping
-selection.<a href="#section-5.4-2" class="pilcrow">¶</a></p>
-<p id="section-5.4-3">We recognize that different network nodes, e.g., routers, switches,
-etc., may have diversified capabilities even in the same routing
-domain, let alone in different administrative domains. So, metrics
-that are oriented towards compute capabilities and resources that have
-been adopted by some nodes may not be supported by others, either due
-to technical reasons, administrative reasons, or something else. There
-exist scenarios in which a node supporting service-specific metrics
-might prefer some type of metrics to others<span>[<a href="#TR22.874" class="cite xref">TR22.874</a>]</span>.
-Of course, specific metrics might not be utilized at all in other
-scenarios. Hence:<a href="#section-5.4-3" class="pilcrow">¶</a></p>
-<p id="section-5.4-4">R13: In addition to common metrics that are agreed by all CATS
-components like processing delay, there <span class="bcp14">SHOULD</span> be some other ways for
-metrics definition, which is used for the selection of specific
-service instance.<a href="#section-5.4-4" class="pilcrow">¶</a></p>
-<p id="section-5.4-5">Therefore, a desirable system<a href="#section-5.4-5" class="pilcrow">¶</a></p>
-<p id="section-5.4-6">R14: <span class="bcp14">MUST</span> set up metric information that can be understood by CATS
-components.<a href="#section-5.4-6" class="pilcrow">¶</a></p>
-<p id="section-5.4-7">For metrics that CATS components do not understand or support, CATS
-components will ignore them.<a href="#section-5.4-7" class="pilcrow">¶</a></p>
+collection is needed. That is,<a href="#section-5.3-6" class="pilcrow">¶</a></p>
+<p id="section-5.3-7">R12: <span class="bcp14">SHOULD</span> provide mechanisms to aggregate the metrics.<a href="#section-5.3-7" class="pilcrow">¶</a></p>
+<p id="section-5.3-8">CATS components do not need to be aware of how metrics are
+collected behind the aggregator. The decision point may not be directly connected with service instances or metric collectors, therefore，<a href="#section-5.3-8" class="pilcrow">¶</a></p>
+<p id="section-5.3-9">R13: <span class="bcp14">MUST</span> provide mechanisms to distribute the metrics.<a href="#section-5.3-9" class="pilcrow">¶</a></p>
+<p id="section-5.3-10">The update frequency of the computing metrics may be various. Some of the metrics may be more dynamic, and some are relatively static. Accordingly, different distribution methods may be chosen with respect to different update frequencies of relevant metrics. Therefore,<a href="#section-5.3-10" class="pilcrow">¶</a></p>
+<p id="section-5.3-11">R14: <span class="bcp14">MUST</span> be clear of the update frequency of CATS metrics and its corresponding distribution method.<a href="#section-5.3-11" class="pilcrow">¶</a></p>
+<p id="section-5.3-12">Sometimes, a metric that is chosen is not accurate for service instance selection, in such case, a desirable system<a href="#section-5.3-12" class="pilcrow">¶</a></p>
+<p id="section-5.3-13">R15: <span class="bcp14">SHOULD</span> provide mechanisms to assess selection accuracy and re-select metrics if the selection result is not accurate.<a href="#section-5.3-13" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="session-continuity">
-<section id="section-5.5">
+<section id="section-5.4">
         <h3 id="name-support-instance-affinity">
-<a href="#section-5.5" class="section-number selfRef">5.5. </a><a href="#name-support-instance-affinity" class="section-name selfRef">Support Instance Affinity</a>
+<a href="#section-5.4" class="section-number selfRef">5.4. </a><a href="#name-support-instance-affinity" class="section-name selfRef">Support Instance Affinity</a>
         </h3>
-<p id="section-5.5-1">In the CATS system, a service may be provided by one or more
+<p id="section-5.4-1">In the CATS system, a service may be provided by one or more
 service instances that would be deployed at different locations in the
 network. Each instance provides equivalent service functionality to
 their respective clients. The decision logic of the instance selection
@@ -2214,55 +2166,51 @@ to another. Such required transfer of state/context makes it desirable
 to have instance affinity as the default, removing the need for
 explicit context transfer, while also supporting an explicit
 state/context transfer (e.g., when metrics change significantly). So
-in those situations:<a href="#section-5.5-1" class="pilcrow">¶</a></p>
-<p id="section-5.5-2">R15: Instance affinity <span class="bcp14">MUST</span> be maintained when state information is
-needed.<a href="#section-5.5-2" class="pilcrow">¶</a></p>
-<p id="section-5.5-3">The nature of this affinity is highly dependent on the nature of
-the specific service, which could be seen as a 'instance affinity' to
+in those situations:<a href="#section-5.4-1" class="pilcrow">¶</a></p>
+<p id="section-5.4-2">R16: Instance affinity <span class="bcp14">MUST</span> be maintained when the transaction is stateful.<a href="#section-5.4-2" class="pilcrow">¶</a></p>
+<p id="section-5.4-3">The nature of this affinity is highly dependent on the nature of
+the service, which could be seen as a 'instance affinity' to
 represent the relationship. The minimal affinity of a single request
 represents a stateless service, where each service request may be
 responded to without any state being held at the service instance for
-fulfilling the request.<a href="#section-5.5-3" class="pilcrow">¶</a></p>
-<p id="section-5.5-4">Providing any necessary information/state in-band as part of the
+fulfilling the request.<a href="#section-5.4-3" class="pilcrow">¶</a></p>
+<p id="section-5.4-4">Providing any necessary information/state in-band as part of the
 service request, e.g., in the form of a multi-form body in an HTTP
 request or through the URL provided as part of the request, is one way
-to achieve such stateless nature.<a href="#section-5.5-4" class="pilcrow">¶</a></p>
-<p id="section-5.5-5">Alternatively, the affinity to a particular service instance may
+to achieve such stateless nature.<a href="#section-5.4-4" class="pilcrow">¶</a></p>
+<p id="section-5.4-5">Alternatively, the affinity to a particular service instance may
 span more than one request, as in the AR/VR use case, where previous
-client input is needed to render subsequent frames.<a href="#section-5.5-5" class="pilcrow">¶</a></p>
-<p id="section-5.5-6">However, a client, e.g., a mobile UE, may have many applications
+client input is needed to render subsequent frames.<a href="#section-5.4-5" class="pilcrow">¶</a></p>
+<p id="section-5.4-6">However, a client, e.g., a mobile UE, may have many applications
 running. If all, or majority, of the applications request the CATS-
 based services, then the runtime states that need to be created and
 accordingly maintained would require high granularity. In the extreme
-scenario, this granular requirement could reach the level of per-UE
-per-APP per-(sub)flow with regard to a service instance. Evidently,
+scenario, this granular requirement could reach the level of per-UE,
+per-APP, and per-(sub)flow with regard to a service instance. Evidently,
 these fine-granular runtime states can potentially place a heavy
 burden on network devices if they have to dynamically create and
 maintain them. On the other hand, it is not appropriate either to
-place the state-keeping task on clients themselves.<a href="#section-5.5-6" class="pilcrow">¶</a></p>
-<p id="section-5.5-7">Besides, there might be the case that UE moves to a new (access)
+place the state-keeping task on clients themselves.<a href="#section-5.4-6" class="pilcrow">¶</a></p>
+<p id="section-5.4-7">Besides, there might be the case that UE moves to a new (access)
 network or the service instance is migrated to another cloud, which
 cause the unreachable or inconvenient of the original service
 instance. So the UE and service instance mobility also need to be
-considered.<a href="#section-5.5-7" class="pilcrow">¶</a></p>
-<p id="section-5.5-8">Therefore, a desirable system<a href="#section-5.5-8" class="pilcrow">¶</a></p>
-<p id="section-5.5-9">R16: <span class="bcp14">MUST</span> maintain instance affinity which <span class="bcp14">MAY</span> span one or more
-service requests, i.e., all the packets from the same
-application-level flow <span class="bcp14">MUST</span> go to the same service instance unless the
-original service instance is unreachable<a href="#section-5.5-9" class="pilcrow">¶</a></p>
-<p id="section-5.5-10">R17: <span class="bcp14">MUST</span> avoid keeping fine runtime-state granularity in network
-nodes for providing instance affinity.<a href="#section-5.5-10" class="pilcrow">¶</a></p>
-<p id="section-5.5-11">R18: <span class="bcp14">MUST</span> provide mechanisms to minimize client side states in
-order to achieve the instance affinity.<a href="#section-5.5-11" class="pilcrow">¶</a></p>
-<p id="section-5.5-12">R19: <span class="bcp14">SHOULD</span> support the UE and service instance mobility.<a href="#section-5.5-12" class="pilcrow">¶</a></p>
+considered.<a href="#section-5.4-7" class="pilcrow">¶</a></p>
+<p id="section-5.4-8">Therefore, a desirable system<a href="#section-5.4-8" class="pilcrow">¶</a></p>
+<p id="section-5.4-9">R17: Instance affinity <span class="bcp14">MUST</span> be maintained for service requests or transactions that belong to the same flow.<a href="#section-5.4-9" class="pilcrow">¶</a></p>
+<p id="section-5.4-10">R18: <span class="bcp14">MUST</span> avoid keeping fine runtime-state granularity in network
+nodes for providing instance affinity. For example, as mentioned above, maintaining per-flow states for a specific APP.<a href="#section-5.4-10" class="pilcrow">¶</a></p>
+<p id="section-5.4-11">R19: <span class="bcp14">MUST</span> provide mechanisms to minimize client side states in
+order to achieve the instance affinity.<a href="#section-5.4-11" class="pilcrow">¶</a></p>
+<p id="section-5.4-12">R20: <span class="bcp14">SHOULD</span> support the UE and service instance mobility.<a href="#section-5.4-12" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="preserve-communication-confidentiality">
-<section id="section-5.6">
+<section id="section-5.5">
         <h3 id="name-preserve-communication-conf">
-<a href="#section-5.6" class="section-number selfRef">5.6. </a><a href="#name-preserve-communication-conf" class="section-name selfRef">Preserve Communication Confidentiality</a>
+<a href="#section-5.5" class="section-number selfRef">5.5. </a><a href="#name-preserve-communication-conf" class="section-name selfRef">Preserve Communication Confidentiality</a>
         </h3>
-<p id="section-5.6-1">Exposing the information of computing resources to the network may
+<p id="section-5.5-1">Exposing the information of computing resources to the network may
 lead to the leakage of computing domain and application privacy. In
 order to prevent it, it need to consider the methods to process the
 sensitive information related to computing domain. For instance, using
@@ -2273,10 +2221,10 @@ customized information exposure strategies according to specific
 application requirements or network scheduling requirements. At the
 same time, when anonymity is achieved, it is also necessary to
 consider whether the computing information exposed in the network can
-help make full use of traffic steering. Therefore, a CATS system<a href="#section-5.6-1" class="pilcrow">¶</a></p>
-<p id="section-5.6-2">R20: <span class="bcp14">MUST</span> preserve the confidentiality of the communication
+help make full use of traffic steering. Therefore, a CATS system<a href="#section-5.5-1" class="pilcrow">¶</a></p>
+<p id="section-5.5-2">R21: <span class="bcp14">MUST</span> preserve the confidentiality of the communication
 relation between user and service provider by minimizing the exposure
-of user-relevant information according to user needs.<a href="#section-5.6-2" class="pilcrow">¶</a></p>
+of user-relevant information according to user needs.<a href="#section-5.5-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2291,17 +2239,19 @@ network status as well as some service information. Some security issues
 need to be considered when designing CATS system.<a href="#section-6-1" class="pilcrow">¶</a></p>
 <p id="section-6-2">Service data sometimes needs to be moved among different edge sites
 to maintain service consistency and availability. Therefore:<a href="#section-6-2" class="pilcrow">¶</a></p>
-<p id="section-6-3">R21: service data <span class="bcp14">MUST</span> be protected from interception.<a href="#section-6-3" class="pilcrow">¶</a></p>
+<p id="section-6-3">R22: service data <span class="bcp14">MUST</span> be protected from interception.<a href="#section-6-3" class="pilcrow">¶</a></p>
 <p id="section-6-4">The act of making compute requests may reveal the nature of user's
 activities, so that:<a href="#section-6-4" class="pilcrow">¶</a></p>
-<p id="section-6-5">R22: the nature of user's activities <span class="bcp14">SHOULD</span> be hidden as much as
+<p id="section-6-5">R23: the nature of user's activities <span class="bcp14">SHOULD</span> be hidden as much as
 possible.<a href="#section-6-5" class="pilcrow">¶</a></p>
 <p id="section-6-6">The behavior of the network can be adversely affected by modifying or
 interfering with advertisements of computing resource availability. Such
 attacks could deprive users' of the services they desires, and might be
 used to divert traffic to interception points. Therefore,<a href="#section-6-6" class="pilcrow">¶</a></p>
-<p id="section-6-7">R23: secure advertisements are <span class="bcp14">REQUIRED</span> to prevent rogue nodes from
+<p id="section-6-7">R24: secure advertisements are <span class="bcp14">REQUIRED</span> to prevent rogue nodes from
 participating in the network.<a href="#section-6-7" class="pilcrow">¶</a></p>
+<p id="section-6-8">Compromised or malicious computing resources will bring threats to network and services of users, such as data of services maybe stolen, output of computing services may have deviations and other computing resources are attacked by the compromised resources that collaborate with them for computation. Therefore,<a href="#section-6-8" class="pilcrow">¶</a></p>
+<p id="section-6-9">R25: When making service decisions, the security status of computing resources <span class="bcp14">SHOULD</span> be taken into consideration.<a href="#section-6-9" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
@@ -2330,10 +2280,6 @@ participating in the network.<a href="#section-6-7" class="pilcrow">¶</a></p>
 <dt id="RFC7285">[RFC7285]</dt>
         <dd>
 <span class="refAuthor">Alimi, R., Ed.</span>, <span class="refAuthor">Penno, R., Ed.</span>, <span class="refAuthor">Yang, Y., Ed.</span>, <span class="refAuthor">Kiesel, S.</span>, <span class="refAuthor">Previdi, S.</span>, <span class="refAuthor">Roome, W.</span>, <span class="refAuthor">Shalunov, S.</span>, and <span class="refAuthor">R. Woundy</span>, <span class="refTitle">"Application-Layer Traffic Optimization (ALTO) Protocol"</span>, <span class="seriesInfo">RFC 7285</span>, <span class="seriesInfo">DOI 10.17487/RFC7285</span>, <time datetime="2014-09" class="refDate">September 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7285">https://www.rfc-editor.org/rfc/rfc7285</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC7665">[RFC7665]</dt>
-        <dd>
-<span class="refAuthor">Halpern, J., Ed.</span> and <span class="refAuthor">C. Pignataro, Ed.</span>, <span class="refTitle">"Service Function Chaining (SFC) Architecture"</span>, <span class="seriesInfo">RFC 7665</span>, <span class="seriesInfo">DOI 10.17487/RFC7665</span>, <time datetime="2015-10" class="refDate">October 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7665">https://www.rfc-editor.org/rfc/rfc7665</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
       <dd>
@@ -2761,6 +2707,30 @@ document:<a href="#appendix-C-1" class="pilcrow">¶</a></p>
 <div class="email">
 <span>Email:</span>
 <a href="mailto:yixx3@chinaunicom.cn" class="email">yixx3@chinaunicom.cn</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Xinxin Yi</span></div>
+<div dir="auto" class="left"><span class="org">China Unicom</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:yixx3@chinaunicom.cn" class="email">yixx3@chinaunicom.cn</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Jordi Ros-Giralt</span></div>
+<div dir="auto" class="left"><span class="org">Qualcomm Europe, Inc.</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:jros@qti.qualcomm.com" class="email">jros@qti.qualcomm.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Jaehoon Paul Jeong</span></div>
+<div dir="auto" class="left"><span class="org">Sungkyunkwan University</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:pauljeong@skku.edu" class="email">pauljeong@skku.edu</a>
 </div>
 </address>
 </section>
