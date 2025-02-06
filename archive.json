@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-30T01:09:08.645293+00:00",
+  "timestamp": "2025-02-06T01:11:22.416450+00:00",
   "repo": "ietf-wg-cats/draft-ietf-cats-usecases-requirements",
   "labels": [
     {
@@ -198,6 +198,22 @@
       "body": "https://mailarchive.ietf.org/arch/msg/cats/twiXq70wADQ0D9PZVmA0OhP3XoU/",
       "createdAt": "2025-01-24T08:03:54Z",
       "updatedAt": "2025-01-24T08:03:54Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 16,
+      "id": "I_kwDOKfPAms6oyacB",
+      "title": "Correlation between Use cases and Requirements",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-usecases-requirements/issues/16",
+      "state": "OPEN",
+      "author": "bpatient78",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-02-05T03:41:04Z",
+      "updatedAt": "2025-02-05T03:41:04Z",
       "closedAt": null,
       "comments": []
     }
