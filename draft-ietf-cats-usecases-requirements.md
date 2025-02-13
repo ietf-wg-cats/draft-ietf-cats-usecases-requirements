@@ -92,6 +92,7 @@ informative:
     - name: Gaia-X
     date: 2021
 
+
 --- abstract
 
 Distributed computing is a computing pattern that service providers can follow and use to
@@ -412,14 +413,9 @@ is needed to guarantee the Quality of Experience (QoE).
 
 This section presents a non-exhaustive set of use cases which would
 benefit from the dynamic selection of service instances and the steering
-of traffic to those service instances.
+of traffic to those service instances. 
 
-## Computing-Aware AR or VR
-
-Cloud VR/AR services are used in some exhibitions, scenic spots,
-and celebration ceremonies. In the future, they might be used in more
-applications, such as industrial internet, medical industry, and meta
-verse.
+## Example 1: Computing-aware AR or VR
 
 Cloud VR/AR introduces the concept of cloud computing to the
 rendering of audiovisual assets in such applications. Here, the edge
@@ -430,21 +426,8 @@ generated from the edge cloud are encoded, compressed, and transmitted
 back to the end device or further transmitted to central data center
 via high bandwidth networks.
 
-Edge sites may use CPU or GPU for encode/decode. GPU usually has
-better performance but CPU is simpler and more straightforward to use
-as well as possibly more widespread in deployment. Available remaining
-resources determines if a service instance can be started. The
-instance's CPU, GPU and memory utilization has a high impact on the
-processing delay on encoding, decoding and rendering. At the same
-time, the network path quality to the edge site is a key for user
-experience of quality of audio/ video and input command response
-time.
-
-A Cloud VR service, such as a mobile gaming service, brings
-challenging requirements to both network and computing so that the
-edge node to serve a service request has to be carefully selected to
-make sure it has sufficient computing resource and good network path.
-For example, for an entry-level cloud VR (panoramic 8K 2D video) with
+A Cloud VR service is delay-sensitive and influenced by both network and computing resources. Therefore, the edge node which executes the service has to be carefully selected to
+make sure it has sufficient computing resource and good network condition to guarantee the end-to-end service delay. For example, for an entry-level cloud VR (panoramic 8K 2D video) with
 110-degree Field of View (FOV) transmission, the typical network
 requirements are bandwidth 40Mbps, 20ms for motion-to-photon latency,
 packet loss rate is 2.4E-5; the typical computing requirements are 8K
@@ -575,7 +558,7 @@ to and served by an edge with sufficient computing resource and a good
 network path.
 
 
-## Computing-Aware Intelligent Transportation
+## Example 2: Computing-aware Intelligent Transportation
 
 For the convenience of transportation, more video capture devices
 are required to be deployed as urban infrastructure, and the better
@@ -622,8 +605,7 @@ would cause the overload of the nearest edge sites if there is no
 extra method used, and some of the service request flow might be
 steered to others edge site except the nearest one.
 
-
-## Computing-Aware Digital Twin
+## Example 3: Computing-aware Digital Twin
 
 A number of industry associations, such as the Industrial Digital
 Twin Association or the Digital Twin Consortium
@@ -660,10 +642,9 @@ of localized reasoning over data originating from driving vehicles)
 but also through proposed platform solutions, such as those in {{GAIA-X}},
 plays an important role. With decentralization,
 endpoint relations between client and (storage) service instances may
-frequently change as a result.
+frequently change as a result. 
 
-
-## Computing-Aware SD-WAN
+## Example 4: Computing-aware SD-WAN
 
 SD-WAN provides organizations or enterprises with centralized
 control over multiple sites which are network endpoints including
@@ -705,6 +686,11 @@ in the clouds by vCPEs, and selects the application instance for the
 client to visit according to computing power and the network state of
 WAN.
 
+Additionally, in order to provide cost-effective solutions, the SD-WAN may also consider cost, e.g., 
+in terms of energy prices incurred or energy source used, when selecting a specific application 
+instance over another. For this, suitable metric information would need to be exposed, e.g., by the 
+cloud provider, in terms of utilized energy or incurred energy costs per computing resource.
+
 {{fig4}} below illustrates Computing-aware SD-WAN for Enterprise
 Cloudification.
 
@@ -735,9 +721,9 @@ office. The traffic of client3 follows the path: Client3 -> CPE
 -> WAN1 -> Cloud2 vCPE1 -> Cloud2 APP1
 
 
-## Computing-Aware AI Large Model Inference
+## Example 5: Computing-aware Distributed AI Training and Inference
 
-AI(Artificial Intelligence) large model refers to models that are
+Artificial Intelligence (AI) large model refers to models that are
 characterized by their large size, high complexity, and high
 computational requirements. AI large models have become increasingly
 important in various fields, such as natural language processing for
@@ -747,79 +733,48 @@ object detection, and speech recognition.
 AI large model contains two key phases: training and inference.
 Training refers to the process of developing an AI model by feeding it
 with large amounts of data and optimizing it to learn and improve its
-performance. Training has high demand on computing and memory
-resource, so that training is usually deployed in large central data
-centers. On the other hand, inference is the process of using the
+performance. On the other hand, inference is the process of using the
 trained AI model to make predictions or decisions based on new input
-data. Compared to training, the AI Inference does not consume large
-amount of computing resources,and it is usually deployed at edge sites
-and end devices for real time and dynamic service response.
+data. 
 
-{{fig5}} shows the cloud-edge-device co-inference deployment.
-Single site deployment of the model can not provide enough compute
-resources and is not sufficient for fulfilling some AI Inference
-work. The cloud-edge-device co-inference can not only guarantee the
-compute resources but also achieve low latency as part of AI inference
-tasks is deployed near clients or even within client devices. When
-handling AI inference tasks, if traffic load between clients and edge
-sites is high or edge resource are overloaded, the response of
-inference may not be accepted by services. And CATS is needed to
-ensure the QoS of AI inference
+### Distributed AI Inference
 
-There are different types of deployments for cloud-edge-device
-co-inference. Depending on applications and compute resources. Models
-can be deployed in edge sites only or in both cloud and edge sites.
-More specifically, some pruned models can be deployed in end devices
-for compute offloading and low latency response. In all of the cases
-above, the problem of steering the traffic to different edge sites
-fits in the scope of CATS.
+With the fast development of AI large language models, more lightweight models can be deployed at edge sites. {{fig5}} shows the potential deployment of this case. 
 
-The same trained model will be deployed in each edge sites so as to
-provide undifferentiated inference service. Service selection across
-different edge sites is for low latency service response just like use
-cases mentioned in other sections above. Moreover, Specific compute
-resources like GPUs which are most suitable for AI inference are
-provided at each edge sites, and relevant metrics should be collected
-and distributed to the network for better traffic steering decision
-making. Generalized compute resources like CPUs can also finish AI
-inference, but they are less efficient and power saving than GPUs.
+AI inference contains two major steps, prefilling and decoding. Prefilling processes a user’s prompt to generate the first token of the response in one step. Following it, decoding sequentially generates subsequent tokens step-by-step until the termination token. These stages consume much computing resource. Important metrics for AI inference are processor cores which transform prompts to tokens, and memory resources which are used to store key-values and cache tokens. the generation and processing of tokens judge the service capability of an AI inference system. Single site deployment of the prefilling and decoding might not provide enough resources when there are many clients sending requests (prompts) to access AI inference service. 
+
+More generally, we also see the use of cost information, specifically on the cost for energy expended on AI inferencing of the overall provided AI-based service, as a possible criteria for steering traffic. Here, we envision (AI) service tiers being exposed to end users, allowing to prioritize, e.g., 'greener energy costs' as a key criteria for service fulfilment. For this, the system would employ metric information on, e.g., utilized energy mix at the inferencing sites and costs for energy to prioritize a 'greener' site over another, while providing similar response times.
 
 ~~~~
-                        Cloud-Edge-Device Co-Inference
-         +------------------------------------------------------+
-         |                                                      |
-         |                       Cloud                          |
-         |                                                      |
-         |                 +------------------+                 |
-         |                 |   Large  Model   |                 |
-         |                 +------------------+                 |
-         +--------------------------+---------------------------+
-                                    |
-                                    |              Inference
-       +----------------------------+-----------------------------+
+
+       +----------------------------------------------------------+
        |  +--------------+  +--------------+   +--------------+   |
        |  |     Edge     |  |     Edge     |   |     Edge     |   |
        |  | +----------+ |  | +----------+ |   | +----------+ |   |
-       |  | |          | |  | |          | |   | |          | |   |
-       |  | |  Models  | |  | |  Models  | |   | |  Models  | |   |
+       |  | |  Prefill | |  | |  Prefill | |   | |  Prefill | |   |
+       |  | +----------+ |  | +----------+ |   | +----------+ |   |
+       |  | +----------+ |  | +----------+ |   | +----------+ |   |
+       |  | |  Decode  | |  | |  Decode  | |   | |  Decode  | |   |
        |  | +----------+ |  | +----------+ |   | +----------+ |   |
        |  +--------------+  +--------------+   +--------------+   |
-       +----------+-----------------+---------------+-------------+
-                  |                 |                  |
-                  |                 |                  |
-             +----+-----+      +----+-----+       +----+-----+
-             |  Device  |      |  Device  |   ... |  Device  |
-             | +------+ |      | +------+ |       | +------+ |
-             | |Pruned| |      | |Pruned| |       | |Pruned| |
-             | |Model | |      | |Model | |       | |Model | |
-             | +------+ |      | +------+ |       | +------+ |
-             +----------+      +----------+       +----------+
-               Inference         Inference          Inference
+       +----------+-----------------------------+-----------------+
+                  | Prompt                      | Prompt        
+                  |                             |               
+             +----+-----+                     +-+--------+
+             | Client_1 |           ...       | Client_2 |
+             +----------+                     +----------+
 ~~~~
 {: #fig5 artwork-align="center" title="Illustration of Computing-aware AI large model inference"}
 
+### Distributed AI Training
 
+Although large language models are nowadays confined to be trained with very large centers with computational, often GPU-based, resources, platforms for federated or distributed training are being positioned, specifically when employing edge computing resources.
 
+While those approaches apply their own (collective) communication approach to steer the training and gradient data towards the various (often edge) computing sites, we also see a case for CATS traffic steering here. For this, the training clusters themselves may be multi-site, i.e., combining resources from more than one site, but acting as service instances in a CATS sense, i.e., providing the respective training round as a service to the overall distributed/federated learning platform.
+
+One (cluster) site can be selected over another based on compute, network but also cost metrics, or a combination thereof. For instance, training may be constrained based on the network resources to ensure timely delivery of the required training and gradient information to the cluster site, while also computational load may be considered, particularly when the cluster sites are multi-homed, thus hosting more than one application and therefore become (temporarily) overloaded. But equally to our inferencing use case in the previous section, the overall training service may also be constrained by cost, specifically energy aspects, e.g., when positioning the service utilizing the trained model is advertising its 'green' credentials to the end users. For this, costs based on energy pricing (over time) as well as the energy mix may be considered. One could foresee, for instance, the coupling of surplus energy in renewable energy resources to a cost metric upon which traffic is steered preferably to those cluster sites that are merely consuming surplus and not grid energy.  
+
+Storage is also necessary for performing distributed/federated learning due to several key reasons. Firstly, it is needed to store model checkpoints produced throughout the training process, allowing for progress tracking and recovery in case of interruptions. Additionally, storage is used to keep samples of the dataset used to train the model, which often come from distributed sensors such as cameras, microphones, etc. Furthermore, storage is required to hold the models themselves, which can be very large and complex. Knowing the storage performance metrics is also important. For instance, understanding the I/O transfer rate of the storage helps in determining the latency of accessing data from disk. Additionally, knowing the size of the storage is relevant to understand how many model checkpoints can be stored or the maximum size of the model that can be locally stored.
 
 # Requirements
 
@@ -1022,7 +977,61 @@ R21: MUST preserve the confidentiality of the communication
 relation between user and service provider by minimizing the exposure
 of user-relevant information according to user needs.
 
+## Correlation between Use Cases and Requirements
 
+A table is presented in this section to better illustrate the correlation between CATS use cases and requirements, 'X' is for marking that the requirement can be derived from the corresponding use case.
+
+~~~~
++-------------------------------------------------+
+|                |           Use cases            |
++--Requirements--+-----+-----+------+------+------+
+|                |AR/VR| ITS |  DT  |SD-WAN|  AI  |   
++-----------+----+-----+-----+------+------+------+
+| Instance  | R1 |  X  |  X  |  X   |  X   |  X   |  
+| Selection +----+-----+-----+------+------+------+
+|           | R2 |  X  |  X  |  X   |  X   |  X   |  
++-----------+----+-----+-----+------+------+------+
+|           | R3 |  X  |  X  |  X   |  X   |  X   |  
+|           +----+-----+-----+------+------+------+
+|           | R4 |  X  |  X  |  X   |  X   |  X   |  
+|           +----+-----+-----+------+------+------+
+|  Metric   | R5 |  X  |  X  |  X   |  X   |  X   |  
+|Definition +----+-----+-----+------+------+------+
+|           | R6 |  X  |  X  |  X   |  X   |  X   |
+|           +----+-----+-----+------+------+------+
+|           | R7 |  X  |  X  |  X   |  X   |  X   |  
+|           +----+-----+-----+------+------+------+
+|           | R8 |  X  |  X  |  X   |  X   |  X   |  
+|           +----+-----+-----+------+------+------+
+|           | R9 |  X  |  X  |  X   |  X   |  X   |
++-----------+----+-----+-----+------+------+------+
+|           | R10|  X  |  X  |  X   |  X   |  X   |  
+|           +----+-----+-----+------+------+------+
+|           | R11|  X  |  X  |  X   |  X   |  X   |  
+|           +----+-----+-----+------+------+------+
+|  Use of   | R12|  X  |  X  |  X   |  X   |  X   |  
+|  Metrics  +----+-----+-----+------+------+------+
+|           | R13|  X  |  X  |  X   |  X   |  X   |
+|           +----+-----+-----+------+------+------+
+|           | R14|  X  |  X  |  X   |  X   |  X   |  
+|           +----+-----+-----+------+------+------+
+|           | R15|  X  |  X  |  X   |  X   |  X   |  
++-----------+----+-----+-----+------+------+------+
+|           | R16|  X  |  X  |  X   |  X   |  X   |  
+| Instance  +----+-----+-----+------+------+------+
+| Affinity  | R17|  X  |  X  |  X   |  X   |  X   | 
+|           +----+-----+-----+------+------+------+
+|           | R18|  X  |  X  |  X   |  X   |  X   |  
+|           +----+-----+-----+------+------+------+
+|           | R19|  X  |  X  |      |      |      |  
+|           +----+-----+-----+------+------+------+
+|           | R20|     |  X  |      |      |      |  
++-----------+----+-----+-----+------+------+------+
+| Confiden- | R21|  X  |  X  |  X   |  X   |  X   |      
+| -tiality  |    |     |     |      |      |      | 
++-----------+----+-----+-----+------+------+------+
+~~~~
+{: #fig6 artwork-align="center" title="Mapping between CATS Use Cases and Requirements"}
 
 # Security Considerations {#security-considerations}
 
