@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-13T01:11:42.570645+00:00",
+  "timestamp": "2025-02-16T01:17:07.511752+00:00",
   "repo": "ietf-wg-cats/draft-ietf-cats-usecases-requirements",
   "labels": [
     {
@@ -1443,6 +1443,73 @@
       "mergeCommit": null,
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 17,
+      "id": "PR_kwDOKfPAms6LFYEH",
+      "title": "  Add correlation between use cases and requirements",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-usecases-requirements/pull/17",
+      "state": "OPEN",
+      "author": "bpatient78",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-02-13T10:37:36Z",
+      "updatedAt": "2025-02-14T11:31:20Z",
+      "baseRepository": "ietf-wg-cats/draft-ietf-cats-usecases-requirements",
+      "baseRefName": "main",
+      "baseRefOid": "17c47e7a0a8439ad9072d268025241b1ae51ca69",
+      "headRepository": "bpatient78/draft-ietf-cats-usecases-requirements",
+      "headRefName": "main",
+      "headRefOid": "9facfd050482b96bce6b8cebb8ece23f14b0b478",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKfPAms6b9g17",
+          "commit": {
+            "abbreviatedOid": "9facfd0"
+          },
+          "author": "VMatrix1900",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-14T01:59:33Z",
+          "updatedAt": "2025-02-14T09:55:08Z",
+          "comments": [
+            {
+              "originalPosition": 179,
+              "body": "Prefill and decode is internall process of inference. Do we need to expose them?",
+              "createdAt": "2025-02-14T01:59:33Z",
+              "updatedAt": "2025-02-14T09:55:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKfPAms6cBDLs",
+          "commit": {
+            "abbreviatedOid": "9facfd0"
+          },
+          "author": "bpatient78",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-14T11:31:20Z",
+          "updatedAt": "2025-02-14T11:31:20Z",
+          "comments": [
+            {
+              "originalPosition": 179,
+              "body": "Hi Hang, \r\n\r\nThe figure is for better illustraion of the procedure of AI inference, and show what step may consume computing resources. It's not intended to be exposed to CATS components. But I see your point that whether they internal steps should be included in a IETF document. Since I'm not so experienced at this, let's see the reflections from the list. \r\n\r\nKehan ",
+              "createdAt": "2025-02-14T11:31:20Z",
+              "updatedAt": "2025-02-14T11:31:20Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
