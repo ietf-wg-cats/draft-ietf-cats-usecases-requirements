@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-20T01:12:14.864716+00:00",
+  "timestamp": "2025-02-23T01:17:01.957818+00:00",
   "repo": "ietf-wg-cats/draft-ietf-cats-usecases-requirements",
   "labels": [
     {
@@ -214,6 +214,22 @@
       "body": "",
       "createdAt": "2025-02-05T03:41:04Z",
       "updatedAt": "2025-02-05T03:41:04Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 18,
+      "id": "I_kwDOKfPAms6q_EBu",
+      "title": "Julien's comments on the mailing list",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-usecases-requirements/issues/18",
+      "state": "OPEN",
+      "author": "luismcontreras",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The following comments wre proposed in CATS mailing list: https://mailarchive.ietf.org/arch/msg/cats/BPR-oHBw7Di3QshmR9Q30NCyH_o/\n\nWe have pending to go through them and provide proper responses.\n\nComment#1:\n\"Several of  use cases in the draft can feel like  \u201cMarketing\u201d use cases, featuring flashy and fashionable high-level applications sometimes with high complexity. However it can be unclear how they make use of CATS and what kind of new and original requirement they bring to the table.\nGiven that we now seem to have a surplus of use cases, it is possible to prioritize the use cases (including those already in the document) to focus on those that exhibit meaningful requirements for section 5 (others could be moved to an annex). \nRight now it is almost impossible to link the use cases and the requirements, which can cause the latter to appear somewhat arbitrary and not well motivated. This aspect has not really improved since the first version of the draft.\"\n\nComment#2:\n\"On the other hand I feel that we\u2019re missing a really simple use case, describing the most basic operation of just a client trying to access a service satisfying some properties. We could unroll such a basic use case to exhibit basic requirements in an easier way than with the bigger use cases.\"\n\nComment#3:\n\"An unrelated issue is that the part about instance affinity is rather weak with recommendations that appear worrying (e.g. including context in HTTP features which limits the applicability and might imply complex processing). Maybe for a separate discussion.\"",
+      "createdAt": "2025-02-21T10:40:13Z",
+      "updatedAt": "2025-02-21T10:40:13Z",
       "closedAt": null,
       "comments": []
     }
