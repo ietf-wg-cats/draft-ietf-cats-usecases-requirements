@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-01T01:25:52.313511+00:00",
+  "timestamp": "2025-04-22T01:19:00.209114+00:00",
   "repo": "ietf-wg-cats/draft-ietf-cats-usecases-requirements",
   "labels": [
     {
@@ -240,6 +240,22 @@
           "updatedAt": "2025-02-24T09:44:34Z"
         }
       ]
+    },
+    {
+      "number": 19,
+      "id": "I_kwDOKfPAms6zRui3",
+      "title": "Suggestions of possible additional requirements for CATS to support Service Segmentation",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-usecases-requirements/issues/19",
+      "state": "OPEN",
+      "author": "mipearlska",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Hi authors,\n\nThis issue is about possible additional CATS requirements when the service segmentation paradigm is used to deploy services.\n\nThe impact of service segmentation to a CATS system was presented at IETF 122 CATS meeting and is described at: \nhttps://datatracker.ietf.org/doc/draft-dcn-cats-req-service-segmentation/\n\n**In short, in service segmentation scenario**\n- A service is segmented into multiple small subtasks. Combination result of these subtasks realizes the full functionalities of the original service\n- These subtasks might be required to execute in parallel or in sequence.\n- A subtask might have multiple instances running at different computing locations\n- Subtasks are transparent to Users/UEs. Users still request the original service via its Service ID/IP. \n\n**The additional requirements we suggest are as follows:**\n_These sentences can be put under R2 in section 5.1. \"Support dynamic and effective selection among multiple service instances\"_\n\n\"Additionally, a service might be deployed by segmenting into multiple smaller subtasks running in parallel or in sequence. Each subtask might also have multiple instances running at different locations. Dynamic access to different subtask instance combinations is required. Therefore, in this case, a desirable system\n\nR2.1:  SHOULD provide a method to distinguish different CATS candidate paths corresponding to different service subtask instance combinations.\n\nR2.2: SHOULD provide a method to deliver the service request to the determined optimal service subtask instance combination in correct order and correct composition.\"",
+      "createdAt": "2025-04-21T07:14:44Z",
+      "updatedAt": "2025-04-21T07:14:44Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
